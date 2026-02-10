@@ -1,0 +1,239 @@
+/* ----- Header: background only (Figma: base + noise + glass) ----- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88px;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* Base fill: black 70% opacity */
+  background: rgba(0, 0, 0, 0.7);
+
+  /* Glass: frost + refraction (blur 16–20px, strong saturation for dispersion feel) */
+  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  backdrop-filter: blur(18px) saturate(200%);
+
+  border-bottom: 0.2px solid rgba(223, 255, 153, 0.802);
+}
+
+/* Noise layer: multicolor RGB noise, ~2px size, 50% density, 60% opacity */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' result='t'/%3E%3CfeComponentTransfer in='t'%3E%3CfeFuncR type='table' tableValues='0 0.2 0.5 0.3 0.8 0.5 0.2 0.9'/%3E%3CfeFuncG type='table' tableValues='0 0.5 0.2 0.7 0.3 0.6 0.8 0.4'/%3E%3CfeFuncB type='table' tableValues='0 0.3 0.8 0.2 0.6 0.4 0.7 0.9'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+  background-repeat: repeat;
+}
+
+/* Glass: depth (inner highlight) + dispersion (subtle color fringing) + soft edges */
+.header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 0;
+  /* Depth: medium-high inner highlight */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    inset 1px 0 0 rgba(255, 255, 255, 0.03),
+    inset -1px 0 0 rgba(255, 255, 255, 0.03);
+  /* Dispersion: visible color separation (warm/cool edges) */
+  background:
+    linear-gradient(105deg, rgba(255, 100, 150, 0.04) 0%, transparent 35%, transparent 65%, rgba(100, 180, 255, 0.04) 100%),
+    linear-gradient(255deg, rgba(150, 200, 255, 0.03) 0%, transparent 40%, transparent 60%, rgba(255, 150, 200, 0.03) 100%);
+  mix-blend-mode: overlay;
+}
+
+/* Content above background layers */
+.headerContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.25rem var(--page-margin-x);
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+/* Circle: thin lavender outline, transparent inside, grain shows through */
+.logoCircle {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1.5px solid #C8A2C8;
+  box-sizing: border-box;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.logoCircle img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+  transition: opacity 0.2s;
+}
+
+.logoImgPurple {
+  opacity: 1;
+}
+
+.logoImgYellow {
+  opacity: 0;
+}
+
+.logoImgPink {
+  opacity: 0;
+}
+
+.logoBlock:hover .logoCircle {
+  border-color: var(--accent-yellow);
+}
+
+.logoBlock:hover .logoImgPurple {
+  opacity: 0;
+}
+
+.logoBlock:hover .logoImgYellow {
+  opacity: 1;
+}
+
+.logoBlock:active .logoCircle {
+  border-color: var(--accent-pink);
+}
+
+.logoBlock:active .logoImgPurple,
+.logoBlock:active .logoImgYellow {
+  opacity: 0;
+}
+
+.logoBlock:active .logoImgPink {
+  opacity: 1;
+}
+
+.logoBlock:active:hover .logoCircle {
+  border-color: var(--accent-pink);
+}
+
+.logoBlock:active:hover .logoImgPurple,
+.logoBlock:active:hover .logoImgYellow {
+  opacity: 0;
+}
+
+.logoBlock:active:hover .logoImgPink {
+  opacity: 1;
+}
+
+/* "Vy Trinh | Designer" — white / light gray */
+.logoText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-purple);
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.logoBlock:hover .logoText {
+  color: var(--accent-yellow);
+}
+
+.logoBlock:active .logoText {
+  color: var(--accent-pink);
+}
+
+.logoBlock:active:hover .logoText {
+  color: var(--accent-pink);
+}
+
+/* Nav: dark blue-grey pills, yellow-green text */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navLink {
+  position: relative;
+  z-index: -5;
+  isolation: isolate;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-yellow);
+  padding: 0.5rem 1rem;
+  background: #000000;
+  border-radius: 0;
+  transition: color 0.2s;
+}
+
+/* Purple rectangle behind nav item on hover (one step back in z-index, above header background) */
+.navLink::before {
+  content: "";
+  position: absolute;
+  z-index: -5;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+  height: 160%;
+  min-height: 2.75rem;
+  background: var(--accent-purple);
+  border-radius: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.navLink:hover {
+  color: var(--accent-yellow);
+}
+
+.navLink:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .header {
+    min-height: auto;
+  }
+
+  .headerContent {
+    padding: 1rem var(--page-margin-x-mobile);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .navLink {
+    font-size: 0.9375rem;
+    padding: 0.4rem 0.75rem;
+  }
+}

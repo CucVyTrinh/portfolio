@@ -1,0 +1,748 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--header-height);
+}
+
+.page main {
+  flex: 1;
+}
+
+/* ----- Hero ----- */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--header-height));
+  padding: 4rem var(--page-margin-x) 5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Headline: CUC VY TRINH full width, aligned to main margin (CUC left, TRINH right, VY middle) */
+.heroTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 0;
+  width: 100%;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-top: 5.5rem;
+  margin-bottom: 0;
+}
+
+.heroTitleAccent {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 14vw, 190px);
+  color: var(--accent-yellow);
+  line-height: 1;
+}
+
+.heroTitleVyWrap {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 -0.06em;
+  line-height: 1;
+  transform: translateY(0.2em);
+}
+
+.heroTitleVy {
+  font-family: var(--font-script), cursive;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 15vw, 200px);
+  color: var(--accent-purple);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Role row: role aligned to start of CUC, 4 icons aligned to end of TRINH */
+.heroRoleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3.5rem;
+  gap: 1.5rem;
+  align-self: stretch;
+}
+
+.heroSubtitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.6875rem, 3.75vw, 2.25rem);
+  color: var(--accent-yellow);
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.heroSubtitleCursor {
+  display: inline-block;
+  margin-left: 0.05em;
+  animation: typewriterBlink 0.8s step-end infinite;
+}
+
+@keyframes typewriterBlink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.heroIcons {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+  transform: translateX(0.75rem);
+}
+
+.heroIconWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroIconImg {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+/* Cursor-following label: white bold text in square brackets, typewriter effect */
+.heroIconTooltip {
+  position: fixed;
+  color: #fff;
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1000;
+  letter-spacing: 0.02em;
+}
+
+.heroIconTooltipCursor {
+  display: inline-block;
+  margin-left: 0.05em;
+  animation: typewriterBlink 0.5s step-end infinite;
+}
+
+/* Downward arrow: bigger, centered, higher in hero, click scrolls to next part, brighter on hover */
+.heroScrollIndicator {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: var(--accent-purple);
+  opacity: 0.8;
+  transition: opacity 0.2s, filter 0.2s;
+  cursor: pointer;
+}
+
+.heroScrollIndicator:hover {
+  opacity: 1;
+  filter: brightness(1.4);
+}
+
+.heroScrollArrow {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 24px solid currentColor;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* ----- Main content wrapper: background images (below hero) + about + projects ----- */
+.mainContentWrap {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 6rem;
+  /* Pushes about block down; background images stay fixed (no margin collapse) */
+}
+
+/* Background layer: 4 images, scroll with page, behind all content */
+.contentBgImages {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.contentBgImg {
+  position: absolute;
+  width: 55%;
+  min-width: 320px;
+  aspect-ratio: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.14;
+}
+
+.contentBgImg[data-img="empathy"] {
+  top: 0;
+  left: -18%;
+  background-image: url("/landing/empathy.png");
+  background-position: left center;
+}
+
+.contentBgImg[data-img="creativity"] {
+  top: 38%;
+  right: -12%;
+  left: auto;
+  background-image: url("/landing/creativity.png");
+  background-position: right center;
+}
+
+.contentBgImg[data-img="perfection"] {
+  top: 76%;
+  left: -18%;
+  background-image: url("/landing/perfection.png");
+  background-position: left center;
+}
+
+.contentBgImg[data-img="collaboration"] {
+  top: 114%;
+  right: -12%;
+  left: auto;
+  background-image: url("/landing/collaboration.png");
+  background-position: right center;
+}
+
+/* ----- About ----- */
+.about {
+  position: relative;
+  z-index: 1;
+  padding: 5.5rem var(--page-margin-x) 5.5rem;
+  max-width: 960px;
+}
+
+/* Thick horizontal purple accent: top left */
+.about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--page-margin-x);
+  width: 300px;
+  height: 8px;
+  background: var(--accent-purple);
+  border-radius: 0px;
+}
+
+/* Thick horizontal purple accent: bottom right */
+.about::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: var(--page-margin-x);
+  width: 300px;
+  height: 8px;
+  background: var(--accent-purple);
+  border-radius: 0px;
+}
+
+.aboutText {
+  font-size: 2rem;
+  line-height: 2.25;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+
+/* Second block: "I turn ideas..." – one row below, tighter line-height */
+.aboutTextSecond {
+  display: block;
+  margin-top: 1em;
+  line-height: 1.75;
+}
+
+/* Pill-shaped terms: thin yellow border, soft lavender text, purple glow */
+.aboutPill {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-bottom: 0.35em;
+  border: 1px solid var(--accent-yellow);
+  padding: 0em 0.4em;
+  border-radius: 20px;
+  font-weight: 700;
+  line-height: 2;
+  color: var(--accent-purple);
+  white-space: nowrap;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background: transparent;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Left-to-right fill, fast to slow (ease-out) */
+.aboutPill::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--accent-yellow);
+  border-radius: 2px;
+  z-index: -1;
+  transition: width 0.5s ease-out;
+}
+
+.aboutPill:hover {
+  color: #3d3d3d;
+}
+
+.aboutPill:hover::before {
+  width: 100%;
+}
+
+/* Cursor-following "[View Projects]" tooltip for pills */
+.aboutPillTooltip {
+  position: fixed;
+  color: #fff;
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1000;
+  letter-spacing: 0.02em;
+  background: var(--accent-pink);
+  padding: 0.35em 0.6em;
+}
+
+/* ----- Projects ----- */
+.projects {
+  position: relative;
+  z-index: 1;
+  margin-top: 8rem;
+  padding: 2rem var(--page-margin-x) 5rem;
+}
+
+.projectsTitle {
+  font-size: clamp(4rem, 4vw, 4rem);
+  font-weight: 700;
+  color: var(--accent-purple);
+  margin-bottom: 3rem;
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.projectCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 380px;
+  overflow: hidden;
+}
+
+/* Leaf-style corners: odd rows (1st, 3rd) — rounded top-right & bottom-left */
+.projectCardLeafOdd {
+  border-top-right-radius: 200px;
+  border-bottom-left-radius: 200px;
+}
+
+/* Leaf-style corners: even rows (2nd, 4th) — rounded top-left & bottom-right */
+.projectCardLeafEven {
+  border-top-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+}
+
+.projectCardReversed {
+  direction: rtl;
+}
+
+.projectCardReversed>* {
+  direction: ltr;
+}
+
+.projectCardText {
+  padding: 2rem 6rem 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #fff;
+}
+
+.projectCardTitle {
+  font-size: 6rem;
+  font-weight: 800;
+  color: var(--accent-purple);
+}
+
+.projectCardDesc {
+  font-size: 1.7rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.projectTag {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-purple);
+  background: transparent;
+  border: 1.5px solid var(--accent-purple);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.projectCardImage {
+  height: 100%;
+  min-height: 0;
+  background: #c5e0b4;
+  overflow: hidden;
+}
+
+.projectCardImg {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  display: block;
+}
+
+.projectImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: #c5e0b4;
+}
+
+.projectsCta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.btnViewMoreWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.btnViewMore {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2.75rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #EEFF99;
+  text-decoration: none;
+  overflow: visible;
+  border: 2px solid transparent;
+  background: #000000 60% padding-box;
+  border: 1px linear-gradient(135deg, #EEFF99 0%, #EAFFA6 30%, #c4b8ff 70%, #bba6ff 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow:
+    0 0 20px rgba(238, 255, 153, 0.25),
+    0 0 40px rgba(187, 166, 255, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.btnViewMore:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 0 28px rgba(238, 255, 153, 0.35),
+    0 0 50px rgba(187, 166, 255, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.05);
+}
+
+.btnViewMore:active {
+  transform: scale(1.01);
+}
+
+/* Flying icons on hover: start at cursor, curve out, then disappear */
+.btnViewMoreFlyingIcon {
+  position: absolute;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+.btnViewMoreWrap:hover .btnViewMoreFlyingIcon {
+  animation: btnFlyTopLeft 0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.btnViewMoreWrap:hover .btnViewMoreFlyingIcon[data-direction="1"] {
+  animation-name: btnFlyTopRight;
+}
+
+.btnViewMoreWrap:hover .btnViewMoreFlyingIcon[data-direction="2"] {
+  animation-name: btnFlyBottomLeft;
+}
+
+.btnViewMoreWrap:hover .btnViewMoreFlyingIcon[data-direction="3"] {
+  animation-name: btnFlyBottomRight;
+}
+
+/* Curve: up then out (top-left) — origin at cursor, bigger distance, smaller scale */
+@keyframes btnFlyTopLeft {
+  0% {
+    transform: translate(-50%, -50%) scale(0.35);
+    opacity: 0;
+  }
+
+  12% {
+    transform: translate(-50%, -50%) scale(0.72);
+    opacity: 1;
+  }
+
+  55% {
+    transform: translate(calc(-50% - 82px), calc(-50% - 98px)) scale(0.62);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(calc(-50% - 128px), calc(-50% - 78px)) scale(0.42);
+    opacity: 0;
+  }
+}
+
+/* Curve: up then out (top-right) */
+@keyframes btnFlyTopRight {
+  0% {
+    transform: translate(-50%, -50%) scale(0.35);
+    opacity: 0;
+  }
+
+  12% {
+    transform: translate(-50%, -50%) scale(0.72);
+    opacity: 1;
+  }
+
+  55% {
+    transform: translate(calc(-50% + 52px), calc(-50% - 98px)) scale(0.62);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(calc(-50% + 98px), calc(-50% - 78px)) scale(0.42);
+    opacity: 0;
+  }
+}
+
+/* Curve: down then out (bottom-left) */
+@keyframes btnFlyBottomLeft {
+  0% {
+    transform: translate(-50%, -50%) scale(0.35);
+    opacity: 0;
+  }
+
+  12% {
+    transform: translate(-50%, -50%) scale(0.72);
+    opacity: 1;
+  }
+
+  55% {
+    transform: translate(calc(-50% - 82px), calc(-50% + 52px)) scale(0.62);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(calc(-50% - 128px), calc(-50% + 88px)) scale(0.42);
+    opacity: 0;
+  }
+}
+
+/* Curve: down then out (bottom-right) */
+@keyframes btnFlyBottomRight {
+  0% {
+    transform: translate(-50%, -50%) scale(0.35);
+    opacity: 0;
+  }
+
+  12% {
+    transform: translate(-50%, -50%) scale(0.72);
+    opacity: 1;
+  }
+
+  55% {
+    transform: translate(calc(-50% + 52px), calc(-50% + 52px)) scale(0.62);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(calc(-50% + 98px), calc(-50% + 88px)) scale(0.42);
+    opacity: 0;
+  }
+}
+
+/* ----- Responsive: Tablet ----- */
+@media (max-width: 900px) {
+  .heroIcons {
+    gap: 1rem;
+  }
+
+  .heroIconImg {
+    width: 84px;
+    height: 84px;
+  }
+
+  .projectCard {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 200px;
+  }
+
+  .projectCardReversed {
+    direction: ltr;
+  }
+
+  .projectCardImage {
+    min-height: 160px;
+    order: -1;
+  }
+
+  .projectCardReversed .projectCardImage {
+    order: -1;
+  }
+
+  .projectCardImg,
+  .projectImagePlaceholder {
+    min-height: 160px;
+  }
+}
+
+/* ----- Responsive: Mobile ----- */
+@media (max-width: 640px) {
+  .btnViewMore {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .hero {
+    padding: 2.5rem var(--page-margin-x-mobile) 3.5rem;
+  }
+
+  .heroRoleRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .heroIcons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .heroIconImg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .about {
+    padding: 2rem var(--page-margin-x-mobile) 3rem;
+  }
+
+  .about::before {
+    left: var(--page-margin-x-mobile);
+  }
+
+  .about::after {
+    right: var(--page-margin-x-mobile);
+  }
+
+  .aboutText {
+    font-size: 1.125rem;
+  }
+
+  .projects {
+    padding: 1.5rem var(--page-margin-x-mobile) 3rem;
+  }
+
+  .projectCardText {
+    padding: 1.25rem;
+  }
+
+  .projectCardTitle {
+    font-size: 1.25rem;
+  }
+
+  .contentBgImg {
+    width: 50%;
+    min-width: 240px;
+  }
+
+  .contentBgImg[data-img="empathy"] {
+    left: -25%;
+  }
+
+  .contentBgImg[data-img="creativity"],
+  .contentBgImg[data-img="collaboration"] {
+    right: -18%;
+  }
+
+  .contentBgImg[data-img="perfection"] {
+    left: -25%;
+  }
+}

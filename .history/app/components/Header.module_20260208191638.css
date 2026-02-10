@@ -1,0 +1,95 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem var(--page-margin-x);
+  background: var(--bg-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--bg-dark);
+  background-image: url("/image/logo-purple.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.2s;
+}
+
+.logoBlock:hover .logoIcon {
+  background-image: url("/image/logo-yellow.png");
+}
+
+.logoBlock:active .logoIcon {
+  background-image: url("/image/logo-pink.png");
+}
+
+.logoText {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--accent-purple);
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.logoBlock:hover .logoText {
+  color: var(--accent-yellow);
+}
+
+.logoBlock:active .logoText {
+  color: var(--accent-pink);
+}
+
+.logoBlock:active:hover .logoIcon {
+  background-image: url("/image/logo-pink.png");
+}
+
+.logoBlock:active:hover .logoText {
+  color: var(--accent-pink);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLink {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-yellow);
+  opacity: 0.95;
+}
+
+.navLink:hover {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 1rem var(--page-margin-x-mobile);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 1.25rem;
+  }
+}

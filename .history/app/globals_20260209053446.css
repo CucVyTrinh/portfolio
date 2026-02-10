@@ -1,0 +1,104 @@
+:root {
+  /* Main palette (three main colors) */
+  --accent-yellow: #EAFFA6;
+  /* light yellow-green – CUC, TRINH, role, icon highlights */
+  --accent-purple: #bba6ff;
+  /* light lavender – Vy, swirl icon */
+  --accent-pink: #d14d87;
+  /* dark pink/magenta – icon shapes */
+
+  /* Space between content and viewport edge */
+  --page-margin-x: 5rem;
+  --page-margin-x-mobile: 2rem;
+  /* Chiều cao header (fixed) để tránh nội dung bị che */
+  --header-height: 4.5rem;
+
+  --bg-dark: #141414;
+  --bg-footer: #0f0f0f;
+  --text-primary: #f5f5f5;
+  --text-muted: #b8b8b8;
+  --card-bg-light: #ffffff;
+  --tag-bg: #e8e8e8;
+  --tag-text: #666;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--bg-dark);
+  font-family: var(--font-raleway), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Wrapper so background scrolls with page (not fixed) */
+.pageWrap {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Background image: full image visible, centered, flows with whole page, 70% opacity */
+.pageBgBlend {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: min(100%, 4200px);
+  height: 100%;
+  min-height: 100%;
+  z-index: -2;
+  background-image: url("/landing/bg-blend.png");
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Multicolor grain noise (global background layer) */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-radial-gradient(circle at 20% 30%,
+      rgba(255, 0, 120, 0.12) 0 1px,
+      transparent 1px 3px),
+    repeating-radial-gradient(circle at 80% 70%,
+      rgba(0, 180, 255, 0.12) 0 1px,
+      transparent 1px 3px),
+    repeating-radial-gradient(circle at 50% 50%,
+      rgba(180, 255, 120, 0.12) 0 1px,
+      transparent 1px 3px);
+  background-size: 120px 120px;
+  animation: grainShift 6s steps(10) infinite;
+}
+
+@keyframes grainShift {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-40px, 30px);
+  }
+}

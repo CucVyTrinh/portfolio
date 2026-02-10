@@ -1,0 +1,383 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----- Hero ----- */
+.hero {
+  position: relative;
+  padding: 4rem 2rem 5rem;
+  overflow: hidden;
+}
+
+.heroWavy {
+  position: absolute;
+  left: 8%;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  color: var(--accent-purple);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.heroWavy svg {
+  width: 100%;
+  height: 100%;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+/* Name: CUC + TRINH (Raleway Black), VY (Herr Von Muellerhoff) on top */
+.heroTitle {
+  position: relative;
+  margin-bottom: 0.5rem;
+  min-height: 0.4em;
+}
+
+.heroTitleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 0.12em;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.heroTitleAccent {
+  font-family: var(--font-raleway-black), sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 12vw, 180px);
+  color: var(--accent-lime);
+  line-height: 1;
+}
+
+.heroTitleVyWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.heroTitleVy {
+  font-family: var(--font-script), cursive;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 13vw, 190px);
+  color: var(--accent-purple);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.heroTriangle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -0.4em;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--accent-purple);
+}
+
+.heroSubtitle {
+  font-family: var(--font-raleway-black), sans-serif;
+  font-weight: 900;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--accent-lime);
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
+  min-height: 1.5em;
+}
+
+.heroScrollIndicator {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.heroScrollTriangle {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid var(--accent-purple);
+}
+
+.heroIcons {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.heroIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.heroIcon[data-icon="star"] {
+  background: var(--accent-pink);
+}
+
+.heroIcon[data-icon="spiral"] {
+  background: var(--accent-yellow);
+  border-radius: 50%;
+}
+
+.heroIcon[data-icon="eye"] {
+  background: var(--accent-purple);
+  border-radius: 50%;
+}
+
+.heroIcon[data-icon="pattern"] {
+  background: var(--accent-pink);
+  opacity: 0.9;
+}
+
+/* ----- About ----- */
+.about {
+  position: relative;
+  padding: 3rem 2rem 4rem;
+  max-width: 720px;
+}
+
+.aboutShape {
+  position: absolute;
+  left: -5%;
+  top: 0;
+  width: 200px;
+  height: 200px;
+  background: var(--accent-purple-muted);
+  opacity: 0.2;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  pointer-events: none;
+}
+
+.aboutText {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+/* Terms with 2px border; hover: box fills, text turns gray */
+.highlightTerm {
+  display: inline-block;
+  border: 2px solid var(--accent-lime);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: background 0.2s, color 0.2s;
+}
+
+.highlightTerm:hover {
+  background: var(--accent-lime);
+  color: #666;
+}
+
+/* ----- Projects ----- */
+.projects {
+  padding: 2rem 2rem 5rem;
+}
+
+.projectsTitle {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--accent-purple);
+  margin-bottom: 2rem;
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.projectCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card-bg-light);
+}
+
+.projectCardReversed {
+  direction: rtl;
+}
+
+.projectCardReversed>* {
+  direction: ltr;
+}
+
+.projectCardText {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.projectCardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-purple-muted);
+}
+
+.projectCardDesc {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.projectTag {
+  font-size: 0.75rem;
+  color: var(--tag-text);
+  background: var(--tag-bg);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.projectCardImage {
+  min-height: 180px;
+  background: var(--card-bg-accent);
+}
+
+.projectImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  background: var(--card-bg-accent);
+}
+
+.projectsCta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.btnViewMore {
+  padding: 0.875rem 2rem;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  border: 1px solid var(--accent-purple);
+  box-shadow: 0 0 20px rgba(158, 143, 178, 0.25);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btnViewMore:hover {
+  background: rgba(158, 143, 178, 0.15);
+  box-shadow: 0 0 24px rgba(158, 143, 178, 0.35);
+}
+
+/* ----- Responsive: Tablet ----- */
+@media (max-width: 900px) {
+  .heroIcons {
+    right: 1rem;
+    gap: 0.75rem;
+  }
+
+  .heroIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .projectCard {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .projectCardReversed {
+    direction: ltr;
+  }
+
+  .projectCardImage {
+    min-height: 160px;
+    order: -1;
+  }
+
+  .projectCardReversed .projectCardImage {
+    order: -1;
+  }
+
+  .projectImagePlaceholder {
+    min-height: 160px;
+  }
+}
+
+/* ----- Responsive: Mobile ----- */
+@media (max-width: 640px) {
+  .hero {
+    padding: 2.5rem 1.25rem 3.5rem;
+  }
+
+  .heroWavy {
+    left: 0;
+    width: 80px;
+    opacity: 0.35;
+  }
+
+  .heroIcons {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .heroIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .about {
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .aboutShape {
+    width: 120px;
+    height: 120px;
+  }
+
+  .projects {
+    padding: 1.5rem 1.25rem 3rem;
+  }
+
+  .projectCardText {
+    padding: 1.25rem;
+  }
+
+  .projectCardTitle {
+    font-size: 1.25rem;
+  }
+}

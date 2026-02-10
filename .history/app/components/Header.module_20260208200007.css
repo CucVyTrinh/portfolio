@@ -1,0 +1,171 @@
+/* Header: sticky on top, texture vintage chấm chấm li ti */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem var(--page-margin-x);
+  background: #1a1a1a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--accent-lime);
+  isolation: isolate;
+}
+
+/* Texture vintage: chấm chấm li ti (vàng, xanh nhạt, trắng) */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at center, rgba(234, 255, 166, 0.12) 0.4px, transparent 0.4px),
+    radial-gradient(circle at center, rgba(187, 166, 255, 0.08) 0.35px, transparent 0.35px),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.06) 0.3px, transparent 0.3px);
+  background-size: 3px 3px, 4px 4px, 5px 5px;
+  background-position: 0 0, 1px 1px, 2px 0;
+  mix-blend-mode: overlay;
+}
+
+.header>* {
+  position: relative;
+  z-index: 1;
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Circle chứa 3 ảnh logo; ảnh đổi theo màu chữ & viền */
+.logoCircle {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 0.5px solid var(--accent-purple);
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.logoCircle img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 5px;
+  transition: opacity 0.2s;
+}
+
+.logoImgPurple {
+  opacity: 1;
+}
+
+.logoImgYellow {
+  opacity: 0;
+}
+
+.logoImgPink {
+  opacity: 0;
+}
+
+.logoBlock:hover .logoCircle {
+  border-color: var(--accent-yellow);
+}
+
+.logoBlock:hover .logoImgPurple {
+  opacity: 0;
+}
+
+.logoBlock:hover .logoImgYellow {
+  opacity: 1;
+}
+
+.logoBlock:active .logoCircle {
+  border-color: var(--accent-pink);
+}
+
+.logoBlock:active .logoImgPurple,
+.logoBlock:active .logoImgYellow {
+  opacity: 0;
+}
+
+.logoBlock:active .logoImgPink {
+  opacity: 1;
+}
+
+.logoText {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--accent-purple);
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.logoBlock:hover .logoText {
+  color: var(--accent-yellow);
+}
+
+.logoBlock:active .logoText {
+  color: var(--accent-pink);
+}
+
+.logoBlock:active:hover .logoCircle {
+  border-color: var(--accent-pink);
+}
+
+.logoBlock:active:hover .logoImgPurple,
+.logoBlock:active:hover .logoImgYellow {
+  opacity: 0;
+}
+
+.logoBlock:active:hover .logoImgPink {
+  opacity: 1;
+}
+
+.logoBlock:active:hover .logoText {
+  color: var(--accent-pink);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navLink {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-lime);
+  background: rgba(12, 12, 12, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  opacity: 0.95;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.navLink:hover {
+  opacity: 1;
+  background: rgba(18, 18, 18, 0.95);
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 1rem var(--page-margin-x-mobile);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 1.25rem;
+  }
+}

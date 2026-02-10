@@ -1,0 +1,302 @@
+/* ----- Header: background only (Figma: base + noise + glass) ----- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88px;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* Base fill: black 70% opacity */
+  background: rgba(0, 0, 0, 0);
+
+  /* Glass: frost + refraction (blur 16–20px, strong saturation for dispersion feel) */
+  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  backdrop-filter: blur(18px) saturate(200%);
+
+  border-bottom: 0.2px solid rgba(223, 255, 153, 0.802);
+}
+
+/* Film grain: shifting animation (noise layer) */
+@keyframes headerGrain {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+
+.headerFilmGrain {
+  position: absolute;
+  left: -100%;
+  top: -100%;
+  width: 300%;
+  height: 300%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 203 203' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.26' numOctaves='6' stitchTiles='stitch' result='t'/%3E%3CfeComponentTransfer in='t'%3E%3CfeFuncR type='table' tableValues='0 0.25 0.5 0.3 0.8 0.5 0.2 0.9'/%3E%3CfeFuncG type='table' tableValues='0 0.5 0.2 0.7 0.35 0.6 0.8 0.4'/%3E%3CfeFuncB type='table' tableValues='0 0.35 0.8 0.2 0.6 0.45 0.7 0.9'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fg)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 140px 140px;
+  animation: headerGrain 5s steps(10) infinite;
+}
+
+/* Glass: depth (inner highlight) + dispersion (sxubtle color fringing) + soft edges */
+.header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 0;
+  /* Depth: medium-high inner highlight */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    inset 1px 0 0 rgba(255, 255, 255, 0.03),
+    inset -1px 0 0 rgba(255, 255, 255, 0.03);
+  /* Dispersion: visible color separation (warm/cool edges) */
+  background:
+    linear-gradient(105deg, rgba(255, 100, 150, 0.04) 0%, transparent 35%, transparent 65%, rgba(100, 180, 255, 0.04) 100%),
+    linear-gradient(255deg, rgba(150, 200, 255, 0.03) 0%, transparent 40%, transparent 60%, rgba(255, 150, 200, 0.03) 100%);
+  mix-blend-mode: overlay;
+}
+
+/* Content above background layers */
+.headerContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.25rem var(--page-margin-x);
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+/* Circle: thin lavender outline, transparent inside, grain shows through */
+.logoCircle {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1.5px solid #C8A2C8;
+  box-sizing: border-box;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.logoCircle img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+  transition: opacity 0.2s;
+}
+
+.logoImgPurple {
+  opacity: 1;
+}
+
+.logoImgYellow {
+  opacity: 0;
+}
+
+.logoImgPink {
+  opacity: 0;
+}
+
+.logoBlock:hover .logoCircle {
+  border-color: var(--accent-yellow);
+}
+
+.logoBlock:hover .logoImgPurple {
+  opacity: 0;
+}
+
+.logoBlock:hover .logoImgYellow {
+  opacity: 1;
+}
+
+.logoBlock:active .logoCircle {
+  border-color: var(--accent-pink);
+}
+
+.logoBlock:active .logoImgPurple,
+.logoBlock:active .logoImgYellow {
+  opacity: 0;
+}
+
+.logoBlock:active .logoImgPink {
+  opacity: 1;
+}
+
+.logoBlock:active:hover .logoCircle {
+  border-color: var(--accent-pink);
+}
+
+.logoBlock:active:hover .logoImgPurple,
+.logoBlock:active:hover .logoImgYellow {
+  opacity: 0;
+}
+
+.logoBlock:active:hover .logoImgPink {
+  opacity: 1;
+}
+
+/* "Vy Trinh | Designer" — white / light gray */
+.logoText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-purple);
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.logoBlock:hover .logoText {
+  color: var(--accent-yellow);
+}
+
+.logoBlock:active .logoText {
+  color: var(--accent-pink);
+}
+
+.logoBlock:active:hover .logoText {
+  color: var(--accent-pink);
+}
+
+/* Nav: dark blue-grey pills, yellow-green text */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navLink {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-yellow);
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border-radius: 0;
+  transition: color 0.2s;
+}
+
+/* Purple rectangle behind nav item on hover (bottom layer); animates roll-down */
+.navLink::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 160%;
+  min-height: 2.75rem;
+  background: var(--accent-purple);
+  border-radius: 0;
+  opacity: 0;
+  transform-origin: top center;
+  transform: translateY(-50%) scaleY(0);
+  transition:
+    opacity 0.25s ease-in-out,
+    transform 0.45s ease-in-out;
+}
+
+/* Black background on top of purple rectangle */
+.navLink::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: #000000;
+  border-radius: 0;
+}
+
+.navLink:hover {
+  color: var(--accent-yellow);
+}
+
+/* Show purple on hover, or when active and no other link is hovered */
+.navLink:hover::before,
+.navLinkActiveVisible::before {
+  opacity: 1;
+  transform: translateY(-50%) scaleY(1);
+}
+
+@media (max-width: 640px) {
+  .header {
+    min-height: auto;
+  }
+
+  .headerContent {
+    padding: 1rem var(--page-margin-x-mobile);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .navLink {
+    font-size: 0.9375rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
