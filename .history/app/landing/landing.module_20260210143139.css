@@ -20,16 +20,18 @@
   justify-content: space-between;
 }
 
+/* Content column: left-aligned to page margin, ~75–80% viewport width */
 .heroContent {
   position: relative;
   z-index: 1;
   width: 100%;
+  max-width: min(1400px, 80vw);
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
-/* Headline: CUC VY TRINH full width, aligned to main margin (CUC left, TRINH right, VY middle) */
+/* Headline: CUC VY TRINH full width, aligned to page margin (CUC left, TRINH right, VY middle) */
 .heroTitle {
   display: flex;
   align-items: center;
@@ -46,7 +48,7 @@
 .heroTitleAccent {
   font-family: var(--font-raleway), sans-serif;
   font-weight: 900;
-  font-size: clamp(4rem, 14vw, 190px);
+  font-size: clamp(4.5rem, 15vw, 220px);
   color: var(--accent-yellow);
   line-height: 1;
 }
@@ -65,7 +67,7 @@
 .heroTitleVy {
   font-family: var(--font-script), cursive;
   font-weight: 400;
-  font-size: clamp(3.5rem, 15vw, 200px);
+  font-size: clamp(4rem, 16vw, 240px);
   color: var(--accent-purple);
   line-height: 1;
   white-space: nowrap;
@@ -91,6 +93,7 @@
   margin: 0;
   text-align: left;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .heroSubtitleCursor {
@@ -385,8 +388,8 @@
   grid-template-columns: 1fr 1fr;
   height: 380px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .projectCard:hover {
@@ -425,18 +428,13 @@
 }
 
 .projectCard:hover .projectCardText {
-  background: #fafafa;
+  background: #faf8ff;
 }
 
 .projectCardTitle {
   font-size: 4rem;
   font-weight: 800;
   color: var(--accent-purple);
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .projectCardTitle {
-  transform: translateX(4px);
 }
 
 .projectCardDesc {
@@ -460,12 +458,6 @@
   border: 1.5px solid var(--accent-purple);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.projectCard:hover .projectTag {
-  background: var(--accent-purple);
-  color: #fff;
 }
 
 .projectCardImage {
@@ -485,7 +477,7 @@
 }
 
 .projectCard:hover .projectCardImg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .projectImagePlaceholder {
@@ -516,16 +508,16 @@
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #EEFF99;
+  color: var(--accent-yellow);
   text-decoration: none;
   overflow: visible;
-  border: 1px solid linear-gradient(135deg, #EEFF99 0%, #EAFFA6 30%, #c4b8ff 70%, #bba6ff 100%);
+  border: 1px solid linear-gradient(135deg, var(--accent-yellow) 0%, var(--accent-yellow) 30%, var(--accent-purple) 70%, var(--accent-purple) 100%);
   background: #00000050;
   background-origin: border-box;
   background-clip: padding-box, border-box;
   box-shadow:
-    0 0 8px rgb(238, 255, 153, 0.5),
-    0 0 20px rgb(187, 166, 255, 0.5),
+    0 0 8px rgba(var(--accent-yellow-rgb), 0.5),
+    0 0 20px rgba(var(--accent-purple-rgb), 0.5),
     0 4px 16px rgba(0, 0, 0, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
@@ -533,8 +525,8 @@
 .btnViewMore:hover {
   transform: scale(1.04);
   box-shadow:
-    0 0 30px rgb(238, 255, 153, 0.2),
-    0 0 60px rgb(187, 166, 255, 0.4),
+    0 0 30px rgba(var(--accent-yellow-rgb), 0.2),
+    0 0 60px rgba(var(--accent-purple-rgb), 0.4),
     0 6px 20px rgba(0, 0, 0, 0.5);
   filter: brightness(1.02);
 }

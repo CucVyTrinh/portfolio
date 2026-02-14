@@ -29,14 +29,18 @@
   align-items: stretch;
 }
 
-/* Headline: CUC VY TRINH full width, aligned to main margin (CUC left, TRINH right, VY middle) */
+/* Headline: CUC vy TRINH — CUC at left page margin, TRINH at right, vy centered and slightly higher */
 .heroTitle {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   flex-wrap: nowrap;
   gap: 0;
-  width: 100%;
+  width: calc(100% + 2 * var(--page-margin-x));
+  margin-left: calc(-1 * var(--page-margin-x));
+  padding-left: var(--page-margin-x);
+  padding-right: var(--page-margin-x);
+  box-sizing: border-box;
   letter-spacing: -0.02em;
   line-height: 1;
   margin-top: 5.5rem;
@@ -46,7 +50,7 @@
 .heroTitleAccent {
   font-family: var(--font-raleway), sans-serif;
   font-weight: 900;
-  font-size: clamp(4rem, 14vw, 190px);
+  font-size: clamp(4.5rem, 16vw, 260px);
   color: var(--accent-yellow);
   line-height: 1;
 }
@@ -55,29 +59,29 @@
   position: relative;
   z-index: 1;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  margin: 0 -0.06em;
+  margin: 0 -0.08em;
   line-height: 1;
-  transform: translateY(0.2em);
+  transform: translateY(-0.12em);
 }
 
 .heroTitleVy {
   font-family: var(--font-script), cursive;
   font-weight: 400;
-  font-size: clamp(3.5rem, 15vw, 200px);
+  font-size: clamp(3.75rem, 16vw, 220px);
   color: var(--accent-purple);
   line-height: 1;
   white-space: nowrap;
 }
 
-/* Role row: role aligned to start of CUC, 4 icons aligned to end of TRINH */
+/* Role row: subtitle aligned to left (under CUC), 4 icons aligned to right (level with TRINH) */
 .heroRoleRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 3.5rem;
+  margin-top: 3rem;
   gap: 1.5rem;
   align-self: stretch;
 }
@@ -89,6 +93,7 @@
   color: var(--accent-yellow);
   letter-spacing: 0.02em;
   margin: 0;
+  margin-left: 0.15em;
   text-align: left;
   flex-shrink: 0;
 }
@@ -385,8 +390,8 @@
   grid-template-columns: 1fr 1fr;
   height: 380px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .projectCard:hover {
@@ -425,18 +430,13 @@
 }
 
 .projectCard:hover .projectCardText {
-  background: #fafafa;
+  background: #faf8ff;
 }
 
 .projectCardTitle {
   font-size: 4rem;
   font-weight: 800;
   color: var(--accent-purple);
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .projectCardTitle {
-  transform: translateX(4px);
 }
 
 .projectCardDesc {
@@ -460,12 +460,6 @@
   border: 1.5px solid var(--accent-purple);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.projectCard:hover .projectTag {
-  background: var(--accent-purple);
-  color: #fff;
 }
 
 .projectCardImage {
@@ -485,7 +479,7 @@
 }
 
 .projectCard:hover .projectCardImg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .projectImagePlaceholder {
@@ -516,16 +510,16 @@
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #EEFF99;
+  color: var(--accent-yellow);
   text-decoration: none;
   overflow: visible;
-  border: 1px solid linear-gradient(135deg, #EEFF99 0%, #EAFFA6 30%, #c4b8ff 70%, #bba6ff 100%);
+  border: 1px solid linear-gradient(135deg, var(--accent-yellow) 0%, var(--accent-yellow) 30%, var(--accent-purple) 70%, var(--accent-purple) 100%);
   background: #00000050;
   background-origin: border-box;
   background-clip: padding-box, border-box;
   box-shadow:
-    0 0 8px rgb(238, 255, 153, 0.5),
-    0 0 20px rgb(187, 166, 255, 0.5),
+    0 0 8px rgba(var(--accent-yellow-rgb), 0.5),
+    0 0 20px rgba(var(--accent-purple-rgb), 0.5),
     0 4px 16px rgba(0, 0, 0, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
@@ -533,8 +527,8 @@
 .btnViewMore:hover {
   transform: scale(1.04);
   box-shadow:
-    0 0 30px rgb(238, 255, 153, 0.2),
-    0 0 60px rgb(187, 166, 255, 0.4),
+    0 0 30px rgba(var(--accent-yellow-rgb), 0.2),
+    0 0 60px rgba(var(--accent-purple-rgb), 0.4),
     0 6px 20px rgba(0, 0, 0, 0.5);
   filter: brightness(1.02);
 }
@@ -664,6 +658,17 @@
   }
 }
 
+/* ----- Large monitors: bigger headline, true edge-to-edge ----- */
+@media (min-width: 1400px) {
+  .heroTitleAccent {
+    font-size: clamp(120px, 14vw, 280px);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(100px, 14vw, 240px);
+  }
+}
+
 /* ----- Responsive: Tablet ----- */
 @media (max-width: 900px) {
   .heroIcons {
@@ -709,6 +714,13 @@
 
   .hero {
     padding: 2.5rem var(--page-margin-x-mobile) 3.5rem;
+  }
+
+  .heroTitle {
+    width: calc(100% + 2 * var(--page-margin-x-mobile));
+    margin-left: calc(-1 * var(--page-margin-x-mobile));
+    padding-left: var(--page-margin-x-mobile);
+    padding-right: var(--page-margin-x-mobile);
   }
 
   .heroRoleRow {

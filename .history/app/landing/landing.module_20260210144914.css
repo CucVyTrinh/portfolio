@@ -385,8 +385,8 @@
   grid-template-columns: 1fr 1fr;
   height: 380px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .projectCard:hover {
@@ -425,18 +425,13 @@
 }
 
 .projectCard:hover .projectCardText {
-  background: #fafafa;
+  background: #faf8ff;
 }
 
 .projectCardTitle {
   font-size: 4rem;
   font-weight: 800;
   color: var(--accent-purple);
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .projectCardTitle {
-  transform: translateX(4px);
 }
 
 .projectCardDesc {
@@ -460,12 +455,6 @@
   border: 1.5px solid var(--accent-purple);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.projectCard:hover .projectTag {
-  background: var(--accent-purple);
-  color: #fff;
 }
 
 .projectCardImage {
@@ -485,7 +474,7 @@
 }
 
 .projectCard:hover .projectCardImg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .projectImagePlaceholder {
@@ -664,8 +653,103 @@
   }
 }
 
+/* ----- Responsive: Desktop narrow (scale down from ideal) ----- */
+@media (max-width: 1200px) {
+  .hero {
+    padding: 3.5rem var(--page-margin-x-tablet) 4rem;
+  }
+
+  .heroTitle {
+    margin-top: 4rem;
+  }
+
+  .about {
+    padding: 4rem var(--page-margin-x-tablet) 4rem;
+    max-width: 100%;
+  }
+
+  .about::before,
+  .about::after {
+    width: min(260px, 28vw);
+  }
+
+  .about::before {
+    left: var(--page-margin-x-tablet);
+  }
+
+  .about::after {
+    right: var(--page-margin-x-tablet);
+  }
+
+  .aboutText {
+    font-size: clamp(1.25rem, 1.8vw, 2rem);
+  }
+
+  .projects {
+    padding: 2rem var(--page-margin-x-tablet) 4rem;
+    margin-top: 6rem;
+  }
+
+  .projectsTitle {
+    font-size: clamp(2.5rem, 3.5vw, 4rem);
+    margin-bottom: 2rem;
+  }
+
+  .projectCard {
+    height: 340px;
+  }
+
+  .projectCardText {
+    padding: 1.75rem 4rem 4rem;
+  }
+
+  .projectCardTitle {
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
+  }
+
+  .projectCardDesc {
+    font-size: clamp(1.1rem, 1.5vw, 1.7rem);
+  }
+
+  .mainContentWrap {
+    padding-top: 4rem;
+  }
+
+  .contentBgImg {
+    min-width: 280px;
+  }
+}
+
 /* ----- Responsive: Tablet ----- */
 @media (max-width: 900px) {
+  .hero {
+    padding: 3rem var(--page-margin-x-tablet) 3.5rem;
+  }
+
+  .heroTitle {
+    flex-wrap: wrap;
+    gap: 0.15em;
+    margin-top: 3rem;
+    justify-content: flex-start;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(3rem, 10vw, 120px);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(2.75rem, 12vw, 140px);
+  }
+
+  .heroRoleRow {
+    margin-top: 2.5rem;
+    gap: 1.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.25rem, 2.5vw, 1.6875rem);
+  }
+
   .heroIcons {
     gap: 1rem;
   }
@@ -673,6 +757,39 @@
   .heroIconImg {
     width: 84px;
     height: 84px;
+  }
+
+  .heroScrollIndicator {
+    bottom: 2.5rem;
+  }
+
+  .heroScrollArrow {
+    border-left-width: 14px;
+    border-right-width: 14px;
+    border-top-width: 20px;
+  }
+
+  .about {
+    padding: 3rem var(--page-margin-x-tablet) 3.5rem;
+  }
+
+  .about::before,
+  .about::after {
+    width: min(200px, 35vw);
+  }
+
+  .aboutText {
+    font-size: 1.35rem;
+    line-height: 2;
+  }
+
+  .projects {
+    margin-top: 4rem;
+    padding: 1.5rem var(--page-margin-x-tablet) 3rem;
+  }
+
+  .projectList {
+    gap: 2rem;
   }
 
   .projectCard {
@@ -685,8 +802,20 @@
     direction: ltr;
   }
 
+  .projectCardText {
+    padding: 1.5rem 2.5rem 2rem;
+  }
+
+  .projectCardTitle {
+    font-size: 2.25rem;
+  }
+
+  .projectCardDesc {
+    font-size: 1.25rem;
+  }
+
   .projectCardImage {
-    min-height: 160px;
+    min-height: 200px;
     order: -1;
   }
 
@@ -696,7 +825,24 @@
 
   .projectCardImg,
   .projectImagePlaceholder {
-    min-height: 160px;
+    min-height: 200px;
+  }
+
+  .projectCardLeafOdd,
+  .projectCardLeafEven {
+    border-top-left-radius: 120px;
+    border-top-right-radius: 120px;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+  }
+
+  .mainContentWrap {
+    padding-top: 3rem;
+  }
+
+  .contentBgImg {
+    width: 45%;
+    min-width: 200px;
   }
 }
 
@@ -708,43 +854,102 @@
   }
 
   .hero {
-    padding: 2.5rem var(--page-margin-x-mobile) 3.5rem;
+    padding: 2rem var(--page-margin-x-mobile) 2.5rem;
+    min-height: auto;
+  }
+
+  .heroTitle {
+    margin-top: 2rem;
+    gap: 0.1em;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(2.25rem, 14vw, 3.5rem);
   }
 
   .heroRoleRow {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1rem, 4vw, 1.25rem);
   }
 
   .heroIcons {
     width: 100%;
     justify-content: flex-end;
+    transform: none;
   }
 
   .heroIconImg {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .heroScrollIndicator {
+    bottom: 1.5rem;
+  }
+
+  .heroScrollArrow {
+    border-left-width: 12px;
+    border-right-width: 12px;
+    border-top-width: 16px;
+  }
+
+  .mainContentWrap {
+    padding-top: 2rem;
   }
 
   .about {
-    padding: 2rem var(--page-margin-x-mobile) 3rem;
+    padding: 1.75rem var(--page-margin-x-mobile) 2.5rem;
   }
 
   .about::before {
     left: var(--page-margin-x-mobile);
+    width: min(160px, 50vw);
+    height: 6px;
   }
 
   .about::after {
     right: var(--page-margin-x-mobile);
+    width: min(160px, 50vw);
+    height: 6px;
   }
 
   .aboutText {
-    font-size: 1.125rem;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .aboutTextSecond {
+    margin-top: 0.75em;
+    line-height: 1.65;
+  }
+
+  .aboutPill {
+    padding: 0 0.35em;
+    font-size: 0.95em;
   }
 
   .projects {
-    padding: 1.5rem var(--page-margin-x-mobile) 3rem;
+    margin-top: 2.5rem;
+    padding: 1.25rem var(--page-margin-x-mobile) 2.5rem;
+  }
+
+  .projectsTitle {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .projectList {
+    gap: 1.5rem;
   }
 
   .projectCardText {
@@ -752,12 +957,31 @@
   }
 
   .projectCardTitle {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  .projectCardDesc {
+    font-size: 1rem;
+  }
+
+  .projectTag {
+    font-size: 0.875rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .projectCardImage,
+  .projectCardImg,
+  .projectImagePlaceholder {
+    min-height: 160px;
+  }
+
+  .projectsCta {
+    margin-top: 1.5rem;
   }
 
   .contentBgImg {
-    width: 50%;
-    min-width: 240px;
+    width: 55%;
+    min-width: 200px;
   }
 
   .contentBgImg[data-img="empathy"] {
@@ -771,5 +995,62 @@
 
   .contentBgImg[data-img="perfection"] {
     left: -25%;
+  }
+}
+
+/* ----- Responsive: Narrow mobile ----- */
+@media (max-width: 480px) {
+  .hero {
+    padding: 1.5rem var(--page-margin-x-narrow) 2rem;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(2rem, 11vw, 2.5rem);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(1.75rem, 12vw, 2.25rem);
+  }
+
+  .heroIconImg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .about {
+    padding: 1.5rem var(--page-margin-x-narrow) 2rem;
+  }
+
+  .about::before {
+    left: var(--page-margin-x-narrow);
+  }
+
+  .about::after {
+    right: var(--page-margin-x-narrow);
+  }
+
+  .aboutText {
+    font-size: 0.9375rem;
+  }
+
+  .projects {
+    padding: 1rem var(--page-margin-x-narrow) 2rem;
+  }
+
+  .projectCardText {
+    padding: 1rem;
+  }
+
+  .projectCardTitle {
+    font-size: 1.25rem;
+  }
+
+  .projectCardDesc {
+    font-size: 0.9375rem;
+  }
+
+  .btnViewMore {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
   }
 }

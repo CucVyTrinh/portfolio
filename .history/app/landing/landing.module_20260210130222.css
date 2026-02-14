@@ -385,13 +385,13 @@
   grid-template-columns: 1fr 1fr;
   height: 380px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .projectCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
 /* Leaf-style corners: odd rows (1st, 3rd) — rounded top-right & bottom-left */
@@ -421,22 +421,12 @@
   justify-content: center;
   gap: 0.4rem;
   background: #fff;
-  transition: background 0.35s ease;
-}
-
-.projectCard:hover .projectCardText {
-  background: #fafafa;
 }
 
 .projectCardTitle {
   font-size: 4rem;
   font-weight: 800;
   color: var(--accent-purple);
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .projectCardTitle {
-  transform: translateX(4px);
 }
 
 .projectCardDesc {
@@ -460,12 +450,6 @@
   border: 1.5px solid var(--accent-purple);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.projectCard:hover .projectTag {
-  background: var(--accent-purple);
-  color: #fff;
 }
 
 .projectCardImage {
@@ -485,7 +469,7 @@
 }
 
 .projectCard:hover .projectCardImg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .projectImagePlaceholder {

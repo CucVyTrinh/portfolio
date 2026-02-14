@@ -29,12 +29,13 @@
   align-items: stretch;
 }
 
-/* Headline: CUC VY TRINH full width, aligned to main margin (CUC left, TRINH right, VY middle) */
+/* Headline: CUC Vy TRINH — full width, aligned to page margins; baseline-aligned, slight Vy/TRINH overlap */
 .heroTitle {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   flex-wrap: nowrap;
+  white-space: nowrap;
   gap: 0;
   width: 100%;
   letter-spacing: -0.02em;
@@ -43,32 +44,39 @@
   margin-bottom: 0;
 }
 
+/* Fluid scaling: same proportion on mobile and desktop via vw/clamp */
 .heroTitleAccent {
   font-family: var(--font-raleway), sans-serif;
   font-weight: 900;
-  font-size: clamp(4rem, 14vw, 190px);
+  font-size: clamp(1.5rem, 12vw, 320px);
   color: var(--accent-yellow);
   line-height: 1;
 }
 
+/* Pull Vy close to CUC (slight integrated overlap); scales with viewport */
 .heroTitleVyWrap {
   position: relative;
   z-index: 1;
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  margin: 0 -0.06em;
+  margin-left: clamp(-4.5rem, -5.5vw, -2rem);
   line-height: 1;
-  transform: translateY(0.2em);
+  transform: translateY(0.08em);
 }
 
 .heroTitleVy {
   font-family: var(--font-script), cursive;
   font-weight: 400;
-  font-size: clamp(3.5rem, 15vw, 200px);
+  font-size: clamp(1.65rem, 13vw, 340px);
   color: var(--accent-purple);
   line-height: 1;
   white-space: nowrap;
+}
+
+/* Distinct overlap: Vy (tail of y) overlaps start of TRINH — same proportion on all devices (em) */
+.heroTitleVyWrap+.heroTitleAccent {
+  margin-left: -0.15em;
 }
 
 /* Role row: role aligned to start of CUC, 4 icons aligned to end of TRINH */
@@ -193,6 +201,26 @@
 
   50% {
     transform: translateY(6px);
+  }
+}
+
+/* ----- Responsive: Big monitor — headline, role, and icons scale up ----- */
+@media (min-width: 1400px) {
+  .heroTitleAccent {
+    font-size: clamp(200px, 10vw, 380px);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(220px, 11vw, 400px);
+  }
+
+  .heroSubtitle {
+    font-size: clamp(2.25rem, 2vw, 3rem);
+  }
+
+  .heroIconImg {
+    width: clamp(96px, 5vw, 128px);
+    height: clamp(96px, 5vw, 128px);
   }
 }
 
@@ -385,8 +413,8 @@
   grid-template-columns: 1fr 1fr;
   height: 380px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .projectCard:hover {
@@ -425,18 +453,13 @@
 }
 
 .projectCard:hover .projectCardText {
-  background: #fafafa;
+  background: #faf8ff;
 }
 
 .projectCardTitle {
   font-size: 4rem;
   font-weight: 800;
   color: var(--accent-purple);
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .projectCardTitle {
-  transform: translateX(4px);
 }
 
 .projectCardDesc {
@@ -460,12 +483,6 @@
   border: 1.5px solid var(--accent-purple);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.projectCard:hover .projectTag {
-  background: var(--accent-purple);
-  color: #fff;
 }
 
 .projectCardImage {
@@ -485,7 +502,7 @@
 }
 
 .projectCard:hover .projectCardImg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .projectImagePlaceholder {
@@ -711,20 +728,31 @@
     padding: 2.5rem var(--page-margin-x-mobile) 3.5rem;
   }
 
+  /* Mobile: CUC Vy TRINH in one row (fluid scale), role and 4 icons stacked below */
+  .heroTitle {
+    margin-top: 2rem;
+    flex-wrap: nowrap;
+  }
+
   .heroRoleRow {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1rem, 4vw, 1.5rem);
   }
 
   .heroIcons {
     width: 100%;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   .heroIconImg {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
   }
 
   .about {

@@ -152,12 +152,10 @@
   animation: typewriterBlink 0.5s step-end infinite;
 }
 
-/* Downward arrow: bigger, centered, higher in hero, click scrolls to next part, brighter on hover */
+/* Downward arrow: fixed distance below hero content, centered; doesn’t move down on tall viewports */
 .heroScrollIndicator {
-  position: absolute;
-  bottom: 3.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  align-self: center;
+  margin-top: 3.5rem;
   z-index: 1;
   display: flex;
   align-items: center;
@@ -193,6 +191,84 @@
 
   50% {
     transform: translateY(6px);
+  }
+}
+
+/* ----- Big monitor (1920px+): content expands to fill screen, typography scales up ----- */
+@media (min-width: 1920px) {
+  .heroTitle {
+    margin-top: 6rem;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(4rem, 14vw, 380px);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(3.5rem, 15vw, 400px);
+  }
+
+  .heroRoleRow {
+    margin-top: 4rem;
+    gap: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.6875rem, 3.75vw, 3rem);
+  }
+
+  .heroIcons {
+    gap: 1.5rem;
+  }
+
+  .heroIconImg {
+    width: clamp(96px, 5.5vw, 128px);
+    height: clamp(96px, 5.5vw, 128px);
+  }
+
+  .heroScrollIndicator {
+    margin-top: 4rem;
+  }
+
+  .heroScrollArrow {
+    border-left-width: 22px;
+    border-right-width: 22px;
+    border-top-width: 28px;
+  }
+
+  .aboutText {
+    font-size: clamp(2rem, 1.4vw, 2.5rem);
+    line-height: 2.35;
+  }
+
+  .about::before,
+  .about::after {
+    width: clamp(300px, 18vw, 420px);
+  }
+
+  .projectsTitle {
+    font-size: clamp(4rem, 4vw, 6rem);
+  }
+
+  .projectCard {
+    height: clamp(380px, 22vw, 480px);
+  }
+
+  .projectCardText {
+    padding: clamp(2rem, 2vw, 3rem) clamp(4rem, 5vw, 8rem) clamp(6rem, 6vw, 10rem);
+  }
+
+  .projectCardTitle {
+    font-size: clamp(4rem, 3.5vw, 6rem);
+  }
+
+  .projectCardDesc {
+    font-size: clamp(1.7rem, 1.2vw, 2.25rem);
+  }
+
+  .projectTag {
+    font-size: clamp(1rem, 0.7vw, 1.2rem);
+    padding: 0.3rem 0.85rem;
   }
 }
 
@@ -385,8 +461,8 @@
   grid-template-columns: 1fr 1fr;
   height: 380px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .projectCard:hover {
@@ -425,18 +501,13 @@
 }
 
 .projectCard:hover .projectCardText {
-  background: #fafafa;
+  background: #faf8ff;
 }
 
 .projectCardTitle {
   font-size: 4rem;
   font-weight: 800;
   color: var(--accent-purple);
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .projectCardTitle {
-  transform: translateX(4px);
 }
 
 .projectCardDesc {
@@ -460,12 +531,6 @@
   border: 1.5px solid var(--accent-purple);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.projectCard:hover .projectTag {
-  background: var(--accent-purple);
-  color: #fff;
 }
 
 .projectCardImage {
@@ -485,7 +550,7 @@
 }
 
 .projectCard:hover .projectCardImg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .projectImagePlaceholder {
@@ -664,21 +729,92 @@
   }
 }
 
-/* ----- Responsive: Tablet ----- */
-@media (max-width: 900px) {
+/* ----- Responsive: Tablet (1024px) — same layout, scaled down; cards stack ----- */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3rem var(--page-margin-x) 4rem;
+  }
+
+  .heroTitle {
+    margin-top: 4rem;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(3rem, 12vw, 140px);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(2.75rem, 13vw, 160px);
+  }
+
+  .heroRoleRow {
+    margin-top: 2.5rem;
+    gap: 1.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.35rem, 3.2vw, 2rem);
+  }
+
   .heroIcons {
     gap: 1rem;
   }
 
   .heroIconImg {
-    width: 84px;
-    height: 84px;
+    width: 72px;
+    height: 72px;
+  }
+
+  .heroScrollIndicator {
+    margin-top: 2.5rem;
+  }
+
+  .heroScrollArrow {
+    border-left-width: 14px;
+    border-right-width: 14px;
+    border-top-width: 18px;
+  }
+
+  .mainContentWrap {
+    padding-top: 4rem;
+  }
+
+  .about {
+    padding: 4rem var(--page-margin-x) 4rem;
+    max-width: 100%;
+  }
+
+  .about::before {
+    width: 240px;
+  }
+
+  .about::after {
+    width: 240px;
+  }
+
+  .aboutText {
+    font-size: 1.65rem;
+    line-height: 2.1;
+  }
+
+  .projects {
+    margin-top: 5rem;
+    padding: 2rem var(--page-margin-x) 4rem;
+  }
+
+  .projectsTitle {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 2rem;
+  }
+
+  .projectList {
+    gap: 2rem;
   }
 
   .projectCard {
     grid-template-columns: 1fr;
     height: auto;
-    min-height: 200px;
+    min-height: 320px;
   }
 
   .projectCardReversed {
@@ -686,7 +822,7 @@
   }
 
   .projectCardImage {
-    min-height: 160px;
+    min-height: 220px;
     order: -1;
   }
 
@@ -694,13 +830,75 @@
     order: -1;
   }
 
+  .projectCardText {
+    padding: 2rem 3rem 3rem;
+  }
+
+  .projectCardTitle {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .projectCardDesc {
+    font-size: 1.4rem;
+  }
+
   .projectCardImg,
   .projectImagePlaceholder {
-    min-height: 160px;
+    min-height: 220px;
+  }
+
+  .btnViewMore {
+    padding: 1.25rem 2.75rem;
+    font-size: 1.35rem;
+  }
+
+  .projectCardLeafOdd {
+    border-top-right-radius: 120px;
+    border-bottom-left-radius: 120px;
+  }
+
+  .projectCardLeafEven {
+    border-top-left-radius: 120px;
+    border-bottom-right-radius: 120px;
   }
 }
 
-/* ----- Responsive: Mobile ----- */
+/* ----- Responsive: Mobile (768px) — hero role stacks, smaller icons ----- */
+@media (max-width: 768px) {
+  .heroRoleRow {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+  }
+
+  .heroIconImg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .projectCardText {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .projectCardTitle {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .projectCardDesc {
+    font-size: 1.2rem;
+  }
+
+  .projectCardImage,
+  .projectCardImg,
+  .projectImagePlaceholder {
+    min-height: 180px;
+  }
+}
+
+/* ----- Responsive: Mobile (640px) — single column hero role, tighter spacing ----- */
 @media (max-width: 640px) {
   .btnViewMore {
     padding: 1.25rem 2.5rem;
@@ -708,43 +906,91 @@
   }
 
   .hero {
-    padding: 2.5rem var(--page-margin-x-mobile) 3.5rem;
+    padding: 2rem var(--page-margin-x) 3rem;
+  }
+
+  .heroTitle {
+    margin-top: 3rem;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(2.25rem, 15vw, 4.5rem);
   }
 
   .heroRoleRow {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    margin-top: 2rem;
   }
 
   .heroIcons {
     width: 100%;
     justify-content: flex-end;
+    transform: none;
   }
 
   .heroIconImg {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .heroScrollIndicator {
+    margin-top: 3rem;
+  }
+
+  .heroScrollArrow {
+    border-left-width: 12px;
+    border-right-width: 12px;
+    border-top-width: 14px;
+  }
+
+  .mainContentWrap {
+    padding-top: 1.5rem;
   }
 
   .about {
-    padding: 2rem var(--page-margin-x-mobile) 3rem;
+    padding: 1.5rem var(--page-margin-x) 2rem;
   }
 
   .about::before {
-    left: var(--page-margin-x-mobile);
+    left: var(--page-margin-x);
+    width: 180px;
+    height: 6px;
   }
 
   .about::after {
-    right: var(--page-margin-x-mobile);
+    right: var(--page-margin-x);
+    width: 180px;
+    height: 6px;
   }
 
   .aboutText {
     font-size: 1.125rem;
+    line-height: 1.9;
+  }
+
+  .aboutTextSecond {
+    margin-top: 0.75em;
+    line-height: 1.65;
   }
 
   .projects {
-    padding: 1.5rem var(--page-margin-x-mobile) 3rem;
+    margin-top: 3rem;
+    padding: 1.5rem var(--page-margin-x) 2.5rem;
+  }
+
+  .projectsTitle {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .projectList {
+    gap: 1.5rem;
   }
 
   .projectCardText {
@@ -755,9 +1001,34 @@
     font-size: 1.25rem;
   }
 
+  .projectCardDesc {
+    font-size: 1.05rem;
+  }
+
+  .projectTag {
+    font-size: 0.875rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .projectCardImage,
+  .projectCardImg,
+  .projectImagePlaceholder {
+    min-height: 160px;
+  }
+
+  .projectCardLeafOdd {
+    border-top-right-radius: 80px;
+    border-bottom-left-radius: 80px;
+  }
+
+  .projectCardLeafEven {
+    border-top-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+  }
+
   .contentBgImg {
     width: 50%;
-    min-width: 240px;
+    min-width: 200px;
   }
 
   .contentBgImg[data-img="empathy"] {
@@ -771,5 +1042,86 @@
 
   .contentBgImg[data-img="perfection"] {
     left: -25%;
+  }
+}
+
+/* ----- Responsive: Small mobile (480px) — minimal margin, compact ----- */
+@media (max-width: 480px) {
+  .hero {
+    padding: 1.5rem var(--page-margin-x) 2.5rem;
+  }
+
+  .heroTitle {
+    margin-top: 2.5rem;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(1.75rem, 13vw, 3.5rem);
+  }
+
+  .heroIconImg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .about {
+    padding: 1.5rem var(--page-margin-x) 2rem;
+  }
+
+  .about::before,
+  .about::after {
+    width: 140px;
+    height: 5px;
+  }
+
+  .aboutText {
+    font-size: 1rem;
+  }
+
+  .projects {
+    margin-top: 2.5rem;
+    padding: 1.25rem var(--page-margin-x) 2rem;
+  }
+
+  .projectsTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .projectCardText {
+    padding: 1rem;
+  }
+
+  .projectCardTitle {
+    font-size: 1.125rem;
+  }
+
+  .projectCardDesc {
+    font-size: 0.95rem;
+  }
+
+  .projectCardImage,
+  .projectCardImg,
+  .projectImagePlaceholder {
+    min-height: 140px;
+  }
+
+  .btnViewMore {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .projectCardLeafOdd {
+    border-top-right-radius: 48px;
+    border-bottom-left-radius: 48px;
+  }
+
+  .projectCardLeafEven {
+    border-top-left-radius: 48px;
+    border-bottom-right-radius: 48px;
   }
 }

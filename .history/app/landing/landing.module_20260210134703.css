@@ -43,6 +43,7 @@
   margin-bottom: 0;
 }
 
+/* Desktop ideal: big headline; big monitor scales up via min-width media query */
 .heroTitleAccent {
   font-family: var(--font-raleway), sans-serif;
   font-weight: 900;
@@ -193,6 +194,26 @@
 
   50% {
     transform: translateY(6px);
+  }
+}
+
+/* ----- Responsive: Big monitor — keep ideal design, scale up headline, role, icons ----- */
+@media (min-width: 1400px) {
+  .heroTitleAccent {
+    font-size: clamp(190px, 12vw, 280px);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(200px, 13vw, 300px);
+  }
+
+  .heroSubtitle {
+    font-size: clamp(2.25rem, 2vw, 3rem);
+  }
+
+  .heroIconImg {
+    width: clamp(96px, 5vw, 128px);
+    height: clamp(96px, 5vw, 128px);
   }
 }
 
@@ -385,8 +406,8 @@
   grid-template-columns: 1fr 1fr;
   height: 380px;
   overflow: hidden;
-  cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .projectCard:hover {
@@ -425,18 +446,13 @@
 }
 
 .projectCard:hover .projectCardText {
-  background: #fafafa;
+  background: #faf8ff;
 }
 
 .projectCardTitle {
   font-size: 4rem;
   font-weight: 800;
   color: var(--accent-purple);
-  transition: transform 0.3s ease;
-}
-
-.projectCard:hover .projectCardTitle {
-  transform: translateX(4px);
 }
 
 .projectCardDesc {
@@ -460,12 +476,6 @@
   border: 1.5px solid var(--accent-purple);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.projectCard:hover .projectTag {
-  background: var(--accent-purple);
-  color: #fff;
 }
 
 .projectCardImage {
@@ -485,7 +495,7 @@
 }
 
 .projectCard:hover .projectCardImg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .projectImagePlaceholder {
@@ -711,20 +721,43 @@
     padding: 2.5rem var(--page-margin-x-mobile) 3.5rem;
   }
 
+  /* Mobile: CUC Vy TRINH in one row (smaller headline), role and 4 icons stacked below */
+  .heroTitle {
+    margin-top: 2rem;
+    flex-wrap: nowrap;
+  }
+
+  .heroTitleAccent {
+    font-size: clamp(1.25rem, 8vw, 3rem);
+  }
+
+  .heroTitleVyWrap {
+    transform: translateY(0.1em);
+  }
+
+  .heroTitleVy {
+    font-size: clamp(1.35rem, 9vw, 3.25rem);
+  }
+
   .heroRoleRow {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1rem, 4vw, 1.5rem);
   }
 
   .heroIcons {
     width: 100%;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   .heroIconImg {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
   }
 
   .about {
