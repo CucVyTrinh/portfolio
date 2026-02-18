@@ -1,0 +1,58 @@
+/* 4 icon background on every page; z-index behind content */
+.iconBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Landing only: start the background lower (below hero) */
+.iconBgLower {
+  top: 70vh;
+  bottom: auto;
+  height: 500vh;
+}
+
+.iconBgImg {
+  position: absolute;
+  width: 55%;
+  min-width: 320px;
+  aspect-ratio: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.14;
+}
+
+.iconBgImg[data-img="empathy"] {
+  top: 0;
+  left: -18%;
+  background-image: url("/landing/empathy.png");
+  background-position: left center;
+}
+
+.iconBgImg[data-img="creativity"] {
+  top: 38%;
+  right: -12%;
+  left: auto;
+  background-image: url("/landing/creativity.png");
+  background-position: right center;
+}
+
+.iconBgImg[data-img="perfection"] {
+  top: 76%;
+  left: -18%;
+  background-image: url("/landing/perfection.png");
+  background-position: left center;
+}
+
+.iconBgImg[data-img="collaboration"] {
+  top: 114%;
+  right: -12%;
+  left: auto;
+  background-image: url("/landing/collaboration.png");
+  background-position: right center;
+}

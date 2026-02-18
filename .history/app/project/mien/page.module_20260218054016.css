@@ -1,0 +1,279 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--page-top-padding);
+}
+
+.page main {
+  flex: 1;
+}
+
+/* ----- Hero ----- */
+.hero {
+  position: relative;
+  padding: 2rem var(--page-margin-x) 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heroTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.heroTitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 750;
+  font-size: 11rem;
+  color: var(--accent-yellow);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1;
+}
+
+.heroSubtitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--accent-purple);
+}
+
+.heroCans {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: -10rem;
+}
+
+.heroCansImg {
+  max-width: 100%;
+  width: min(95%, 1000px);
+  height: auto;
+  object-fit: contain;
+  transform: perspective(800px) rotateY(-5deg) rotateX(2deg);
+}
+
+/* ----- Sections ----- */
+.section {
+  padding: 4rem var(--page-margin-x) 5rem;
+}
+
+.sectionInner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--accent-yellow);
+  margin: 0 0 1rem;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  color: var(--accent-purple);
+  margin: 0 0 0.75rem;
+}
+
+.bodyText {
+  font-size: 1.0625rem;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  max-width: 60ch;
+}
+
+.section .bodyText:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ----- Two-column layout: left = Overview, Miên, Graphic Elements; right = Info box, Rationale, civets, Color Palette ----- */
+.twoColumnLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  min-width: 0;
+}
+
+.rightColumn>*:first-child {
+  align-self: start;
+}
+
+.block {
+  min-width: 0;
+}
+
+.bodyTextOverview {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 60ch;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.bodyTextColumn {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 52ch;
+  text-align: left;
+}
+
+.rationaleTitleImg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.civetRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.civetImg {
+  width: auto;
+  height: 140px;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.colorBars {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.colorBar {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ----- Dieline & Mockups ----- */
+.cafeIcons {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.cafeIcon {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+.mockups {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.mockupImg {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+/* ----- Back link ----- */
+.backLinkWrap {
+  padding: 3rem var(--page-margin-x) 4rem;
+  text-align: left;
+}
+
+.backLink {
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-purple);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--accent-yellow);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 900px) {
+  .twoColumnLayout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    gap: 2.5rem;
+  }
+
+  .heroCansImg {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 3rem var(--page-margin-x-mobile) 4rem;
+  }
+
+  .heroTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section {
+    padding: 3rem var(--page-margin-x-mobile) 4rem;
+  }
+
+  .backLinkWrap {
+    padding: 2rem var(--page-margin-x-mobile) 3rem;
+  }
+
+  .civetRow {
+    gap: 1rem;
+  }
+
+  .civetImg {
+    height: 100px;
+  }
+
+  .bodyTextOverview,
+  .bodyTextColumn {
+    max-width: none;
+  }
+}
