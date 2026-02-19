@@ -221,7 +221,7 @@ export default function AboutPage() {
               <div className={styles.filmStripLine} data-position="bottom" aria-hidden />
             </div>
           </div>
-          <p className={styles.filmCaption}>Ouch...my heart is so full</p>
+          <p className={styles.filmCaption}>Ouch...my heart so full</p>
           </section>
         </div>
       </main>

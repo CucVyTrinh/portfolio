@@ -200,8 +200,9 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Filmstrip */}
+          {/* How my heart is filled — filmstrip */}
           <section className={styles.filmSection}>
+          <h2 className={styles.sectionTitle}>Ouch...my heart is so full</h2>
           <div className={styles.filmStripWrap}>
             <div className={styles.filmStripScroll}>
               <div className={styles.filmStripLine} data-position="top" aria-hidden />
@@ -221,7 +222,6 @@ export default function AboutPage() {
               <div className={styles.filmStripLine} data-position="bottom" aria-hidden />
             </div>
           </div>
-          <p className={styles.filmCaption}>Ouch...my heart is so full</p>
           </section>
         </div>
       </main>
