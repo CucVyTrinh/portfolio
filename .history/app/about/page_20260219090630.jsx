@@ -36,8 +36,9 @@ const INTRO_PARAGRAPH_2 = (
 
 const INTRO_PARAGRAPH_3 = "The four qualities below reflect the core values that shape my work.";
 
-/* Filmstrip: photo numbers 1–11. Missing files fall back to photo-1. */
-const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+/* Filmstrip: list photo numbers you have in public/about/ (e.g. photo-1.jpg, photo-5.jpg).
+   Only 1, 5, 10 work? Set to [1, 5, 10]. Add more as you add files. */
+const FILM_PHOTO_NUMBERS = [1, 5, 10];
 
 export default function AboutPage() {
   const [vyFrame, setVyFrame] = useState(0); // 0 = vy-1, 1 = vy-2
