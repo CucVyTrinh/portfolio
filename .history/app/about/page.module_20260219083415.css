@@ -15,7 +15,7 @@
 /* ----- Hero: same layout/position as Featured + Projects on Projects page ----- */
 .aboutHero {
   position: relative;
-  padding: 4rem var(--page-margin-x) 2rem;
+  padding: 4rem var(--page-margin-x) 5rem;
   overflow: hidden;
 }
 
@@ -58,8 +58,7 @@
 .aboutContent {
   position: relative;
   z-index: 1;
-  padding: 1rem var(--page-margin-x) 5rem;
-  margin-top: -1rem;
+  padding: 2rem var(--page-margin-x) 5rem;
 }
 
 /* ----- Hello / Introduction ----- */

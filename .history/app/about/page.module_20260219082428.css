@@ -15,7 +15,7 @@
 /* ----- Hero: same layout/position as Featured + Projects on Projects page ----- */
 .aboutHero {
   position: relative;
-  padding: 4rem var(--page-margin-x) 2rem;
+  padding: 4rem var(--page-margin-x) 5rem;
   overflow: hidden;
 }
 
@@ -58,8 +58,7 @@
 .aboutContent {
   position: relative;
   z-index: 1;
-  padding: 1rem var(--page-margin-x) 5rem;
-  margin-top: -1rem;
+  padding: 2rem var(--page-margin-x) 5rem;
 }
 
 /* ----- Hello / Introduction ----- */
@@ -194,7 +193,6 @@
   flex-direction: column;
   gap: 1.5rem;
   align-items: flex-start;
-  margin-top: -5.5rem;
 }
 
 .helloText {
@@ -223,13 +221,12 @@
 
 /* ----- 4 icons (same effect as landing), centered in right section ----- */
 .heroIcons {
-  margin-top: 2rem;
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1.25rem;
   flex-shrink: 0;
 }
 
@@ -314,12 +311,13 @@
   height: 18px;
   background: #fff;
   border-radius: 2px;
+  /* One cycle per photo cell (1/11 of track) so dark dividers align with gaps between photos */
   background-image: repeating-linear-gradient(90deg,
       transparent 0,
-      transparent 40px,
-      rgba(0, 0, 0, 0.8) 40px,
-      rgba(0, 0, 0, 0.8) 48px);
-  background-size: 70px 20px;
+      transparent 96%,
+      rgba(0, 0, 0, 0.8) 96%,
+      rgba(0, 0, 0, 0.8) 100%);
+  background-size: calc(100% / 22) 18px;
   background-position: 0 0;
 }
 
@@ -353,12 +351,6 @@
   display: block;
   border-radius: 2px;
   background: #222;
-  filter: grayscale(100%);
-  transition: filter 0.35s ease;
-}
-
-.filmPhoto:hover {
-  filter: grayscale(0%);
 }
 
 @keyframes filmScroll {

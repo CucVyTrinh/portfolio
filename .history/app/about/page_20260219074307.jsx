@@ -204,9 +204,7 @@ export default function AboutPage() {
           <section className={styles.filmSection}>
           <h2 className={styles.sectionTitle}>How my heart is filled</h2>
           <div className={styles.filmStripWrap}>
-            <div className={styles.filmStripScroll}>
-              <div className={styles.filmStripLine} data-position="top" aria-hidden />
-              <div className={styles.filmStripTrack}>
+            <div className={styles.filmStripTrack}>
               {[1, 2].map((set) =>
                 Array.from({ length: 11 }, (_, i) => i + 1).map((n) => (
                   <div key={`${set}-${n}`} className={styles.filmCell}>
@@ -218,8 +216,6 @@ export default function AboutPage() {
                   </div>
                 ))
               )}
-              </div>
-              <div className={styles.filmStripLine} data-position="bottom" aria-hidden />
             </div>
           </div>
           </section>

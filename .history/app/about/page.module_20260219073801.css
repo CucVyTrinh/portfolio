@@ -15,7 +15,7 @@
 /* ----- Hero: same layout/position as Featured + Projects on Projects page ----- */
 .aboutHero {
   position: relative;
-  padding: 4rem var(--page-margin-x) 2rem;
+  padding: 4rem var(--page-margin-x) 5rem;
   overflow: hidden;
 }
 
@@ -58,8 +58,7 @@
 .aboutContent {
   position: relative;
   z-index: 1;
-  padding: 1rem var(--page-margin-x) 5rem;
-  margin-top: -1rem;
+  padding: 2rem var(--page-margin-x) 5rem;
 }
 
 /* ----- Hello / Introduction ----- */
@@ -80,7 +79,7 @@
   min-height: 560px;
 }
 
-/* Flip card container - same place as vy graphic */
+/* Flip card container: same place as vy graphic, hover to flip */
 .vyFlipWrap {
   position: relative;
   width: 100%;
@@ -95,56 +94,30 @@
   height: 100%;
   min-height: 520px;
   transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.7s ease-in-out;
 }
 
 .vyFlipWrap:hover .vyFlipInner {
   transform: rotateY(180deg);
 }
 
-.vyFlipFront,
-.vyFlipBack {
+.vyFaceFront,
+.vyFaceBack {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-.vyFlipBack {
-  transform: rotateY(180deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-/* Two photos: vy-young on top of left part of vy-old, both bigger and closer */
-.vyFlipBack .vyPhoto {
-  position: absolute;
-  object-fit: cover;
-  border-radius: 6px;
-
-}
-
-.vyFlipBack .vyPhoto[data-role="old"] {
-  top: 40%;
-  left: 50%;
-  transform: translate(-45%, -50%);
-  width: 58%;
-  max-width: 300px;
-  aspect-ratio: 4/5;
-  z-index: 1;
-}
-
-.vyFlipBack .vyPhoto[data-role="young"] {
-  bottom: 8%;
-  left: 9%;
-  width: 48%;
-  max-width: 170px;
-  aspect-ratio: 3/4;
+.vyFaceFront {
+  transform: rotateY(0deg);
   z-index: 2;
+}
+
+.vyFaceBack {
+  transform: rotateY(180deg);
+  z-index: 1;
+  background: transparent;
 }
 
 .helloGraphicWrap {
@@ -157,26 +130,12 @@
   min-height: 520px;
 }
 
-/* Soft multicolored glow behind illustration (centered) */
-.helloGraphicWrap::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(calc(-50% + 15rem), -50%);
-  width: 95%;
-  height: 90%;
-
-  pointer-events: none;
-  z-index: 0;
-}
-
 .vyGraphic {
   position: absolute;
   z-index: 1;
   top: 50%;
   left: 50%;
-  transform: translate(calc(-50% + 15rem), -50%);
+  transform: translate(calc(-50% + 1.5rem), -50%);
   max-height: 640px;
   width: auto;
   object-fit: contain;
@@ -189,12 +148,48 @@
   opacity: 1;
 }
 
+/* Back face: vy-old (dominant, upper right, portrait) + vy-young (smaller, lower left, overlaps vy-old) */
+.vyPhotosWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* vy-old: dominant, upper right, vertical/portrait, anchor for right side */
+.vyPhotoOld {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80%;
+  max-width: 280px;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: top right;
+  z-index: 2;
+}
+
+/* vy-young: smaller, lower left, overlaps bottom-left of vy-old, slightly inset from left */
+.vyPhotoYoung {
+  position: absolute;
+  left: 8%;
+  bottom: 12%;
+  width: 36%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom left;
+  z-index: 1;
+}
+
 .helloRight {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   align-items: flex-start;
-  margin-top: -5.5rem;
 }
 
 .helloText {
@@ -223,13 +218,12 @@
 
 /* ----- 4 icons (same effect as landing), centered in right section ----- */
 .heroIcons {
-  margin-top: 2rem;
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1.25rem;
   flex-shrink: 0;
 }
 
@@ -301,42 +295,43 @@
   padding: 1.5rem 0;
 }
 
-.filmStripScroll {
-  display: flex;
-  flex-direction: column;
-  width: 200%;
-  animation: filmScroll 25s linear infinite;
+.filmStripWrap::before,
+.filmStripWrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.filmStripLine {
-  flex-shrink: 0;
-  width: 200%;
-  height: 18px;
-  background: #fff;
-  border-radius: 2px;
+.filmStripWrap::before {
+  top: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.filmStripWrap::after {
+  bottom: 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Sprocket holes along top and bottom */
+.filmStripWrap::before {
   background-image: repeating-linear-gradient(90deg,
       transparent 0,
-      transparent 40px,
-      rgba(0, 0, 0, 0.8) 40px,
-      rgba(0, 0, 0, 0.8) 48px);
-  background-size: 70px 20px;
-  background-position: 0 0;
-}
-
-.filmStripLine[data-position="top"] {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  margin-bottom: 2px;
-}
-
-.filmStripLine[data-position="bottom"] {
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
-  margin-top: 2px;
+      transparent 24px,
+      #0d0d0d 24px,
+      #0d0d0d 32px);
+  background-size: 56px 18px;
 }
 
 .filmStripTrack {
   display: flex;
-  width: 100%;
-  flex-shrink: 0;
+  width: 200%;
+  animation: filmScroll 25s linear infinite;
 }
 
 .filmCell {
@@ -353,12 +348,6 @@
   display: block;
   border-radius: 2px;
   background: #222;
-  filter: grayscale(100%);
-  transition: filter 0.35s ease;
-}
-
-.filmPhoto:hover {
-  filter: grayscale(0%);
 }
 
 @keyframes filmScroll {
@@ -378,8 +367,23 @@
     gap: 2rem;
   }
 
+  .vyFlipWrap,
+  .vyFlipInner {
+    min-height: 400px;
+  }
+
   .helloGraphicWrap {
-    min-height: 260px;
+    min-height: 400px;
+  }
+
+  .vyPhotoYoung {
+    width: 42%;
+    max-width: 160px;
+  }
+
+  .vyPhotoOld {
+    width: 52%;
+    max-width: 220px;
   }
 
   .heroIconImg {
@@ -405,12 +409,31 @@
     min-height: 420px;
   }
 
+  .vyFlipWrap,
+  .vyFlipInner {
+    min-height: 380px;
+  }
+
   .helloGraphicWrap {
-    min-height: 420px;
+    min-height: 380px;
   }
 
   .vyGraphic {
     max-height: 520px;
+  }
+
+  .vyPhotoYoung {
+    left: 2%;
+    bottom: 8%;
+    width: 40%;
+    max-width: 140px;
+  }
+
+  .vyPhotoOld {
+    right: 2%;
+    top: 6%;
+    width: 54%;
+    max-width: 200px;
   }
 
   .filmStripTrack {

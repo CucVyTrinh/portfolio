@@ -1,0 +1,6 @@
+# About page assets
+
+Place these files in this folder:
+
+-   **vy-1.png**, **vy-2.png** — Character graphic (waving animation alternates between these two).
+-   **photo-1.jpg** … **photo-11.jpg** — Photos for the “How my heart is filled” filmstrip.

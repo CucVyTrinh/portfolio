@@ -41,8 +41,6 @@ export default function AboutPage() {
   const [tooltip, setTooltip] = useState(null);
   const [tooltipDisplayed, setTooltipDisplayed] = useState("");
   const tooltipIntervalRef = useRef(null);
-  const tooltipLeaveTimeoutRef = useRef(null);
-
   // Waving: alternate vy-1 and vy-2 (slower)
   useEffect(() => {
     const t = setInterval(() => setVyFrame((f) => (f + 1) % 2), 950);
@@ -111,29 +109,19 @@ export default function AboutPage() {
         <div className={styles.aboutContent}>
           <section className={styles.hello}>
             <div className={styles.helloLeft}>
-              <div className={styles.vyFlipWrap}>
-                <div className={styles.vyFlipInner}>
-                  <div className={styles.vyFlipFront}>
-                    <div className={styles.helloGraphicWrap}>
-                      <img
-                        src="/about/vy-1.png"
-                        alt="Vy waving"
-                        className={`${styles.vyGraphic} ${vyFrame === 0 ? styles.vyActive : ""}`}
-                        aria-hidden={vyFrame !== 0}
-                      />
-                      <img
-                        src="/about/vy-2.png"
-                        alt=""
-                        className={`${styles.vyGraphic} ${vyFrame === 1 ? styles.vyActive : ""}`}
-                        aria-hidden={vyFrame !== 1}
-                      />
-                    </div>
-                  </div>
-                  <div className={styles.vyFlipBack}>
-                    <img src="/about/vy-young.jpg" alt="Vy as a child" className={styles.vyPhoto} data-role="young" />
-                    <img src="/about/vy-old.jpg" alt="Vy" className={styles.vyPhoto} data-role="old" />
-                  </div>
-                </div>
+              <div className={styles.helloGraphicWrap}>
+                <img
+                  src="/about/vy-1.png"
+                  alt="Vy waving"
+                  className={`${styles.vyGraphic} ${vyFrame === 0 ? styles.vyActive : ""}`}
+                  aria-hidden={vyFrame !== 0}
+                />
+                <img
+                  src="/about/vy-2.png"
+                  alt=""
+                  className={`${styles.vyGraphic} ${vyFrame === 1 ? styles.vyActive : ""}`}
+                  aria-hidden={vyFrame !== 1}
+                />
               </div>
             </div>
             <div className={styles.helloRight}>
@@ -204,9 +192,7 @@ export default function AboutPage() {
           <section className={styles.filmSection}>
           <h2 className={styles.sectionTitle}>How my heart is filled</h2>
           <div className={styles.filmStripWrap}>
-            <div className={styles.filmStripScroll}>
-              <div className={styles.filmStripLine} data-position="top" aria-hidden />
-              <div className={styles.filmStripTrack}>
+            <div className={styles.filmStripTrack}>
               {[1, 2].map((set) =>
                 Array.from({ length: 11 }, (_, i) => i + 1).map((n) => (
                   <div key={`${set}-${n}`} className={styles.filmCell}>
@@ -218,8 +204,6 @@ export default function AboutPage() {
                   </div>
                 ))
               )}
-              </div>
-              <div className={styles.filmStripLine} data-position="bottom" aria-hidden />
             </div>
           </div>
           </section>

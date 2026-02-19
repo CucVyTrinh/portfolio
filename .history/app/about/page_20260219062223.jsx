@@ -20,32 +20,47 @@ function capitalize(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-const INTRO_PARAGRAPH_1 = (
-  <>
-    My name is <span className={styles.highlightYellow}>Vy</span>. I&apos;m a{" "}
-    <span className={styles.highlightYellow}>digital designer</span> with{" "}
-    <span className={styles.highlightYellow}>front-end development</span> skills who is constantly exploring new ideas, experimenting with visual directions, and challenging myself to step beyond what feels familiar.
-  </>
-);
+const JOYS = [
+  { id: "music", label: "Music", size: "big" },
+  { id: "parks", label: "Parks", size: "big" },
+  { id: "art", label: "Art", size: "medium" },
+  { id: "coffee", label: "Coffee", size: "medium" },
+  { id: "snoopy", label: "Snoopy", size: "small" },
+  { id: "chocolate", label: "Chocolate", size: "small" },
+  { id: "bunmoc", label: "Bun Moc", size: "small" },
+  { id: "fashion", label: "Fashion", size: "small" },
+  { id: "travelling", label: "Travelling", size: "small" },
+];
 
-const INTRO_PARAGRAPH_2 = (
-  <>
-    I enjoy experimenting with new color combinations, creative graphics, and layered details - but more importantly, I care about <span className={styles.highlightPurple}>meaning</span>. Every design decision I make is intentional. I strive to create work where <span className={styles.highlightPurple}>visuals</span> and <span className={styles.highlightPurple}>storytelling</span> connect seamlessly to communicate something deeper than just aesthetics.
-  </>
-);
-
-const INTRO_PARAGRAPH_3 = "The four qualities below reflect the core values that shape my work.";
+const INTRO_PARAGRAPHS = [
+  "My name is Vy. I'm a digital designer with front-end development skills who is constantly exploring new ideas, experimenting with visual directions, and challenging myself to step beyond what feels familiar.",
+  "I enjoy experimenting with new color combinations, creative graphics, and layered details - but more importantly, I care about meaning. Every design decision I make is intentional. I strive to create work where visuals, interaction, and storytelling connect seamlessly to communicate something deeper than just aesthetics.",
+  "The four qualities below reflect the core values that shape my work.",
+];
 
 export default function AboutPage() {
   const [vyFrame, setVyFrame] = useState(0); // 0 = vy-1, 1 = vy-2
   const [tooltip, setTooltip] = useState(null);
   const [tooltipDisplayed, setTooltipDisplayed] = useState("");
   const tooltipIntervalRef = useRef(null);
-  const tooltipLeaveTimeoutRef = useRef(null);
+  const initialJoyPositions = () => [
+    { x: 38, y: 32 },   /* Music - big, central */
+    { x: 62, y: 8 },    /* Parks - big, upper right */
+    { x: 5, y: 28 },    /* Art - medium, left */
+    { x: 58, y: 38 },   /* Coffee - medium, middle right */
+    { x: 8, y: 62 },    /* Snoopy - small, lower left */
+    { x: 72, y: 12 },   /* Chocolate - small, top right */
+    { x: 68, y: 22 },   /* Bun Moc - small, upper right */
+    { x: 65, y: 58 },   /* Fashion - small, lower right */
+    { x: 70, y: 68 },   /* Travelling - small, bottom right */
+    { x: 12, y: 78 },   /* the earthy scent... - small, bottom center */
+  ];
+  const [joyPositions, setJoyPositions] = useState(initialJoyPositions());
+  const dragRef = useRef({ index: null, startX: 0, startY: 0, startLeft: 0, startTop: 0 });
 
-  // Waving: alternate vy-1 and vy-2 (slower)
+  // Waving: alternate vy-1 and vy-2 every 400ms
   useEffect(() => {
-    const t = setInterval(() => setVyFrame((f) => (f + 1) % 2), 950);
+    const t = setInterval(() => setVyFrame((f) => (f + 1) % 2), 400);
     return () => clearInterval(t);
   }, []);
 
@@ -76,11 +91,35 @@ export default function AboutPage() {
     };
   }, [tooltip?.label]);
 
-  useEffect(() => {
-    return () => {
-      if (tooltipLeaveTimeoutRef.current) clearTimeout(tooltipLeaveTimeoutRef.current);
+  const handleJoyPointerDown = (e, index) => {
+    e.preventDefault();
+    dragRef.current = {
+      index,
+      startX: e.clientX,
+      startY: e.clientY,
+      startLeft: joyPositions[index].x,
+      startTop: joyPositions[index].y,
     };
-  }, []);
+    const onMove = (e) => {
+      const dx = (e.clientX - dragRef.current.startX) / 2;
+      const dy = (e.clientY - dragRef.current.startY) / 2;
+      setJoyPositions((prev) => {
+        const next = [...prev];
+        next[dragRef.current.index] = {
+          x: Math.max(0, Math.min(78, dragRef.current.startLeft + dx)),
+          y: Math.max(0, Math.min(72, dragRef.current.startTop + dy)),
+        };
+        return next;
+      });
+    };
+    const onUp = () => {
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerup", onUp);
+    };
+    document.addEventListener("pointermove", onMove);
+    document.addEventListener("pointerup", onUp);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
 
   return (
     <div className={styles.page}>
@@ -107,64 +146,42 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Content: left graphic (bigger, centered), right text + icons; then filmstrip */}
+        {/* Content: left graphic, right text + icons; then My Joys, filmstrip */}
         <div className={styles.aboutContent}>
           <section className={styles.hello}>
             <div className={styles.helloLeft}>
-              <div className={styles.vyFlipWrap}>
-                <div className={styles.vyFlipInner}>
-                  <div className={styles.vyFlipFront}>
-                    <div className={styles.helloGraphicWrap}>
-                      <img
-                        src="/about/vy-1.png"
-                        alt="Vy waving"
-                        className={`${styles.vyGraphic} ${vyFrame === 0 ? styles.vyActive : ""}`}
-                        aria-hidden={vyFrame !== 0}
-                      />
-                      <img
-                        src="/about/vy-2.png"
-                        alt=""
-                        className={`${styles.vyGraphic} ${vyFrame === 1 ? styles.vyActive : ""}`}
-                        aria-hidden={vyFrame !== 1}
-                      />
-                    </div>
-                  </div>
-                  <div className={styles.vyFlipBack}>
-                    <img src="/about/vy-young.jpg" alt="Vy as a child" className={styles.vyPhoto} data-role="young" />
-                    <img src="/about/vy-old.jpg" alt="Vy" className={styles.vyPhoto} data-role="old" />
-                  </div>
-                </div>
-              </div>
+            <div className={styles.helloGraphicWrap}>
+              <img
+                src="/about/vy-1.png"
+                alt="Vy waving"
+                className={`${styles.vyGraphic} ${vyFrame === 0 ? styles.vyActive : ""}`}
+                aria-hidden={vyFrame !== 0}
+              />
+              <img
+                src="/about/vy-2.png"
+                alt=""
+                className={`${styles.vyGraphic} ${vyFrame === 1 ? styles.vyActive : ""}`}
+                aria-hidden={vyFrame !== 1}
+              />
             </div>
-            <div className={styles.helloRight}>
-              <div className={styles.helloText}>
-                <p className={styles.helloIntro}>{INTRO_PARAGRAPH_1}</p>
-                <p className={styles.helloIntro}>{INTRO_PARAGRAPH_2}</p>
-                <p className={styles.helloIntro}>{INTRO_PARAGRAPH_3}</p>
-              </div>
+          </div>
+          <div className={styles.helloRight}>
+            <div className={styles.helloText}>
+              {INTRO_PARAGRAPHS.map((text, i) => (
+                <p key={i} className={styles.helloIntro}>{text}</p>
+              ))}
+            </div>
             <div
               className={styles.heroIcons}
-              onMouseLeave={() => {
-                tooltipLeaveTimeoutRef.current = setTimeout(() => setTooltip(null), 100);
-              }}
-              onMouseEnter={() => {
-                if (tooltipLeaveTimeoutRef.current) {
-                  clearTimeout(tooltipLeaveTimeoutRef.current);
-                  tooltipLeaveTimeoutRef.current = null;
-                }
-              }}
+              onMouseLeave={() => setTooltip(null)}
             >
               {HERO_ICONS.map((icon) => (
                 <div
                   key={icon.label}
                   className={styles.heroIconWrap}
-                  onMouseEnter={(e) => {
-                    if (tooltipLeaveTimeoutRef.current) {
-                      clearTimeout(tooltipLeaveTimeoutRef.current);
-                      tooltipLeaveTimeoutRef.current = null;
-                    }
-                    setTooltip({ label: icon.label, x: e.clientX, y: e.clientY });
-                  }}
+                  onMouseEnter={(e) =>
+                    setTooltip({ label: icon.label, x: e.clientX, y: e.clientY })
+                  }
                   onMouseMove={(e) =>
                     setTooltip((prev) =>
                       prev && prev.label === icon.label
@@ -197,16 +214,45 @@ export default function AboutPage() {
                 </span>
               )}
             </div>
-            </div>
+          </div>
+          </section>
+
+            <section className={styles.joysSection}>
+          <h2 className={styles.sectionTitle}>My Joys</h2>
+          <div className={styles.joysFrame}>
+            {JOYS.map((joy, index) => (
+              <span
+                key={joy.id}
+                className={`${styles.joyItem} ${styles[`joySize_${joy.size}`]}`}
+                style={{
+                  left: `${joyPositions[index].x}%`,
+                  top: `${joyPositions[index].y}%`,
+                }}
+                onPointerDown={(e) => handleJoyPointerDown(e, index)}
+                draggable={false}
+              >
+                {joy.label}
+              </span>
+            ))}
+            <span
+              className={`${styles.joyItem} ${styles.joySize_small} ${styles.joyItalic}`}
+              style={{
+                left: `${joyPositions[9].x}%`,
+                top: `${joyPositions[9].y}%`,
+              }}
+              onPointerDown={(e) => handleJoyPointerDown(e, 9)}
+              draggable={false}
+            >
+              the earthy scent of rain falling on dry soil
+            </span>
+          </div>
           </section>
 
           {/* How my heart is filled — filmstrip */}
           <section className={styles.filmSection}>
           <h2 className={styles.sectionTitle}>How my heart is filled</h2>
           <div className={styles.filmStripWrap}>
-            <div className={styles.filmStripScroll}>
-              <div className={styles.filmStripLine} data-position="top" aria-hidden />
-              <div className={styles.filmStripTrack}>
+            <div className={styles.filmStripTrack}>
               {[1, 2].map((set) =>
                 Array.from({ length: 11 }, (_, i) => i + 1).map((n) => (
                   <div key={`${set}-${n}`} className={styles.filmCell}>
@@ -218,8 +264,6 @@ export default function AboutPage() {
                   </div>
                 ))
               )}
-              </div>
-              <div className={styles.filmStripLine} data-position="bottom" aria-hidden />
             </div>
           </div>
           </section>
