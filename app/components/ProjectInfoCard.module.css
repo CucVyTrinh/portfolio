@@ -22,7 +22,7 @@
 
 .label {
   font-family: var(--font-raleway), sans-serif;
-  font-size: 1.25rem;
+  font-size: 2.25rem;
   font-weight: 800;
   color: var(--accent-yellow);
   margin: 0;
@@ -37,5 +37,11 @@
 }
 
 .card .value {
-  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.card .valueLine {
+  display: block;
 }

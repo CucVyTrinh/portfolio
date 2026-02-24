@@ -27,11 +27,6 @@
   animation: fadeInUp 0.6s ease-out 0.12s forwards;
 }
 
-.heroPosters {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.2s forwards;
-}
-
 .scrollReveal {
   opacity: 0;
   transform: translateY(24px);
@@ -84,22 +79,15 @@
   border-bottom: 3px solid var(--accent-purple);
 }
 
-.heroPosters {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 2rem;
+.heroHeaderPhoto {
   width: 100%;
-  margin-top: -6rem;
-  flex-wrap: wrap;
 }
 
-.heroPoster {
-  width: clamp(200px, 22vw, 280px);
+.heroHeaderImg {
+  width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
-  object-position: bottom;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
 }
 
 /* ----- Sections ----- */
@@ -124,7 +112,7 @@
   font-weight: 400;
   font-size: 1.75rem;
   color: var(--accent-purple);
-  margin: 0 0 0.75rem;
+  margin: 1.5rem 0 0.75rem;
 }
 
 /* ----- Two-column layout (like Mien) ----- */
@@ -141,7 +129,7 @@
 .rightColumn {
   display: flex;
   flex-direction: column;
-  gap: 9rem;
+  gap: 2rem;
   min-width: 0;
 }
 
@@ -172,6 +160,11 @@
   text-align: left;
 }
 
+.bodyTextColumn strong {
+  font-weight: 700;
+  color: var(--accent-yellow);
+}
+
 .viewDesignBtn {
   display: inline-block;
   font-family: var(--font-raleway), sans-serif;
@@ -191,8 +184,105 @@
   color: var(--bg-dark);
 }
 
-.blockRationale {
-  margin-top: 0.5rem;
+/* ----- Rationale: paragraph left, icons right, wrapped in 50% opacity rectangle ----- */
+.rationaleSection {
+  padding-top: 3rem;
+}
+
+.rationaleBlock {
+  position: relative;
+}
+
+.rationaleHeader {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rationaleWrapper {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 1.125rem;
+  padding: 2.5rem var(--page-margin-x);
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
+
+.rationaleRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+  min-height: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rationaleText {
+  min-width: 0;
+}
+
+.rationaleText .bodyTextColumn {
+  max-width: none;
+}
+
+.rationaleIcons {
+  display: flex;
+  gap: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.elementalImg {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* ----- Visual Storytelling: three icon sets left, title + paragraph right ----- */
+.visualStoryBlock {
+  margin-top: -6rem;
+}
+
+.visualStoryRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.visualStoryImgWrap {
+  min-width: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 6rem;
+  order: 1;
+}
+
+.threeColorImg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.visualStoryText {
+  min-width: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  order: 2;
+}
+
+.visualStoryText .sectionSubtitle,
+.visualStoryText .bodyTextColumn {
+  max-width: none;
+  text-align: left;
 }
 
 .blockCircular {
@@ -223,23 +313,136 @@
 
 /* ----- Mockups section ----- */
 .mockupSection {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding-top: 2rem;
   text-align: center;
 }
 
 .mockupHeader {
-  margin-bottom: 2rem;
+  margin-top: -2rem;
+  margin-bottom: 4rem;
 }
 
 .mockupHeader .sectionTitle {
   margin-bottom: 0;
 }
 
-.mockup3D {
+.mockup3DRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem 2.5rem;
   margin: 2rem 0 3rem;
   width: 100%;
+  align-items: start;
+  justify-items: stretch;
+}
+
+.mockup3DItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.mockup3DItem::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(57, 57, 57, 0.5);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mockup3DRow .mockup3DItem>div {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   min-height: 560px;
+  flex: 1 1 auto;
+}
+
+.viewDesignBtn {
+  position: absolute;
+  top: 0.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--bg-dark);
+  background: var(--accent-purple);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.viewDesignBtn:hover {
+  background: var(--accent-yellow);
+  color: var(--bg-dark);
+}
+
+.mockup360Badge {
+  position: absolute;
+  bottom: 3rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  opacity: 0.6;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ----- Design overlay (lightbox) ----- */
+.designOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.88);
+  padding: 2rem;
+  outline: none;
+}
+
+.designOverlayClose {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 1001;
+}
+
+.designOverlayClose:hover {
+  color: var(--accent-yellow);
+}
+
+.designOverlayImg {
+  max-width: min(90vw, 900px);
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  pointer-events: auto;
 }
 
 .mockupCarousel {
@@ -269,45 +472,38 @@
 }
 
 .mockupImg {
-  max-width: min(90%, 700px);
+  max-width: min(95%, 900px);
   height: auto;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .carouselDots {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   margin-top: 1rem;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 24px;
+  height: 12px;
+  border-radius: 50;
   border: none;
   background: var(--text-muted);
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, width 0.2s ease;
 }
 
-.dot:hover,
-.dotActive {
+.dot:hover {
   background: var(--accent-yellow);
 }
 
-/* ----- Outdoor display ----- */
-.outdoorSection {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.outdoorImg {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
+.dotActive {
+  width: 56px;
+  height: 12px;
+  background: var(--accent-yellow);
 }
 
 /* ----- Back link ----- */
@@ -340,6 +536,38 @@
   .rightColumn {
     gap: 2.5rem;
   }
+
+  .rationaleWrapper {
+    padding: 2rem var(--page-margin-x);
+  }
+
+  .rationaleRow {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .rationaleIcons {
+    justify-content: flex-start;
+  }
+
+  .visualStoryRow {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .visualStoryImgWrap {
+    justify-content: flex-start;
+    order: 2;
+  }
+
+  .visualStoryText {
+    order: 1;
+  }
+
+  .mockup3DRow {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -356,14 +584,6 @@
     font-size: 6rem;
   }
 
-  .heroPosters {
-    margin-top: -2rem;
-    gap: 1rem;
-  }
-
-  .heroPoster {
-    width: clamp(120px, 28vw, 180px);
-  }
 
   .section {
     padding: 3rem var(--page-margin-x-mobile) 4rem;
@@ -381,6 +601,15 @@
   .circularImg {
     width: 60px;
     height: 60px;
+  }
+
+  .rationaleWrapper {
+    padding: 1.5rem var(--page-margin-x-mobile);
+  }
+
+  .elementalImg {
+    width: 100px;
+    height: 100px;
   }
 
   .shapeImg {

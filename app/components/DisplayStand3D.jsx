@@ -1,14 +1,18 @@
 "use client";
 
-import { Suspense, useRef, useEffect } from "react";
+import { Suspense, useRef, useEffect, useMemo } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { OrbitControls, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 const OBJ_PATH = "/project/Reijin/mockup-1/advertising_display_stand_mockup_03.obj";
-const POSTER_FRONT = "/project/Reijin/poster-1-1.jpg";
-const POSTER_BACK = "/project/Reijin/poster-1-2.jpg";
+
+const POSTER_IMAGES = {
+  1: { front: "/project/Reijin/poster-1-1.jpg", back: "/project/Reijin/poster-1-2.jpg" },
+  2: { front: "/project/Reijin/poster-2.jpg", back: "/project/Reijin/poster-2-2.jpg" },
+  3: { front: "/project/Reijin/poster-3.jpg", back: "/project/Reijin/poster-3-2.jpg" },
+};
 
 const PLANE_WIDTH = 76;
 const PLANE_HEIGHT = 109;
@@ -21,16 +25,19 @@ function setupTexture(tex) {
   tex.wrapT = THREE.ClampToEdgeWrapping;
 }
 
-function DisplayStandModel() {
+function DisplayStandModel({ posterId = 1 }) {
   const group = useRef();
   const obj = useLoader(OBJLoader, OBJ_PATH);
-  const [texFront, texBack] = useTexture([POSTER_FRONT, POSTER_BACK]);
+  const clone = useMemo(() => (obj ? obj.clone() : null), [obj]);
+  const { front: posterFront, back: posterBack } = POSTER_IMAGES[posterId] ?? POSTER_IMAGES[1];
+  const [texFront, texBack] = useTexture([posterFront, posterBack]);
 
   useEffect(() => {
+    if (!clone) return;
     setupTexture(texFront);
     setupTexture(texBack);
 
-    obj.traverse((child) => {
+    clone.traverse((child) => {
       if (child.isMesh) {
         const name = (child.name || "").toLowerCase();
         const matName = (child.material?.name || "").toLowerCase();
@@ -47,8 +54,6 @@ function DisplayStandModel() {
       }
     });
 
-    const root = obj;
-
     const posterGeom = new THREE.PlaneGeometry(PLANE_WIDTH, PLANE_HEIGHT);
     const frontMat = new THREE.MeshStandardMaterial({
       map: texFront,
@@ -56,7 +61,7 @@ function DisplayStandModel() {
     });
     const frontPlane = new THREE.Mesh(posterGeom, frontMat);
     frontPlane.position.set(FRAME_CENTER.x, FRAME_CENTER.y, FRAME_CENTER.z + 0.02);
-    root.add(frontPlane);
+    clone.add(frontPlane);
 
     const backGeom = new THREE.PlaneGeometry(PLANE_WIDTH, PLANE_HEIGHT);
     const backMat = new THREE.MeshStandardMaterial({
@@ -66,17 +71,19 @@ function DisplayStandModel() {
     const backPlane = new THREE.Mesh(backGeom, backMat);
     backPlane.position.set(FRAME_CENTER.x, FRAME_CENTER.y, FRAME_CENTER.z - 0.02);
     backPlane.rotation.y = Math.PI;
-    root.add(backPlane);
-  }, [obj, texFront, texBack]);
+    clone.add(backPlane);
+  }, [clone, texFront, texBack, posterId]);
+
+  if (!clone) return null;
 
   return (
     <group ref={group} position={[0, -50, 0]} rotation={[0, Math.PI / 4, 0]} scale={0.5}>
-      <primitive object={obj} />
+      <primitive object={clone} />
     </group>
   );
 }
 
-export default function DisplayStand3D() {
+export default function DisplayStand3D({ posterId = 1 }) {
   return (
     <div
       style={{
@@ -88,7 +95,7 @@ export default function DisplayStand3D() {
       }}
     >
       <Canvas
-        frameloop="demand"
+        frameloop="always"
         camera={{ position: [0, 0, 85], fov: 54 }}
         gl={{ antialias: true, alpha: true }}
         onCreated={({ gl }) => {
@@ -100,7 +107,7 @@ export default function DisplayStand3D() {
         <directionalLight position={[10, 10, 10]} intensity={0.7} />
         <directionalLight position={[-10, 5, -10]} intensity={0.7} />
         <Suspense fallback={null}>
-          <DisplayStandModel />
+          <DisplayStandModel posterId={posterId} />
           <OrbitControls
             enableZoom={false}
             enablePan={false}

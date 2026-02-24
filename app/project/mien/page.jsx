@@ -99,7 +99,7 @@ export default function MienProjectPage() {
               <div className={`${styles.block} ${styles.scrollReveal}`} ref={(el) => (partRefs.current[4] = el)}>
                 <ProjectInfoCard
                   role="Graphic Design"
-                  tools={"Adobe Illustrator\nAdobe Photoshop"}
+                  tools={["Adobe Illustrator", "Adobe Photoshop"]}
                   duration="2 weeks"
                 />
               </div>
