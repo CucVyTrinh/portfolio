@@ -125,12 +125,6 @@
 }
 
 @media (max-width: 900px) {
-  .vyFlipHint {
-    top: 1rem;
-    left: 0.5rem;
-    transform: none;
-  }
-
   .vyFlipHintDesktop {
     display: none;
   }
@@ -156,18 +150,8 @@
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Desktop: hover to flip */
-@media (hover: hover) {
-  .vyFlipWrap:hover .vyFlipInner {
-    transform: rotateY(180deg);
-  }
-}
-
-/* Mobile/touch: click to flip (via .vyFlipFlipped class) */
-@media (hover: none) {
-  .vyFlipWrap.vyFlipFlipped .vyFlipInner {
-    transform: rotateY(180deg);
-  }
+.vyFlipWrap:hover .vyFlipInner {
+  transform: rotateY(180deg);
 }
 
 .vyFlipFront,

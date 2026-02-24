@@ -36,14 +36,23 @@ const INTRO_PARAGRAPH_2 = (
 
 const INTRO_PARAGRAPH_3 = "The four qualities below reflect the core values that shape my work.";
 
-const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 function FilmPhoto({ number, className }) {
+  const [src, setSrc] = useState(`/about/photo-${number}.jpg`);
+
+  const handleError = () => {
+    setSrc((prev) => (prev.endsWith(".jpg") ? `/about/photo-${number}.png` : null));
+  };
+
+  if (!src) return <div className={className} style={{ aspectRatio: "4/3", background: "#222" }} />;
+
   return (
     <img
-      src={`/about/photo-${number}.png`}
+      src={src}
       alt=""
       className={className}
+      onError={handleError}
     />
   );
 }

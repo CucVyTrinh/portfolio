@@ -89,11 +89,11 @@
   cursor: pointer;
 }
 
-/* Hover hint: "Hover!👀" + arrow, sticks to left of vy graphic - fades out on hover */
+/* Hover/click hint: "Hover!👀" (desktop) or "Click" (mobile) + arrow */
 .vyFlipHint {
   position: absolute;
-  top: 0%;
-  left: 35%;
+  top: 50%;
+  left: 0;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -105,8 +105,11 @@
   transition: opacity 0.3s ease;
 }
 
-.vyFlipWrap:hover .vyFlipHint {
-  opacity: 0;
+/* Desktop: hide hint on hover */
+@media (min-width: 901px) {
+  .vyFlipWrap:hover .vyFlipHint {
+    opacity: 0;
+  }
 }
 
 .vyFlipHintText {
@@ -125,18 +128,18 @@
 }
 
 @media (max-width: 900px) {
-  .vyFlipHint {
-    top: 1rem;
-    left: 0.5rem;
-    transform: none;
-  }
-
   .vyFlipHintDesktop {
     display: none;
   }
 
   .vyFlipHintMobile {
     display: inline;
+  }
+
+  .vyFlipHint {
+    top: 1rem;
+    left: 0.5rem;
+    transform: none;
   }
 }
 
@@ -157,15 +160,15 @@
 }
 
 /* Desktop: hover to flip */
-@media (hover: hover) {
+@media (min-width: 901px) {
   .vyFlipWrap:hover .vyFlipInner {
     transform: rotateY(180deg);
   }
 }
 
-/* Mobile/touch: click to flip (via .vyFlipFlipped class) */
-@media (hover: none) {
-  .vyFlipWrap.vyFlipFlipped .vyFlipInner {
+/* Mobile: click to flip (via .vyFlipped class) */
+@media (max-width: 900px) {
+  .vyFlipWrap.vyFlipped .vyFlipInner {
     transform: rotateY(180deg);
   }
 }
