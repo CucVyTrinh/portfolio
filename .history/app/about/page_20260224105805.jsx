@@ -56,7 +56,6 @@ export default function AboutPage() {
   const [tooltipDisplayed, setTooltipDisplayed] = useState("");
   const tooltipIntervalRef = useRef(null);
   const tooltipLeaveTimeoutRef = useRef(null);
-  const vyGraphicLeaveTimeoutRef = useRef(null);
 
   // Waving: alternate vy-1 and vy-2 (slower)
   useEffect(() => {
@@ -94,7 +93,6 @@ export default function AboutPage() {
   useEffect(() => {
     return () => {
       if (tooltipLeaveTimeoutRef.current) clearTimeout(tooltipLeaveTimeoutRef.current);
-      if (vyGraphicLeaveTimeoutRef.current) clearTimeout(vyGraphicLeaveTimeoutRef.current);
     };
   }, []);
 
@@ -138,19 +136,9 @@ export default function AboutPage() {
                     <div className={styles.helloGraphicWrap}>
                       <div
                         className={styles.helloGraphicHoverZone}
-                        onMouseEnter={() => {
-                          if (vyGraphicLeaveTimeoutRef.current) {
-                            clearTimeout(vyGraphicLeaveTimeoutRef.current);
-                            vyGraphicLeaveTimeoutRef.current = null;
-                          }
-                          setVyGraphicHovered(true);
-                        }}
-                        onMouseLeave={() => {
-                          vyGraphicLeaveTimeoutRef.current = setTimeout(() => {
-                            setVyGraphicHovered(false);
-                            vyGraphicLeaveTimeoutRef.current = null;
-                          }, 150);
-                        }}
+                        onMouseEnter={() => setVyGraphicHovered(true)}
+                        onMouseDownCapture={(e) => setVyGraphicHovered(true)}
+                        onMouseLeave={() => setVyGraphicHovered(false)}
                         aria-hidden
                       />
                       <img

@@ -204,17 +204,6 @@
   min-height: 520px;
 }
 
-/* Hover zone for flip: left portion only (smaller right side) */
-.helloGraphicHoverZone {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 78%;
-  z-index: 2;
-  cursor: pointer;
-}
-
 /* Soft multicolored glow behind illustration (centered) */
 .helloGraphicWrap::before {
   content: "";

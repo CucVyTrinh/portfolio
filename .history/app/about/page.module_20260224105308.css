@@ -204,15 +204,17 @@
   min-height: 520px;
 }
 
-/* Hover zone for flip: left portion only (smaller right side) */
-.helloGraphicHoverZone {
+/* Smaller hover area so flip only triggers when cursor is over the graphic itself */
+.vyGraphicHoverZone {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 78%;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 15rem), -50%);
+  width: 55%;
+  height: 70%;
+  max-height: 420px;
   z-index: 2;
-  cursor: pointer;
+  pointer-events: auto;
 }
 
 /* Soft multicolored glow behind illustration (centered) */
