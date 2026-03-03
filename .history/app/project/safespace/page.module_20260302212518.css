@@ -707,14 +707,6 @@
   margin-top: 6rem;
 }
 
-.typographySection {
-  margin-top: 6rem;
-}
-
-.brandingSection .brandingTwoCol .diagramExpandBtn {
-  margin-top: 1rem;
-}
-
 .brandingColorPaletteGrid {
   grid-template-columns: 1.8fr 1fr;
 }
@@ -732,7 +724,7 @@
 }
 
 .typographyGrid {
-  grid-template-columns: 1.4fr 1.6fr;
+  grid-template-columns: 1fr 2.5fr;
 }
 
 .typographyGrid .brandingColRight {
@@ -746,15 +738,10 @@
 }
 
 .typographyImg {
-  width: 100%;
+  width: 200%;
   height: auto;
   object-fit: contain;
   object-position: right top;
-}
-
-/* Override base diagramImg max-height so the typography card can scale up */
-.typographyGrid .brandingColRight .diagramImg {
-  max-height: none;
 }
 
 .brandingExpandRow {

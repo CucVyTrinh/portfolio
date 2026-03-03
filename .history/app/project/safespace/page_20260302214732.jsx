@@ -580,69 +580,37 @@ export default function SafeSpaceProjectPage() {
                 <p className={styles.bodyText}>
                   Our palette of purple, orange, and yellow embodies SafeSpace&apos;s values, creating a visual identity that is trustworthy, empowering, and welcoming.
                 </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("colorpalette")}
-                  aria-label="Expand color palette"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
               </div>
             </div>
           </div>
 
           {/* Typography */}
-          <div className={`${styles.brandingSection} ${styles.typographySection} ${styles.scrollReveal}`} ref={setRef(19)}>
+          <div className={`${styles.brandingSection} ${styles.scrollReveal}`} ref={setRef(19)}>
             <div className={`${styles.brandingTwoCol} ${styles.typographyGrid}`}>
               <div>
                 <h4 className={styles.diagramLabel}>Typography</h4>
                 <p className={styles.bodyText}>
                   Typography emphasizes clarity and approachability, reflecting SafeSpace&apos;s friendly yet professional tone. Satoshi was chosen for its clean, geometric shapes, ensuring readability and a modern, cohesive look throughout the app.
                 </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("typography")}
-                  aria-label="Expand typography"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
               </div>
               <div className={styles.brandingColRight}>
                 <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("typography")} aria-label="Expand typography">
                   <Image src={`${IMG}/typo.png`} alt="SafeSpace typography" width={3400} height={2125} className={`${styles.diagramImg} ${styles.typographyImg}`} unoptimized />
                 </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Logo */}
+          <div className={`${styles.brandingSection} ${styles.logoSection} ${styles.scrollReveal}`} ref={setRef(20)}>
+            <h4 className={styles.diagramLabel}>Logo</h4>
+            <div className={styles.logoGrid}>
+              <div className={styles.logoLeftCol}>
+                <Image src={`${IMG}/logo.jpg`} alt="SafeSpace logo symbol" width={600} height={300} className={styles.logoImg} />
+                <Image src={`${IMG}/logo-slogan.jpg`} alt="SafeSpace logo slogan" width={600} height={300} className={styles.logoImg} />
+              </div>
+              <div className={styles.logoRightCol}>
+                <Image src={`${IMG}/logo-text.jpg`} alt="SafeSpace logo lockup" width={600} height={600} className={styles.logoImg} />
               </div>
             </div>
           </div>

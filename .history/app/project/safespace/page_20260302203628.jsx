@@ -569,82 +569,48 @@ export default function SafeSpaceProjectPage() {
             </p>
           </div>
 
-          {/* Color Palette */}
-          <div className={`${styles.brandingSection} ${styles.colorPaletteSection} ${styles.scrollReveal}`} ref={setRef(18)}>
-            <div className={`${styles.brandingTwoCol} ${styles.brandingColorPaletteGrid}`}>
-              <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("colorpalette")} aria-label="Expand color palette">
-                <Image src={`${IMG}/color-palette.png`} alt="SafeSpace color palette" width={1000} height={600} className={styles.diagramImg} unoptimized />
+          <div className={`${styles.diagramCard} ${styles.wireframesDiagramCard} ${styles.scrollReveal}`} ref={setRef(18)}>
+            <div className={styles.diagramCardHeader}>
+              <h4 className={styles.diagramLabel}>Color Palette</h4>
+              <button
+                type="button"
+                className={styles.diagramExpandBtn}
+                onClick={() => setDiagramExpanded("colorpalette")}
+                aria-label="Expand color palette"
+              >
+                <Image
+                  src={`${IMG}/click-to-expand.png`}
+                  alt=""
+                  width={804}
+                  height={188}
+                  className={styles.personaExpandBtnImgDefault}
+                  unoptimized
+                />
+                <Image
+                  src={`${IMG}/click-to-expand-clicked.png`}
+                  alt=""
+                  width={804}
+                  height={188}
+                  className={styles.personaExpandBtnImgHover}
+                  unoptimized
+                />
               </button>
-              <div>
-                <h4 className={styles.diagramLabel}>Color Palette</h4>
-                <p className={styles.bodyText}>
-                  Our palette of purple, orange, and yellow embodies SafeSpace&apos;s values, creating a visual identity that is trustworthy, empowering, and welcoming.
-                </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("colorpalette")}
-                  aria-label="Expand color palette"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
-              </div>
             </div>
-          </div>
-
-          {/* Typography */}
-          <div className={`${styles.brandingSection} ${styles.typographySection} ${styles.scrollReveal}`} ref={setRef(19)}>
-            <div className={`${styles.brandingTwoCol} ${styles.typographyGrid}`}>
-              <div>
-                <h4 className={styles.diagramLabel}>Typography</h4>
-                <p className={styles.bodyText}>
-                  Typography emphasizes clarity and approachability, reflecting SafeSpace&apos;s friendly yet professional tone. Satoshi was chosen for its clean, geometric shapes, ensuring readability and a modern, cohesive look throughout the app.
-                </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("typography")}
-                  aria-label="Expand typography"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
-              </div>
-              <div className={styles.brandingColRight}>
-                <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("typography")} aria-label="Expand typography">
-                  <Image src={`${IMG}/typo.png`} alt="SafeSpace typography" width={3400} height={2125} className={`${styles.diagramImg} ${styles.typographyImg}`} unoptimized />
-                </button>
-              </div>
-            </div>
+            <button
+              type="button"
+              className={styles.diagramImgBtn}
+              onClick={() => setDiagramExpanded("colorpalette")}
+              aria-label="Expand color palette"
+            >
+              <Image
+                src={`${IMG}/color-palette.jpg`}
+                alt="SafeSpace color palette"
+                width={800}
+                height={600}
+                className={styles.diagramImg}
+                unoptimized
+              />
+            </button>
           </div>
         </section>
 
@@ -710,9 +676,7 @@ export default function SafeSpaceProjectPage() {
                     ? `${IMG}/userflow.jpg`
                     : diagramExpanded === "wireframe"
                       ? `${IMG}/Low-Fidelity Wireframes.png`
-                      : diagramExpanded === "colorpalette"
-                        ? `${IMG}/color-palette.png`
-                        : `${IMG}/typo.png`
+                      : `${IMG}/color-palette.jpg`
               }
               alt={
                 diagramExpanded === "sitemap"
@@ -721,9 +685,7 @@ export default function SafeSpaceProjectPage() {
                     ? "SafeSpace user flow"
                     : diagramExpanded === "wireframe"
                       ? "SafeSpace low-fidelity wireframes"
-                      : diagramExpanded === "colorpalette"
-                        ? "SafeSpace color palette"
-                        : "SafeSpace typography"
+                      : "SafeSpace color palette"
               }
               width={1400}
               height={1000}

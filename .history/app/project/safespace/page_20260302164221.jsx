@@ -90,11 +90,9 @@ const FLIP_CARDS = [
 export default function SafeSpaceProjectPage() {
   const partRefs = useRef([]);
   const personaOverlayRef = useRef(null);
-  const diagramOverlayRef = useRef(null);
   const [solutionActive, setSolutionActive] = useState(0);
   const [flippedCards, setFlippedCards] = useState([false, false, false]);
   const [personaExpanded, setPersonaExpanded] = useState(null);
-  const [diagramExpanded, setDiagramExpanded] = useState(null);
   const videoRef = useRef(null);
 
   const toggleFlip = (index) => {
@@ -111,14 +109,11 @@ export default function SafeSpaceProjectPage() {
     if (personaExpanded != null) {
       document.body.style.overflow = "hidden";
       personaOverlayRef.current?.focus();
-    } else if (diagramExpanded != null) {
-      document.body.style.overflow = "hidden";
-      diagramOverlayRef.current?.focus();
     } else {
       document.body.style.overflow = "";
     }
     return () => { document.body.style.overflow = ""; };
-  }, [personaExpanded, diagramExpanded]);
+  }, [personaExpanded]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -404,247 +399,13 @@ export default function SafeSpaceProjectPage() {
           <h3 className={`${styles.sectionSubtitle} ${styles.scrollReveal}`} ref={setRef(8)}>
             Sitemap & User Flow
           </h3>
-          <div className={`${styles.designProcessTwoCol} ${styles.scrollReveal}`} ref={setRef(9)}>
-            <p className={styles.bodyText}>
+          <div className={styles.designProcessTwoCol}>
+            <p className={`${styles.bodyText} ${styles.scrollReveal}`} ref={setRef(9)}>
               Based on user research findings, the team developed a sitemap to define the app&apos;s structure, scope, and navigation. Given the project timeline, the scope was intentionally narrowed to focus on four core values, prioritizing meaningful impact and clear direction.
             </p>
-            <p className={styles.bodyText}>
+            <p className={`${styles.bodyText} ${styles.scrollReveal}`} ref={setRef(10)}>
               Based on the sitemap, the team developed a user flow to define how individuals would navigate through the app&apos;s core features. This helped align the team on key interactions and ensured a consistent direction throughout the design process.
             </p>
-          </div>
-
-          <div className={styles.diagramCards}>
-            <div className={`${styles.diagramCard} ${styles.scrollReveal}`} ref={setRef(11)}>
-              <div className={styles.diagramCardHeader}>
-                <h4 className={styles.diagramLabel}>Sitemap</h4>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("sitemap")}
-                  aria-label="Expand sitemap"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
-              </div>
-              <button
-                type="button"
-                className={styles.diagramImgBtn}
-                onClick={() => setDiagramExpanded("sitemap")}
-                aria-label="Expand sitemap"
-              >
-                <Image
-                  src={`${IMG}/sitemap.jpg`}
-                  alt="SafeSpace sitemap"
-                  width={800}
-                  height={600}
-                  className={styles.diagramImg}
-                  unoptimized
-                />
-              </button>
-            </div>
-            <div className={`${styles.diagramCard} ${styles.scrollReveal}`} ref={setRef(12)}>
-              <div className={styles.diagramCardHeader}>
-                <h4 className={styles.diagramLabel}>User Flow</h4>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("userflow")}
-                  aria-label="Expand user flow"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
-              </div>
-              <button
-                type="button"
-                className={styles.diagramImgBtn}
-                onClick={() => setDiagramExpanded("userflow")}
-                aria-label="Expand user flow"
-              >
-                <Image
-                  src={`${IMG}/userflow.jpg`}
-                  alt="SafeSpace user flow"
-                  width={800}
-                  height={600}
-                  className={styles.diagramImg}
-                  unoptimized
-                />
-              </button>
-            </div>
-          </div>
-
-          <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle} ${styles.scrollReveal}`} ref={setRef(13)}>
-            Low-Fidelity Wireframes
-          </h3>
-          <div className={`${styles.wireframesText} ${styles.scrollReveal}`} ref={setRef(14)}>
-            <p className={styles.bodyText}>
-              After finalizing the user flow, low-fidelity wireframes were created to visualize the core layout and interactions. These wireframes focused on{" "}
-              <strong className={styles.bodyTextBoldYellow}>structure, hierarchy, and functionality.</strong>
-              {" "}This stage allowed the team to quickly validate ideas, gather feedback, and iterate efficiently before moving into high-fidelity design.
-            </p>
-          </div>
-
-          <div className={`${styles.diagramCard} ${styles.wireframesDiagramCard} ${styles.scrollReveal}`} ref={setRef(15)}>
-            <div className={styles.wireframesExpandRow}>
-              <button
-                type="button"
-                className={styles.diagramExpandBtn}
-                onClick={() => setDiagramExpanded("wireframe")}
-                aria-label="Expand low-fidelity wireframes"
-              >
-                <Image
-                  src={`${IMG}/click-to-expand.png`}
-                  alt=""
-                  width={804}
-                  height={188}
-                  className={styles.personaExpandBtnImgDefault}
-                  unoptimized
-                />
-                <Image
-                  src={`${IMG}/click-to-expand-clicked.png`}
-                  alt=""
-                  width={804}
-                  height={188}
-                  className={styles.personaExpandBtnImgHover}
-                  unoptimized
-                />
-              </button>
-            </div>
-            <button
-              type="button"
-              className={styles.diagramImgBtn}
-              onClick={() => setDiagramExpanded("wireframe")}
-              aria-label="Expand low-fidelity wireframes"
-            >
-              <Image
-                src={`${IMG}/Low-Fidelity Wireframes.png`}
-                alt="SafeSpace low-fidelity wireframes"
-                width={1000}
-                height={800}
-                className={styles.diagramImg}
-                unoptimized
-              />
-            </button>
-          </div>
-
-          <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle} ${styles.scrollReveal}`} ref={setRef(16)}>
-            Branding & Styleguide
-          </h3>
-          <div className={`${styles.wireframesText} ${styles.scrollReveal}`} ref={setRef(17)}>
-            <p className={styles.bodyText}>
-              The visual identity conveys{" "}
-              <strong className={styles.bodyTextBoldYellow}>trust, strength, and resilience</strong>
-              {" "}while remaining{" "}
-              <strong className={styles.bodyTextBoldYellow}>approachable and inclusive</strong>
-              , using rounded shapes and soft gradients to create a welcoming space. SafeSpace&apos;s design reflects its mission to support and empower women and gender-diverse tradespeople.
-            </p>
-          </div>
-
-          {/* Color Palette */}
-          <div className={`${styles.brandingSection} ${styles.colorPaletteSection} ${styles.scrollReveal}`} ref={setRef(18)}>
-            <div className={`${styles.brandingTwoCol} ${styles.brandingColorPaletteGrid}`}>
-              <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("colorpalette")} aria-label="Expand color palette">
-                <Image src={`${IMG}/color-palette.png`} alt="SafeSpace color palette" width={1000} height={600} className={styles.diagramImg} unoptimized />
-              </button>
-              <div>
-                <h4 className={styles.diagramLabel}>Color Palette</h4>
-                <p className={styles.bodyText}>
-                  Our palette of purple, orange, and yellow embodies SafeSpace&apos;s values, creating a visual identity that is trustworthy, empowering, and welcoming.
-                </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("colorpalette")}
-                  aria-label="Expand color palette"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Typography */}
-          <div className={`${styles.brandingSection} ${styles.typographySection} ${styles.scrollReveal}`} ref={setRef(19)}>
-            <div className={`${styles.brandingTwoCol} ${styles.typographyGrid}`}>
-              <div>
-                <h4 className={styles.diagramLabel}>Typography</h4>
-                <p className={styles.bodyText}>
-                  Typography emphasizes clarity and approachability, reflecting SafeSpace&apos;s friendly yet professional tone. Satoshi was chosen for its clean, geometric shapes, ensuring readability and a modern, cohesive look throughout the app.
-                </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("typography")}
-                  aria-label="Expand typography"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
-              </div>
-              <div className={styles.brandingColRight}>
-                <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("typography")} aria-label="Expand typography">
-                  <Image src={`${IMG}/typo.png`} alt="SafeSpace typography" width={3400} height={2125} className={`${styles.diagramImg} ${styles.typographyImg}`} unoptimized />
-                </button>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -674,59 +435,6 @@ export default function SafeSpaceProjectPage() {
               alt={personaExpanded === "primary" ? "Primary persona" : "Secondary persona"}
               width={1200}
               height={1200}
-              className={styles.personaOverlayImg}
-              onClick={(e) => e.stopPropagation()}
-              unoptimized
-            />
-          </div>
-        )}
-
-        {diagramExpanded != null && (
-          <div
-            ref={diagramOverlayRef}
-            className={styles.personaOverlay}
-            onClick={() => setDiagramExpanded(null)}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") setDiagramExpanded(null);
-            }}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`View ${diagramExpanded}`}
-            tabIndex={0}
-          >
-            <button
-              type="button"
-              className={styles.personaOverlayClose}
-              onClick={() => setDiagramExpanded(null)}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <Image
-              src={
-                diagramExpanded === "sitemap"
-                  ? `${IMG}/sitemap.jpg`
-                  : diagramExpanded === "userflow"
-                    ? `${IMG}/userflow.jpg`
-                    : diagramExpanded === "wireframe"
-                      ? `${IMG}/Low-Fidelity Wireframes.png`
-                      : diagramExpanded === "colorpalette"
-                        ? `${IMG}/color-palette.png`
-                        : `${IMG}/typo.png`
-              }
-              alt={
-                diagramExpanded === "sitemap"
-                  ? "SafeSpace sitemap"
-                  : diagramExpanded === "userflow"
-                    ? "SafeSpace user flow"
-                    : diagramExpanded === "wireframe"
-                      ? "SafeSpace low-fidelity wireframes"
-                      : diagramExpanded === "colorpalette"
-                        ? "SafeSpace color palette"
-                        : "SafeSpace typography"
-              }
-              width={1400}
-              height={1000}
               className={styles.personaOverlayImg}
               onClick={(e) => e.stopPropagation()}
               unoptimized

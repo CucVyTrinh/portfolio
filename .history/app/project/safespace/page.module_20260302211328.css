@@ -707,14 +707,6 @@
   margin-top: 6rem;
 }
 
-.typographySection {
-  margin-top: 6rem;
-}
-
-.brandingSection .brandingTwoCol .diagramExpandBtn {
-  margin-top: 1rem;
-}
-
 .brandingColorPaletteGrid {
   grid-template-columns: 1.8fr 1fr;
 }
@@ -729,32 +721,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.typographyGrid {
-  grid-template-columns: 1.4fr 1.6fr;
-}
-
-.typographyGrid .brandingColRight {
-  align-items: flex-end;
-}
-
-.typographyGrid .brandingColRight .diagramImgBtn {
-  width: 100%;
-  max-width: 100%;
-  display: block;
-}
-
-.typographyImg {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: right top;
-}
-
-/* Override base diagramImg max-height so the typography card can scale up */
-.typographyGrid .brandingColRight .diagramImg {
-  max-height: none;
 }
 
 .brandingExpandRow {
@@ -783,6 +749,17 @@
   box-shadow: none;
   background: transparent;
   outline: none;
+}
+
+.typographySection .typographyImgBtn {
+  width: 140%;
+  margin-left: -20%;
+}
+
+.typographySection .typographyImgBtn .diagramImg {
+  width: 100%;
+  max-height: 700px;
+  object-fit: contain;
 }
 
 /* ----- Diagram cards (Sitemap & User Flow) ----- */
@@ -1573,6 +1550,11 @@
 
   .brandingTwoCol {
     grid-template-columns: 1fr;
+  }
+
+  .typographySection .typographyImgBtn {
+    width: 100%;
+    margin-left: 0;
   }
 
   .heroTwoCol {

@@ -707,14 +707,6 @@
   margin-top: 6rem;
 }
 
-.typographySection {
-  margin-top: 6rem;
-}
-
-.brandingSection .brandingTwoCol .diagramExpandBtn {
-  margin-top: 1rem;
-}
-
 .brandingColorPaletteGrid {
   grid-template-columns: 1.8fr 1fr;
 }
@@ -732,7 +724,16 @@
 }
 
 .typographyGrid {
-  grid-template-columns: 1.4fr 1.6fr;
+  grid-template-columns: 2fr 1.2fr;
+}
+
+.brandingSection:has(.typographyGrid) .diagramLabel {
+  font-size: 1.125rem;
+}
+
+.typographyGrid .bodyText {
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .typographyGrid .brandingColRight {

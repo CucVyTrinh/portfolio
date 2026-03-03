@@ -711,8 +711,19 @@
   margin-top: 6rem;
 }
 
-.brandingSection .brandingTwoCol .diagramExpandBtn {
-  margin-top: 1rem;
+.typographyGrid {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.typographyImgWrapper {
+  margin-left: -15%;
+  min-width: 0;
+}
+
+.typographyImg {
+  width: 115%;
+  max-width: none;
+  max-height: 700px;
 }
 
 .brandingColorPaletteGrid {
@@ -729,32 +740,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.typographyGrid {
-  grid-template-columns: 1.4fr 1.6fr;
-}
-
-.typographyGrid .brandingColRight {
-  align-items: flex-end;
-}
-
-.typographyGrid .brandingColRight .diagramImgBtn {
-  width: 100%;
-  max-width: 100%;
-  display: block;
-}
-
-.typographyImg {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: right top;
-}
-
-/* Override base diagramImg max-height so the typography card can scale up */
-.typographyGrid .brandingColRight .diagramImg {
-  max-height: none;
 }
 
 .brandingExpandRow {
@@ -1573,6 +1558,14 @@
 
   .brandingTwoCol {
     grid-template-columns: 1fr;
+  }
+
+  .typographyImgWrapper {
+    margin-left: 0;
+  }
+
+  .typographyImg {
+    width: 100%;
   }
 
   .heroTwoCol {

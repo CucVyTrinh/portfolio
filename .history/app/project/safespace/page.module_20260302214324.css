@@ -707,14 +707,6 @@
   margin-top: 6rem;
 }
 
-.typographySection {
-  margin-top: 6rem;
-}
-
-.brandingSection .brandingTwoCol .diagramExpandBtn {
-  margin-top: 1rem;
-}
-
 .brandingColorPaletteGrid {
   grid-template-columns: 1.8fr 1fr;
 }

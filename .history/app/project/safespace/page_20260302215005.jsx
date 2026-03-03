@@ -580,29 +580,6 @@ export default function SafeSpaceProjectPage() {
                 <p className={styles.bodyText}>
                   Our palette of purple, orange, and yellow embodies SafeSpace&apos;s values, creating a visual identity that is trustworthy, empowering, and welcoming.
                 </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("colorpalette")}
-                  aria-label="Expand color palette"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
               </div>
             </div>
           </div>
@@ -615,29 +592,6 @@ export default function SafeSpaceProjectPage() {
                 <p className={styles.bodyText}>
                   Typography emphasizes clarity and approachability, reflecting SafeSpace&apos;s friendly yet professional tone. Satoshi was chosen for its clean, geometric shapes, ensuring readability and a modern, cohesive look throughout the app.
                 </p>
-                <button
-                  type="button"
-                  className={styles.diagramExpandBtn}
-                  onClick={() => setDiagramExpanded("typography")}
-                  aria-label="Expand typography"
-                >
-                  <Image
-                    src={`${IMG}/click-to-expand.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgDefault}
-                    unoptimized
-                  />
-                  <Image
-                    src={`${IMG}/click-to-expand-clicked.png`}
-                    alt=""
-                    width={804}
-                    height={188}
-                    className={styles.personaExpandBtnImgHover}
-                    unoptimized
-                  />
-                </button>
               </div>
               <div className={styles.brandingColRight}>
                 <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("typography")} aria-label="Expand typography">
