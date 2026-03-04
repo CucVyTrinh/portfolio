@@ -711,39 +711,30 @@
   margin-top: 6rem;
 }
 
-.logoInCol {
-  margin-top: 15rem;
-  display: flex;
-  flex-direction: column;
+.logoSection {
+  margin-top: 6rem;
+}
+
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   align-items: center;
-  gap: 3.5rem;
+  margin-top: 1rem;
 }
 
-.logoUnderTypo .diagramLabel {
-  margin-bottom: 0;
-}
-
-.logoUnderTypo {
-  margin-top: 4rem;
+.logoItem {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
 }
 
-.logoInColImgSmall {
+.logoImg {
   width: 100%;
-  max-width: 490px;
   height: auto;
+  max-height: 160px;
   object-fit: contain;
-  display: block;
-}
-
-.logoRightColImg {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
 }
 
 .brandingSection .brandingTwoCol .diagramExpandBtn {
@@ -1608,6 +1599,11 @@
 
   .brandingTwoCol {
     grid-template-columns: 1fr;
+  }
+
+  .logoGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .heroTwoCol {

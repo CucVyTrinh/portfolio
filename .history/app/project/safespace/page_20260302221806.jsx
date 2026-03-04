@@ -638,31 +638,36 @@ export default function SafeSpaceProjectPage() {
                     unoptimized
                   />
                 </button>
-                <div className={styles.logoInCol}>
-                  <Image src={`${IMG}/logo.png`} alt="SafeSpace logo" width={400} height={400} className={styles.logoInColImgSmall} unoptimized />
-                  <Image src={`${IMG}/logo-slogan.png`} alt="SafeSpace logo with slogan" width={600} height={250} className={styles.logoInColImgSmall} unoptimized />
-                </div>
               </div>
               <div className={styles.brandingColRight}>
                 <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("typography")} aria-label="Expand typography">
                   <Image src={`${IMG}/typo.png`} alt="SafeSpace typography" width={3400} height={2125} className={`${styles.diagramImg} ${styles.typographyImg}`} unoptimized />
                 </button>
-                <div className={styles.logoUnderTypo}>
-                  <p className={styles.diagramLabel}>Logo</p>
-                  <p className={styles.bodyText}>
-                    The logo overall represents safety, support, and community for gender-minority tradespeople. The hardhat symbolizes the trades, while the handshake conveys a safe, supportive and welcoming environment.
-                  </p>
-                  <Image src={`${IMG}/logo-text.png`} alt="SafeSpace logo with text" width={600} height={200} className={styles.logoRightColImg} unoptimized />
-                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Logo */}
+          <div className={`${styles.brandingSection} ${styles.logoSection} ${styles.scrollReveal}`} ref={setRef(20)}>
+            <h4 className={styles.diagramLabel}>Logo</h4>
+            <div className={styles.logoGrid}>
+              <div className={styles.logoItem}>
+                <Image src={`${IMG}/logo.png`} alt="SafeSpace logo" width={400} height={400} className={styles.logoImg} unoptimized />
+              </div>
+              <div className={styles.logoItem}>
+                <Image src={`${IMG}/logo-text.png`} alt="SafeSpace logo with text" width={600} height={200} className={styles.logoImg} unoptimized />
+              </div>
+              <div className={styles.logoItem}>
+                <Image src={`${IMG}/logo-slogan.png`} alt="SafeSpace logo with slogan" width={600} height={250} className={styles.logoImg} unoptimized />
               </div>
             </div>
           </div>
 
           {/* User Testing and Iteration */}
-          <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle} ${styles.scrollReveal}`} ref={setRef(20)}>
+          <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle} ${styles.scrollReveal}`} ref={setRef(21)}>
             User Testing and Iteration
           </h3>
-          <div className={`${styles.wireframesText} ${styles.scrollReveal}`} ref={setRef(21)}>
+          <div className={`${styles.wireframesText} ${styles.scrollReveal}`} ref={setRef(22)}>
             <p className={styles.bodyText}>
               User testing was conducted to evaluate how intuitive, clear, and trustworthy SafeSpace feels in real-world scenarios. The goal was to identify usability gaps, emotional friction points, and opportunities to improve clarity between key features.
             </p>

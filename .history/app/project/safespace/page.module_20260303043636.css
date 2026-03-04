@@ -712,33 +712,17 @@
 }
 
 .logoInCol {
-  margin-top: 15rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3.5rem;
-}
-
-.logoUnderTypo .diagramLabel {
-  margin-bottom: 0;
-}
-
-.logoUnderTypo {
-  margin-top: 4rem;
+  margin-top: 12rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.logoInColImgSmall {
-  width: 100%;
-  max-width: 490px;
-  height: auto;
-  object-fit: contain;
-  display: block;
+.logoInCol .diagramLabel {
+  margin-bottom: 0;
 }
 
-.logoRightColImg {
+.logoInColImg {
   width: 100%;
   max-width: 100%;
   height: auto;

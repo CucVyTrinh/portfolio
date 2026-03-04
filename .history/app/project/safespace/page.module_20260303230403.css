@@ -712,11 +712,11 @@
 }
 
 .logoInCol {
-  margin-top: 15rem;
+  margin-top: 18rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3.5rem;
+  gap: 1rem;
 }
 
 .logoUnderTypo .diagramLabel {
@@ -732,7 +732,7 @@
 
 .logoInColImgSmall {
   width: 100%;
-  max-width: 490px;
+  max-width: 400px;
   height: auto;
   object-fit: contain;
   display: block;

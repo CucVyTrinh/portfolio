@@ -732,7 +732,7 @@
 
 .logoInColImgSmall {
   width: 100%;
-  max-width: 490px;
+  max-width: 480px;
   height: auto;
   object-fit: contain;
   display: block;

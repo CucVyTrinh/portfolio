@@ -712,30 +712,29 @@
 }
 
 .logoInCol {
-  margin-top: 15rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3.5rem;
-}
-
-.logoUnderTypo .diagramLabel {
-  margin-bottom: 0;
-}
-
-.logoUnderTypo {
-  margin-top: 4rem;
+  margin-top: 12rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
+.logoInCol .diagramLabel {
+  margin-bottom: 0;
+}
+
 .logoInColImgSmall {
   width: 100%;
-  max-width: 490px;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
   display: block;
+}
+
+/* Spacer to align logo-text.png top with logo.png (matches "Logo" label + gap in left column) */
+.logoLabelSpacer {
+  display: block;
+  min-height: 2.75rem;
+  flex-shrink: 0;
 }
 
 .logoRightColImg {
@@ -744,6 +743,10 @@
   height: auto;
   object-fit: contain;
   display: block;
+}
+
+.typographyLogoRight .logoRightColImg {
+  margin-top: 0;
 }
 
 .brandingSection .brandingTwoCol .diagramExpandBtn {
@@ -767,7 +770,33 @@
 }
 
 .typographyGrid {
+  display: grid;
   grid-template-columns: 1.4fr 1.6fr;
+  grid-template-rows: auto auto;
+  gap: 2rem;
+  align-items: start;
+}
+
+.typographyRow1Left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.typographyRow1Right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.typographyRow1Right .diagramImgBtn {
+  width: 100%;
+  max-width: 100%;
+}
+
+.typographyLogoLeft,
+.typographyLogoRight {
+  align-self: start;
 }
 
 .typographyGrid .brandingColRight {

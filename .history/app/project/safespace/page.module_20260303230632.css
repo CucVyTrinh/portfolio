@@ -716,7 +716,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3.5rem;
+  gap: 4rem;
 }
 
 .logoUnderTypo .diagramLabel {
@@ -732,7 +732,7 @@
 
 .logoInColImgSmall {
   width: 100%;
-  max-width: 490px;
+  max-width: 450px;
   height: auto;
   object-fit: contain;
   display: block;

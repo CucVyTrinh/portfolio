@@ -638,10 +638,6 @@ export default function SafeSpaceProjectPage() {
                     unoptimized
                   />
                 </button>
-                <div className={styles.logoInCol}>
-                  <Image src={`${IMG}/logo.png`} alt="SafeSpace logo" width={400} height={400} className={styles.logoInColImgSmall} unoptimized />
-                  <Image src={`${IMG}/logo-slogan.png`} alt="SafeSpace logo with slogan" width={600} height={250} className={styles.logoInColImgSmall} unoptimized />
-                </div>
               </div>
               <div className={styles.brandingColRight}>
                 <button type="button" className={styles.diagramImgBtn} onClick={() => setDiagramExpanded("typography")} aria-label="Expand typography">
@@ -652,6 +648,8 @@ export default function SafeSpaceProjectPage() {
                   <p className={styles.bodyText}>
                     The logo overall represents safety, support, and community for gender-minority tradespeople. The hardhat symbolizes the trades, while the handshake conveys a safe, supportive and welcoming environment.
                   </p>
+                  <Image src={`${IMG}/logo.png`} alt="SafeSpace logo" width={400} height={400} className={styles.logoInColImgSmall} unoptimized />
+                  <Image src={`${IMG}/logo-slogan.png`} alt="SafeSpace logo with slogan" width={600} height={250} className={styles.logoInColImgSmall} unoptimized />
                   <Image src={`${IMG}/logo-text.png`} alt="SafeSpace logo with text" width={600} height={200} className={styles.logoRightColImg} unoptimized />
                 </div>
               </div>
