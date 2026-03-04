@@ -87,51 +87,6 @@ const FLIP_CARDS = [
   },
 ];
 
-const FINDING_CARDS = [
-  {
-    title: "Seamless recording & Posting flow",
-    finding: [
-      "Users were unsure about the difference between recording and creating a report.",
-      "\"Reports\" in the navigation felt similar to recording.",
-      "The flow between capturing evidence and posting publicly felt disconnected.",
-    ],
-    solution: [
-      "Renamed \"Reports\" → \"Posts\" in the navigation to clarify public content.",
-      "Introduced a clearly defined center Record action as the primary CTA.",
-      "Elevated the home screen with a prominent map and clearer content hierarchy.",
-    ],
-    image: "finding-1.png",
-    imageAlt: "Recording and posting flow before and after",
-  },
-  {
-    title: "Simplifying the Recording experience",
-    finding: [
-      "It was unclear whether the incident was recording, drafting, or posting.",
-      "Too many visible options during urgent use cases.",
-    ],
-    solution: [
-      "Simplified the recording interface to prioritize one primary action.",
-      "Designed the flow to feel calm, direct, and distraction-free.",
-    ],
-    image: "finding-2.png",
-    imageAlt: "Simplifying the recording experience",
-  },
-  {
-    title: "Actionable Insights through Recommended Actions",
-    finding: [
-      "After creating a report, users were unsure what to do next.",
-      "The report review screen felt static (informative but not supportive).",
-      "Users needed direction to feel supported and empowered.",
-    ],
-    solution: [
-      "Introduced a \"Recommended Actions\" section in the high-fidelity design.",
-      "Added clear CTAs (Edit / Save Report) to reinforce decision-making.",
-    ],
-    image: "finding-3.png",
-    imageAlt: "Recommended actions and CTAs",
-  },
-];
-
 export default function SafeSpaceProjectPage() {
   const partRefs = useRef([]);
   const personaOverlayRef = useRef(null);
@@ -140,46 +95,7 @@ export default function SafeSpaceProjectPage() {
   const [flippedCards, setFlippedCards] = useState([false, false, false]);
   const [personaExpanded, setPersonaExpanded] = useState(null);
   const [diagramExpanded, setDiagramExpanded] = useState(null);
-  const [findingCardIndex, setFindingCardIndex] = useState(0);
   const videoRef = useRef(null);
-  const marketingSliderRef = useRef(null);
-  const [marketingRevealPercent, setMarketingRevealPercent] = useState(50);
-  const [marketingDragging, setMarketingDragging] = useState(false);
-
-  const updateMarketingReveal = (clientX) => {
-    const el = marketingSliderRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setMarketingRevealPercent(pct);
-  };
-
-  const onMarketingHandlePointerDown = (e) => {
-    e.preventDefault();
-    setMarketingDragging(true);
-    if (e.type === "mousedown") updateMarketingReveal(e.clientX);
-    else if (e.touches?.[0]) updateMarketingReveal(e.touches[0].clientX);
-  };
-
-  useEffect(() => {
-    if (!marketingDragging) return;
-    const onMove = (e) => {
-      const clientX = e.touches ? e.touches[0]?.clientX : e.clientX;
-      if (clientX != null) updateMarketingReveal(clientX);
-    };
-    const onUp = () => setMarketingDragging(false);
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", onUp);
-    document.addEventListener("touchmove", onMove, { passive: true });
-    document.addEventListener("touchend", onUp);
-    return () => {
-      document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseup", onUp);
-      document.removeEventListener("touchmove", onMove);
-      document.removeEventListener("touchend", onUp);
-    };
-  }, [marketingDragging]);
 
   const toggleFlip = (index) => {
     setFlippedCards((prev) => prev.map((v, i) => (i === index ? !v : v)));
@@ -225,7 +141,15 @@ export default function SafeSpaceProjectPage() {
 
       <main>
         <div className="pageMainBgBlend" aria-hidden />
-        <div className="pageBgIconsTop" aria-hidden>
+        <div className={`pageBgIconsTop ${styles.pageBgIconsSafeSpace}`} aria-hidden>
+          <span className="pageBgIcon" data-img="empathy" />
+          <span className="pageBgIcon" data-img="creativity" />
+          <span className="pageBgIcon" data-img="perfection" />
+          <span className="pageBgIcon" data-img="collaboration" />
+          <span className="pageBgIcon" data-img="empathy" />
+          <span className="pageBgIcon" data-img="creativity" />
+          <span className="pageBgIcon" data-img="perfection" />
+          <span className="pageBgIcon" data-img="collaboration" />
           <span className="pageBgIcon" data-img="empathy" />
           <span className="pageBgIcon" data-img="creativity" />
           <span className="pageBgIcon" data-img="perfection" />
@@ -761,184 +685,6 @@ export default function SafeSpaceProjectPage() {
             <p className={styles.bodyText}>
               We primarily tested three core scenarios that reflect the app&apos;s main functions: recording an incident, creating a report (both by completing a short form and through Safi), and browsing public posts to review report details.
             </p>
-          </div>
-
-          {/* Finding cards carousel (3 cards, same layout as finding-1) */}
-          <div className={`${styles.userTestingFlowCarousel} ${styles.scrollReveal}`} ref={setRef(22)}>
-            <button
-              type="button"
-              className={styles.userTestingFlowArrow}
-              onClick={() => setFindingCardIndex((i) => (i === 0 ? FINDING_CARDS.length - 1 : i - 1))}
-              aria-label="Previous finding card"
-            >
-              ←
-            </button>
-            <div className={styles.userTestingFlowSection}>
-              {FINDING_CARDS.map((card, idx) => (
-                <div
-                  key={card.title}
-                  className={styles.userTestingFlowCard}
-                  aria-hidden={idx !== findingCardIndex}
-                  style={{ display: idx === findingCardIndex ? "block" : "none" }}
-                >
-                  <h4 className={styles.userTestingFlowTitle}>{card.title}</h4>
-                  <div className={styles.userTestingFlowTwoCol}>
-                    <div className={styles.userTestingFlowCol}>
-                      <h5 className={styles.userTestingFlowColTitle}>Finding</h5>
-                      <ul className={styles.userTestingFlowList}>
-                        {card.finding.map((item, i) => (
-                          <li key={i}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className={styles.userTestingFlowCol}>
-                      <h5 className={styles.userTestingFlowColTitle}>Solution</h5>
-                      <ul className={styles.userTestingFlowList}>
-                        {card.solution.map((item, i) => (
-                          <li key={i}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className={styles.userTestingFlowImgWrap}>
-                    <Image
-                      src={`${IMG}/${card.image}`}
-                      alt={card.imageAlt}
-                      width={1200}
-                      height={600}
-                      className={styles.userTestingFlowImg}
-                      unoptimized
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button
-              type="button"
-              className={styles.userTestingFlowArrow}
-              onClick={() => setFindingCardIndex((i) => (i === FINDING_CARDS.length - 1 ? 0 : i + 1))}
-              aria-label="Next finding card"
-            >
-              →
-            </button>
-          </div>
-
-          {/* Web Supplement (under User Testing) */}
-          <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle} ${styles.scrollReveal}`} ref={setRef(23)}>
-            Web Supplement
-          </h3>
-          <div className={`${styles.wireframesText} ${styles.scrollReveal}`} ref={setRef(24)}>
-            <p className={styles.bodyText}>
-              For foremen, union representatives, and industry leaders, the web supplement centralizes worksite posts and transforms them into clear, actionable insights. By identifying patterns and surfacing recommended steps, it enables leadership to respond effectively and foster safer work environments.
-            </p>
-          </div>
-          <div className={`${styles.webSupplementVideoWrap} ${styles.scrollReveal}`} ref={setRef(25)}>
-            <video
-              src={`${IMG}/web-supplement.mp4`}
-              className={styles.webSupplementVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              onLoadedData={(e) => e.target.play().catch(() => {})}
-              aria-label="Web supplement demo"
-            />
-          </div>
-
-          {/* Marketing Materials (yellow title) */}
-          <h2 className={`${styles.sectionTitle} ${styles.marketingSectionTitle} ${styles.scrollReveal}`} ref={setRef(26)}>
-            Marketing Materials
-          </h2>
-          <div className={styles.marketingRevealWrap}>
-            <Image
-              src={`${IMG}/marketing-bg.png`}
-              alt=""
-              width={1920}
-              height={1080}
-              className={styles.marketingBg}
-              unoptimized
-              aria-hidden
-            />
-            <div
-              className={styles.marketingRevealOverlay}
-              ref={marketingSliderRef}
-              aria-label="Brochure comparison: drag the center handle to reveal each side"
-            >
-              <div className={styles.marketingRevealBehind}>
-                <Image
-                  src={`${IMG}/brochure-side-1.png`}
-                  alt="Brochure side 1"
-                  fill
-                  className={styles.marketingRevealImg}
-                  sizes="100vw"
-                  unoptimized
-                />
-              </div>
-              <div
-                className={styles.marketingRevealFront}
-                style={{ width: `${marketingRevealPercent}%`, "--reveal-pct": Math.max(1, marketingRevealPercent) }}
-              >
-                <div className={styles.marketingRevealFrontInner}>
-                  <Image
-                    src={`${IMG}/brochure-side-2.png`}
-                    alt="Brochure side 2"
-                    fill
-                    className={styles.marketingRevealImg}
-                    sizes="100vw"
-                    unoptimized
-                  />
-                </div>
-              </div>
-              <div
-                className={styles.marketingRevealHandle}
-                style={{ left: `${marketingRevealPercent}%` }}
-                onMouseDown={onMarketingHandlePointerDown}
-                onTouchStart={onMarketingHandlePointerDown}
-                role="slider"
-                aria-valuenow={Math.round(marketingRevealPercent)}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label="Drag to reveal brochure sides"
-                tabIndex={0}
-              >
-                <span className={styles.marketingRevealLine} aria-hidden />
-                <Image
-                  src={`${IMG}/marketing-central.png`}
-                  alt=""
-                  width={80}
-                  height={80}
-                  className={styles.marketingCentralBtn}
-                  unoptimized
-                  draggable={false}
-                />
-              </div>
-            </div>
-          </div>
-          <div className={styles.marketingMerchRow}>
-            <Image
-              src={`${IMG}/merch-1.jpg`}
-              alt="SafeSpace merchandise 1"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-2.jpg`}
-              alt="SafeSpace merchandise 2"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-3.jpg`}
-              alt="SafeSpace merchandise 3"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
           </div>
         </section>
 

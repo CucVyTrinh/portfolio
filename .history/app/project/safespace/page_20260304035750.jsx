@@ -916,7 +916,7 @@ export default function SafeSpaceProjectPage() {
           </div>
           <div className={styles.marketingMerchRow}>
             <Image
-              src={`${IMG}/merch-1.jpg`}
+              src={`${IMG}/merch1.png`}
               alt="SafeSpace merchandise 1"
               width={400}
               height={400}
@@ -924,7 +924,7 @@ export default function SafeSpaceProjectPage() {
               unoptimized
             />
             <Image
-              src={`${IMG}/merch-2.jpg`}
+              src={`${IMG}/merch2.png`}
               alt="SafeSpace merchandise 2"
               width={400}
               height={400}
@@ -932,7 +932,7 @@ export default function SafeSpaceProjectPage() {
               unoptimized
             />
             <Image
-              src={`${IMG}/merch-3.jpg`}
+              src={`${IMG}/merch3.png`}
               alt="SafeSpace merchandise 3"
               width={400}
               height={400}

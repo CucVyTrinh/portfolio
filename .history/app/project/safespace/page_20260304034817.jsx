@@ -849,7 +849,7 @@ export default function SafeSpaceProjectPage() {
           <h2 className={`${styles.sectionTitle} ${styles.marketingSectionTitle} ${styles.scrollReveal}`} ref={setRef(26)}>
             Marketing Materials
           </h2>
-          <div className={styles.marketingRevealWrap}>
+          <div className={styles.marketingRevealWrap} ref={marketingSliderRef}>
             <Image
               src={`${IMG}/marketing-bg.png`}
               alt=""
@@ -861,7 +861,6 @@ export default function SafeSpaceProjectPage() {
             />
             <div
               className={styles.marketingRevealOverlay}
-              ref={marketingSliderRef}
               aria-label="Brochure comparison: drag the center handle to reveal each side"
             >
               <div className={styles.marketingRevealBehind}>
@@ -889,56 +888,35 @@ export default function SafeSpaceProjectPage() {
                   />
                 </div>
               </div>
-              <div
-                className={styles.marketingRevealHandle}
-                style={{ left: `${marketingRevealPercent}%` }}
-                onMouseDown={onMarketingHandlePointerDown}
-                onTouchStart={onMarketingHandlePointerDown}
-                role="slider"
-                aria-valuenow={Math.round(marketingRevealPercent)}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label="Drag to reveal brochure sides"
-                tabIndex={0}
-              >
-                <span className={styles.marketingRevealLine} aria-hidden />
-                <Image
-                  src={`${IMG}/marketing-central.png`}
-                  alt=""
-                  width={80}
-                  height={80}
-                  className={styles.marketingCentralBtn}
-                  unoptimized
-                  draggable={false}
-                />
-              </div>
+            </div>
+            <div
+              className={styles.marketingRevealHandle}
+              style={{ left: `${marketingRevealPercent}%` }}
+              onMouseDown={onMarketingHandlePointerDown}
+              onTouchStart={onMarketingHandlePointerDown}
+              role="slider"
+              aria-valuenow={Math.round(marketingRevealPercent)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label="Drag to reveal brochure sides"
+              tabIndex={0}
+            >
+              <span className={styles.marketingRevealLine} aria-hidden />
+              <Image
+                src={`${IMG}/marketing-central.png`}
+                alt=""
+                width={80}
+                height={80}
+                className={styles.marketingCentralBtn}
+                unoptimized
+                draggable={false}
+              />
             </div>
           </div>
-          <div className={styles.marketingMerchRow}>
-            <Image
-              src={`${IMG}/merch-1.jpg`}
-              alt="SafeSpace merchandise 1"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-2.jpg`}
-              alt="SafeSpace merchandise 2"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-3.jpg`}
-              alt="SafeSpace merchandise 3"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
+          <div className={`${styles.marketingMerchRow} ${styles.scrollReveal}`} ref={setRef(27)}>
+            <Image src={`${IMG}/merch-1.jpg`} alt="Merchandise 1" width={400} height={400} className={styles.marketingMerchImg} unoptimized />
+            <Image src={`${IMG}/merch-2.jpg`} alt="Merchandise 2" width={400} height={400} className={styles.marketingMerchImg} unoptimized />
+            <Image src={`${IMG}/merch-3.jpg`} alt="Merchandise 3" width={400} height={400} className={styles.marketingMerchImg} unoptimized />
           </div>
         </section>
 

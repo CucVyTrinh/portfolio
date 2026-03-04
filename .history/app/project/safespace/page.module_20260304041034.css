@@ -725,7 +725,6 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  transform: translateY(-4%);
 }
 
 .marketingRevealBehind .marketingRevealImg {
@@ -739,7 +738,6 @@
   bottom: 0;
   overflow: hidden;
   z-index: 1;
-  transform: translateY(-4%);
 }
 
 .marketingRevealFrontInner {

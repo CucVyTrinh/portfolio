@@ -51,20 +51,20 @@ body {
   overflow: hidden;
 }
 
-/* Background image: full image, no crop, centered, flows along whole site */
+/* Background image: full image, no crop, centered, flows along whole site, 60% opacity */
 .pageBgBlend {
   position: absolute;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
   width: min(60%, 1600px);
-  min-height: 900vh;
+  min-height: 2000vh;
   z-index: -2;
   background-image: url("/landing/bg-blend.png");
   background-position: top center;
   background-size: 100% auto;
   background-repeat: no-repeat;
-  opacity: 0.2;
+  opacity: 0.6;
   pointer-events: none;
 }
 
@@ -146,7 +146,6 @@ a {
 .pageMainBgBlend {
   position: absolute;
   top: -130vh;
-  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: min(60%, 1600px);
@@ -155,7 +154,7 @@ a {
   background-image: url("/landing/bg-blend.png");
   background-position: top center;
   background-size: 100% auto;
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
   opacity: 0.125;
   pointer-events: none;
 }
@@ -250,68 +249,6 @@ a {
 
 .pageBgIconsTop .pageBgIcon:nth-child(8) {
   top: 294%;
-  right: -8%;
-  left: auto;
-  background-image: url("/landing/collaboration.png");
-  background-position: right center;
-}
-
-/* Third set: empathy → creativity → perfection → collaboration */
-.pageBgIconsTop .pageBgIcon:nth-child(9) {
-  top: 336%;
-  left: -8%;
-  background-image: url("/landing/empathy.png");
-  background-position: left center;
-}
-
-.pageBgIconsTop .pageBgIcon:nth-child(10) {
-  top: 378%;
-  right: -8%;
-  left: auto;
-  background-image: url("/landing/creativity.png");
-  background-position: right center;
-}
-
-.pageBgIconsTop .pageBgIcon:nth-child(11) {
-  top: 420%;
-  left: -8%;
-  background-image: url("/landing/perfection.png");
-  background-position: left center;
-}
-
-.pageBgIconsTop .pageBgIcon:nth-child(12) {
-  top: 462%;
-  right: -8%;
-  left: auto;
-  background-image: url("/landing/collaboration.png");
-  background-position: right center;
-}
-
-/* Fourth set: empathy → creativity → perfection → collaboration */
-.pageBgIconsTop .pageBgIcon:nth-child(13) {
-  top: 504%;
-  left: -8%;
-  background-image: url("/landing/empathy.png");
-  background-position: left center;
-}
-
-.pageBgIconsTop .pageBgIcon:nth-child(14) {
-  top: 546%;
-  right: -8%;
-  left: auto;
-  background-image: url("/landing/creativity.png");
-  background-position: right center;
-}
-
-.pageBgIconsTop .pageBgIcon:nth-child(15) {
-  top: 588%;
-  left: -8%;
-  background-image: url("/landing/perfection.png");
-  background-position: left center;
-}
-
-.pageBgIconsTop .pageBgIcon:nth-child(16) {
-  top: 630%;
   right: -8%;
   left: auto;
   background-image: url("/landing/collaboration.png");

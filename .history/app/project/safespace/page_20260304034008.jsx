@@ -914,31 +914,10 @@ export default function SafeSpaceProjectPage() {
               </div>
             </div>
           </div>
-          <div className={styles.marketingMerchRow}>
-            <Image
-              src={`${IMG}/merch-1.jpg`}
-              alt="SafeSpace merchandise 1"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-2.jpg`}
-              alt="SafeSpace merchandise 2"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-3.jpg`}
-              alt="SafeSpace merchandise 3"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
+          <div className={`${styles.marketingMerchRow} ${styles.scrollReveal}`} ref={setRef(27)}>
+            <Image src={`${IMG}/merch1.png`} alt="Merchandise 1" width={400} height={400} className={styles.marketingMerchImg} unoptimized />
+            <Image src={`${IMG}/merch2.png`} alt="Merchandise 2" width={400} height={400} className={styles.marketingMerchImg} unoptimized />
+            <Image src={`${IMG}/merch3.png`} alt="Merchandise 3" width={400} height={400} className={styles.marketingMerchImg} unoptimized />
           </div>
         </section>
 

@@ -142,44 +142,6 @@ export default function SafeSpaceProjectPage() {
   const [diagramExpanded, setDiagramExpanded] = useState(null);
   const [findingCardIndex, setFindingCardIndex] = useState(0);
   const videoRef = useRef(null);
-  const marketingSliderRef = useRef(null);
-  const [marketingRevealPercent, setMarketingRevealPercent] = useState(50);
-  const [marketingDragging, setMarketingDragging] = useState(false);
-
-  const updateMarketingReveal = (clientX) => {
-    const el = marketingSliderRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setMarketingRevealPercent(pct);
-  };
-
-  const onMarketingHandlePointerDown = (e) => {
-    e.preventDefault();
-    setMarketingDragging(true);
-    if (e.type === "mousedown") updateMarketingReveal(e.clientX);
-    else if (e.touches?.[0]) updateMarketingReveal(e.touches[0].clientX);
-  };
-
-  useEffect(() => {
-    if (!marketingDragging) return;
-    const onMove = (e) => {
-      const clientX = e.touches ? e.touches[0]?.clientX : e.clientX;
-      if (clientX != null) updateMarketingReveal(clientX);
-    };
-    const onUp = () => setMarketingDragging(false);
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", onUp);
-    document.addEventListener("touchmove", onMove, { passive: true });
-    document.addEventListener("touchend", onUp);
-    return () => {
-      document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseup", onUp);
-      document.removeEventListener("touchmove", onMove);
-      document.removeEventListener("touchend", onUp);
-    };
-  }, [marketingDragging]);
 
   const toggleFlip = (index) => {
     setFlippedCards((prev) => prev.map((v, i) => (i === index ? !v : v)));
@@ -836,108 +798,11 @@ export default function SafeSpaceProjectPage() {
             <video
               src={`${IMG}/web-supplement.mp4`}
               className={styles.webSupplementVideo}
-              autoPlay
+              controls
               muted
               loop
               playsInline
-              onLoadedData={(e) => e.target.play().catch(() => {})}
               aria-label="Web supplement demo"
-            />
-          </div>
-
-          {/* Marketing Materials (yellow title) */}
-          <h2 className={`${styles.sectionTitle} ${styles.marketingSectionTitle} ${styles.scrollReveal}`} ref={setRef(26)}>
-            Marketing Materials
-          </h2>
-          <div className={styles.marketingRevealWrap}>
-            <Image
-              src={`${IMG}/marketing-bg.png`}
-              alt=""
-              width={1920}
-              height={1080}
-              className={styles.marketingBg}
-              unoptimized
-              aria-hidden
-            />
-            <div
-              className={styles.marketingRevealOverlay}
-              ref={marketingSliderRef}
-              aria-label="Brochure comparison: drag the center handle to reveal each side"
-            >
-              <div className={styles.marketingRevealBehind}>
-                <Image
-                  src={`${IMG}/brochure-side-1.png`}
-                  alt="Brochure side 1"
-                  fill
-                  className={styles.marketingRevealImg}
-                  sizes="100vw"
-                  unoptimized
-                />
-              </div>
-              <div
-                className={styles.marketingRevealFront}
-                style={{ width: `${marketingRevealPercent}%`, "--reveal-pct": Math.max(1, marketingRevealPercent) }}
-              >
-                <div className={styles.marketingRevealFrontInner}>
-                  <Image
-                    src={`${IMG}/brochure-side-2.png`}
-                    alt="Brochure side 2"
-                    fill
-                    className={styles.marketingRevealImg}
-                    sizes="100vw"
-                    unoptimized
-                  />
-                </div>
-              </div>
-              <div
-                className={styles.marketingRevealHandle}
-                style={{ left: `${marketingRevealPercent}%` }}
-                onMouseDown={onMarketingHandlePointerDown}
-                onTouchStart={onMarketingHandlePointerDown}
-                role="slider"
-                aria-valuenow={Math.round(marketingRevealPercent)}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label="Drag to reveal brochure sides"
-                tabIndex={0}
-              >
-                <span className={styles.marketingRevealLine} aria-hidden />
-                <Image
-                  src={`${IMG}/marketing-central.png`}
-                  alt=""
-                  width={80}
-                  height={80}
-                  className={styles.marketingCentralBtn}
-                  unoptimized
-                  draggable={false}
-                />
-              </div>
-            </div>
-          </div>
-          <div className={styles.marketingMerchRow}>
-            <Image
-              src={`${IMG}/merch-1.jpg`}
-              alt="SafeSpace merchandise 1"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-2.jpg`}
-              alt="SafeSpace merchandise 2"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
-            />
-            <Image
-              src={`${IMG}/merch-3.jpg`}
-              alt="SafeSpace merchandise 3"
-              width={400}
-              height={400}
-              className={styles.marketingMerchImg}
-              unoptimized
             />
           </div>
         </section>

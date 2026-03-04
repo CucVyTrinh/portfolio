@@ -695,7 +695,7 @@
 .marketingRevealWrap {
   position: relative;
   max-width: min(72rem, 96vw);
-  max-height: 90vh;
+  max-height: 96vh;
   margin: 3.5rem auto 0;
   margin-bottom: 0;
   overflow: visible;
@@ -725,7 +725,6 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  transform: translateY(-4%);
 }
 
 .marketingRevealBehind .marketingRevealImg {
@@ -739,7 +738,6 @@
   bottom: 0;
   overflow: hidden;
   z-index: 1;
-  transform: translateY(-4%);
 }
 
 .marketingRevealFrontInner {
@@ -812,7 +810,7 @@
   align-items: stretch;
   gap: 0;
   margin-top: 0;
-  max-width: min(64rem, 94vw);
+  max-width: min(72rem, 96vw);
   margin-left: auto;
   margin-right: auto;
   aspect-ratio: 3 / 1;
@@ -2051,7 +2049,7 @@
   }
 
   .marketingRevealWrap {
-    max-width: min(100%, 94vw);
-    max-height: 80vh;
+    max-width: min(100%, 92vw);
+    max-height: 70vh;
   }
 }

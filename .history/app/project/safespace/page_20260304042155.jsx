@@ -849,7 +849,7 @@ export default function SafeSpaceProjectPage() {
           <h2 className={`${styles.sectionTitle} ${styles.marketingSectionTitle} ${styles.scrollReveal}`} ref={setRef(26)}>
             Marketing Materials
           </h2>
-          <div className={styles.marketingRevealWrap}>
+          <div className={styles.marketingRevealWrap} style={{ "--handle-pos": `${marketingRevealPercent}%` }}>
             <Image
               src={`${IMG}/marketing-bg.png`}
               alt=""
@@ -859,6 +859,7 @@ export default function SafeSpaceProjectPage() {
               unoptimized
               aria-hidden
             />
+            <span className={styles.marketingRevealLineFull} aria-hidden />
             <div
               className={styles.marketingRevealOverlay}
               ref={marketingSliderRef}
@@ -901,7 +902,6 @@ export default function SafeSpaceProjectPage() {
                 aria-label="Drag to reveal brochure sides"
                 tabIndex={0}
               >
-                <span className={styles.marketingRevealLine} aria-hidden />
                 <Image
                   src={`${IMG}/marketing-central.png`}
                   alt=""

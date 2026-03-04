@@ -9,6 +9,173 @@
   flex: 1;
 }
 
+/* Full-page background icons (empathy → creativity → perfection → collaboration) for SafeSpace */
+.pageBgIconsSafeSpace {
+  height: 1200vh;
+}
+
+/* Override first 8 so spacing is even in 1200vh (7% ≈ 84vh apart) */
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(1) {
+  top: 0%;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(2) {
+  top: 7%;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(3) {
+  top: 14%;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(4) {
+  top: 21%;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(5) {
+  top: 28%;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(6) {
+  top: 35%;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(7) {
+  top: 42%;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(8) {
+  top: 49%;
+}
+
+/* Icons 9–24: same order, spaced 7% apart (≈84vh per icon in 1200vh container) */
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(9) {
+  top: 56%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/empathy.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(10) {
+  top: 63%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/creativity.png");
+  background-position: right center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(11) {
+  top: 70%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/perfection.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(12) {
+  top: 77%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/collaboration.png");
+  background-position: right center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(13) {
+  top: 84%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/empathy.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(14) {
+  top: 91%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/creativity.png");
+  background-position: right center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(15) {
+  top: 98%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/perfection.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(16) {
+  top: 105%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/collaboration.png");
+  background-position: right center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(17) {
+  top: 112%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/empathy.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(18) {
+  top: 119%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/creativity.png");
+  background-position: right center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(19) {
+  top: 126%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/perfection.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(20) {
+  top: 133%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/collaboration.png");
+  background-position: right center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(21) {
+  top: 140%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/empathy.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(22) {
+  top: 147%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/creativity.png");
+  background-position: right center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(23) {
+  top: 154%;
+  left: -8%;
+  right: auto;
+  background-image: url("/landing/perfection.png");
+  background-position: left center;
+}
+
+.pageBgIconsSafeSpace .pageBgIcon:nth-child(24) {
+  top: 161%;
+  right: -8%;
+  left: auto;
+  background-image: url("/landing/collaboration.png");
+  background-position: right center;
+}
+
 /* ----- Animations ----- */
 @keyframes fadeInUp {
   from {
@@ -685,281 +852,6 @@
 
 .wireframesDiagramCard .diagramImg {
   max-height: 600px;
-}
-
-/* ----- Marketing Materials (yellow title section) ----- */
-.marketingSectionTitle {
-  margin-top: 3rem;
-}
-
-.marketingRevealWrap {
-  position: relative;
-  max-width: min(72rem, 96vw);
-  max-height: 90vh;
-  margin: 3.5rem auto 0;
-  margin-bottom: 0;
-  overflow: visible;
-}
-
-.marketingBg {
-  width: 100%;
-  height: auto;
-  max-height: 90vh;
-  margin: 0 auto;
-  display: block;
-  object-fit: contain;
-  object-position: center;
-}
-
-.marketingRevealOverlay {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  transform: translateX(-50%);
-}
-
-.marketingRevealBehind {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  transform: translateY(-4%);
-}
-
-.marketingRevealBehind .marketingRevealImg {
-  object-fit: cover;
-}
-
-.marketingRevealFront {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
-  z-index: 1;
-  transform: translateY(-4%);
-}
-
-.marketingRevealFrontInner {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: calc(100% * (100 / var(--reveal-pct, 50)));
-}
-
-.marketingRevealFront .marketingRevealImg {
-  object-fit: cover;
-}
-
-.marketingRevealImg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.marketingRevealHandle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-}
-
-.marketingRevealHandle:active {
-  cursor: grabbing;
-}
-
-.marketingRevealLine {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 100%;
-  background: var(--accent-yellow);
-  pointer-events: none;
-}
-
-.marketingCentralBtn {
-  position: relative;
-  z-index: 1;
-  pointer-events: none;
-  flex-shrink: 0;
-  width: 3rem;
-  height: auto;
-}
-
-@media (min-width: 640px) {
-  .marketingCentralBtn {
-    width: 4rem;
-  }
-}
-
-.marketingMerchRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  gap: 0;
-  margin-top: 0;
-  max-width: min(64rem, 94vw);
-  margin-left: auto;
-  margin-right: auto;
-  aspect-ratio: 3 / 1;
-}
-
-.marketingMerchImg {
-  flex: 1 1 0;
-  width: 0;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ----- User Testing: Seamless recording & Posting flow (finding/solution + image) ----- */
-.userTestingFlowCarousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 3rem;
-  width: 100%;
-}
-
-.userTestingFlowArrow {
-  flex-shrink: 0;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  border: 2px solid var(--accent-yellow);
-  background: transparent;
-  color: var(--accent-yellow);
-  cursor: pointer;
-  font-size: 1.35rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-}
-
-.userTestingFlowArrow:hover {
-  background: var(--accent-yellow);
-  color: var(--bg-dark);
-  transform: scale(1.08);
-}
-
-.userTestingFlowArrow:active {
-  transform: scale(0.98);
-}
-
-.userTestingFlowSection {
-  flex: 1;
-  min-width: 0;
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
-  max-width: 56rem;
-  padding: 2rem var(--page-margin-x);
-  background-image: url("/project/SafeSpace/user-testing-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 12px;
-  position: relative;
-}
-
-.userTestingFlowCard {
-  width: 100%;
-}
-
-.userTestingFlowTitle {
-  font-family: var(--font-raleway), sans-serif;
-  font-weight: 500;
-  font-size: 23px;
-  color: var(--accent-yellow);
-  margin: 0 0 2rem;
-  text-align: left;
-  grid-column: 1 / -1;
-}
-
-.userTestingFlowTwoCol {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.userTestingFlowCol {
-  min-width: 0;
-}
-
-.userTestingFlowColTitle {
-  font-family: var(--font-raleway), sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  color: var(--accent-purple);
-  margin: 0 0 0.5rem;
-}
-
-.userTestingFlowList {
-  margin: 0;
-  padding-left: 1.1rem;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-primary);
-}
-
-.userTestingFlowList li {
-  margin-bottom: 0.35rem;
-}
-
-.userTestingFlowList li:last-child {
-  margin-bottom: 0;
-}
-
-.userTestingFlowImgWrap {
-  width: 100%;
-  margin-top: 0.25rem;
-}
-
-.userTestingFlowImg {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.webSupplementVideoWrap {
-  margin-top: 2rem;
-  width: 100%;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  background: #1a1a1a;
-  border-radius: 32px;
-  padding: 12px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-  border: none;
-}
-
-.webSupplementVideo {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #000;
 }
 
 /* ----- Branding: Color Palette & Typography ----- */
@@ -2010,48 +1902,7 @@
     max-width: none;
   }
 
-  .userTestingFlowSection {
-    padding: 1.5rem var(--page-margin-x-mobile);
-    margin-top: 0;
-    max-width: 100%;
-  }
-
-  .userTestingFlowCarousel {
-    gap: 0.5rem;
-    margin-top: 2rem;
-    padding: 0 var(--page-margin-x-mobile);
-  }
-
-  .userTestingFlowArrow {
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 1.1rem;
-  }
-
-  .userTestingFlowTwoCol {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .userTestingFlowTitle {
-    font-size: 1.25rem;
-  }
-
-  .userTestingFlowColTitle {
-    font-size: 0.9375rem;
-  }
-
-  .userTestingFlowList {
-    font-size: 0.875rem;
-  }
-
   .featureCard {
     padding: 1.25rem;
-  }
-
-  .marketingRevealWrap {
-    max-width: min(100%, 94vw);
-    max-height: 80vh;
   }
 }
