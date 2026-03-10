@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
@@ -37,6 +38,14 @@ const PROJECTS = [
     image: "/project/Reijin/mockup-3.jpg",
     slug: "reijin",
   },
+  {
+    title: "Tōkaidō",
+    description: "Travel Magazine Design",
+    tags: ["InDesign", "Illustrator", "Photoshop"],
+    imageLeft: true,
+    image: "/project/tokaido/title-img.png",
+    slug: "tokaido",
+  },
 ];
 
 const TYPEWRITER_SPEED_MS = 70;
@@ -53,6 +62,9 @@ const HERO_ICONS = [
 const TOOLTIP_OFFSET_X = 16;
 const TOOLTIP_OFFSET_Y = 12;
 const TOOLTIP_TYPEWRITER_MS = 70;
+/* Offset so "[View Projects]" appears at bottom-right of cursor */
+const PILL_TOOLTIP_OFFSET_X = 12;
+const PILL_TOOLTIP_OFFSET_Y = 12;
 
 function capitalize(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -315,18 +327,21 @@ export default function LandingPage() {
                 and user-centered digital experiences.
               </span>
             </p>
-            {pillTooltip && (
-              <span
-                className={styles.aboutPillTooltip}
-                aria-hidden
-                style={{
-                  left: pillTooltip.x + TOOLTIP_OFFSET_X,
-                  top: pillTooltip.y + TOOLTIP_OFFSET_Y,
-                }}
-              >
-                [View Projects]
-              </span>
-            )}
+            {typeof document !== "undefined" &&
+              pillTooltip &&
+              createPortal(
+                <span
+                  className={styles.aboutPillTooltip}
+                  aria-hidden
+                  style={{
+                    left: pillTooltip.x + PILL_TOOLTIP_OFFSET_X,
+                    top: pillTooltip.y + PILL_TOOLTIP_OFFSET_Y,
+                  }}
+                >
+                  [View Projects]
+                </span>,
+                document.body
+              )}
           </section>
 
           <section

@@ -384,7 +384,7 @@
   width: 100%;
 }
 
-/* Cursor-following "[View Projects]" tooltip for pills */
+/* Cursor-following "[View Projects]" tooltip for pills — sits close to cursor */
 .aboutPillTooltip {
   position: fixed;
   color: #fff;

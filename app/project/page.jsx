@@ -46,6 +46,16 @@ const PROJECTS = [
     category: "graphic",
     slug: "reijin",
   },
+  {
+    id: "4",
+    title: "Tōkaidō",
+    description: "Travel Magazine Design",
+    tags: ["InDesign", "Illustrator", "Photoshop"],
+    imageLeft: true,
+    image: "/project/tokaido/title-img.png",
+    category: "graphic",
+    slug: "tokaido",
+  },
 ];
 
 export default function ProjectPage() {
@@ -100,7 +110,9 @@ export default function ProjectPage() {
           <div className={styles.projectList}>
             {filteredProjects.length === 0 ? (
               <p className={styles.emptyState}>
-                No projects in this category yet. Check back soon.
+                {activeCategory === "motion"
+                  ? "New Projects Coming Soon!"
+                  : "No projects in this category yet. Check back soon."}
               </p>
             ) : (
               filteredProjects.map((project, i) => {

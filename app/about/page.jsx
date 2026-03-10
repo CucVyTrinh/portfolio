@@ -127,7 +127,19 @@ export default function AboutPage() {
         <div className={styles.aboutContent}>
           <section className={styles.hello}>
             <div className={styles.helloLeft}>
-              <div className={`${styles.vyFlipWrap} ${vyGraphicHovered ? styles.vyFlipWrapGraphicHovered : ""}`}>
+              <div
+                className={`${styles.vyFlipWrap} ${vyGraphicHovered ? styles.vyFlipWrapGraphicHovered : ""}`}
+                onMouseLeave={() => {
+                  if (vyGraphicLeaveTimeoutRef.current) {
+                    clearTimeout(vyGraphicLeaveTimeoutRef.current);
+                    vyGraphicLeaveTimeoutRef.current = null;
+                  }
+                  vyGraphicLeaveTimeoutRef.current = setTimeout(() => {
+                    setVyGraphicHovered(false);
+                    vyGraphicLeaveTimeoutRef.current = null;
+                  }, 200);
+                }}
+              >
                 <div className={styles.vyFlipHint}>
                   <span className={`${styles.vyFlipHintText} ${styles.vyFlipHintDesktop}`}>Hover!👀</span>
                   <span className={`${styles.vyFlipHintText} ${styles.vyFlipHintMobile}`}>Click</span>
@@ -144,12 +156,6 @@ export default function AboutPage() {
                             vyGraphicLeaveTimeoutRef.current = null;
                           }
                           setVyGraphicHovered(true);
-                        }}
-                        onMouseLeave={() => {
-                          vyGraphicLeaveTimeoutRef.current = setTimeout(() => {
-                            setVyGraphicHovered(false);
-                            vyGraphicLeaveTimeoutRef.current = null;
-                          }, 150);
                         }}
                         aria-hidden
                       />
