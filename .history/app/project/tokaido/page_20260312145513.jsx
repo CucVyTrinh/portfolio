@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ProjectInfoCard from "../../components/ProjectInfoCard";
@@ -18,29 +18,8 @@ const RATIONALE_TITLE_TEXT =
 const DESIGN_INTENT_TEXT =
   "The visual direction draws inspiration from traditional Japanese design through restraint, balance, and continuity. Each spread is designed as a connected pair of pages, allowing imagery and graphic elements to flow across the centre fold. This approach strengthens the visual connection between pages and supports a sense of narrative progression.\n\nWith twelve pages presenting a nine-day itinerary, layouts, typography, and graphics are structured for clarity and ease of reading. Spreads and dielines are carefully considered to ensure alignment across folds, while image resolution and a CMYK-friendly color palette guarantee high-quality, consistent print results.";
 
-const BOOK_PAGES = [
-  "cover.png",
-  "pair-1.png",
-  "pair-2.png",
-  "pair-3.png",
-  "pair-4.png",
-  "pair-5.png",
-  "back.png",
-];
-
 export default function TokaidoProjectPage() {
   const partRefs = useRef([]);
-  const [bookPageIndex, setBookPageIndex] = useState(0);
-
-  const handleBookNext = () => {
-    if (bookPageIndex >= BOOK_PAGES.length - 1) return;
-    setBookPageIndex((i) => i + 1);
-  };
-
-  const handleBookPrev = () => {
-    if (bookPageIndex <= 0) return;
-    setBookPageIndex((i) => i - 1);
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -179,43 +158,6 @@ export default function TokaidoProjectPage() {
                   aria-hidden
                 />
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Magazine spread flip viewer */}
-        <section className={styles.section}>
-          <div
-            className={`${styles.bookFlipBlock} ${styles.scrollReveal}`}
-            ref={(el) => (partRefs.current[4] = el)}
-          >
-            <div className={styles.bookFlipWrap}>
-              <button
-                type="button"
-                className={styles.bookArrow}
-                onClick={handleBookPrev}
-                disabled={bookPageIndex <= 0}
-                aria-label="Previous page"
-              >
-                ←
-              </button>
-              <div className={styles.bookViewer}>
-                <img
-                  key={bookPageIndex}
-                  src={`${IMG}/${BOOK_PAGES[bookPageIndex]}`}
-                  alt={`Magazine page ${bookPageIndex + 1}`}
-                  className={styles.bookPageImg}
-                />
-              </div>
-              <button
-                type="button"
-                className={styles.bookArrow}
-                onClick={handleBookNext}
-                disabled={bookPageIndex >= BOOK_PAGES.length - 1}
-                aria-label="Next page"
-              >
-                →
-              </button>
             </div>
           </div>
         </section>

@@ -9,6 +9,16 @@ import styles from "./page.module.css";
 
 const IMG = "/project/tokaido";
 
+const BOOK_PAGES = [
+  `${IMG}/cover.png`,
+  `${IMG}/pair-1.png`,
+  `${IMG}/pair-2.png`,
+  `${IMG}/pair-3.png`,
+  `${IMG}/pair-4.png`,
+  `${IMG}/pair-5.png`,
+  `${IMG}/back.png`,
+];
+
 const OVERVIEW_TEXT =
   "Tōkaidō Timepiece is a print travel magazine that captures a nine-day journey across Japan. Following the historic route from Osaka to Tokyo, the magazine presents each destination through a structured sequence of itinerary pages, photography, and graphic elements, creating a clear and engaging editorial narrative. The design balances practical travel information with magazine-style storytelling, drawing on traditional Japanese aesthetics.";
 
@@ -18,28 +28,40 @@ const RATIONALE_TITLE_TEXT =
 const DESIGN_INTENT_TEXT =
   "The visual direction draws inspiration from traditional Japanese design through restraint, balance, and continuity. Each spread is designed as a connected pair of pages, allowing imagery and graphic elements to flow across the centre fold. This approach strengthens the visual connection between pages and supports a sense of narrative progression.\n\nWith twelve pages presenting a nine-day itinerary, layouts, typography, and graphics are structured for clarity and ease of reading. Spreads and dielines are carefully considered to ensure alignment across folds, while image resolution and a CMYK-friendly color palette guarantee high-quality, consistent print results.";
 
-const BOOK_PAGES = [
-  "cover.png",
-  "pair-1.png",
-  "pair-2.png",
-  "pair-3.png",
-  "pair-4.png",
-  "pair-5.png",
-  "back.png",
-];
-
 export default function TokaidoProjectPage() {
   const partRefs = useRef([]);
   const [bookPageIndex, setBookPageIndex] = useState(0);
+  const [flipPhase, setFlipPhase] = useState("idle"); // "idle" | "out" | "in"
+  const [flipDir, setFlipDir] = useState(null); // "prev" | "next"
 
-  const handleBookNext = () => {
-    if (bookPageIndex >= BOOK_PAGES.length - 1) return;
-    setBookPageIndex((i) => i + 1);
+  const goPrevPage = () => {
+    if (flipPhase !== "idle") return;
+    setFlipDir("prev");
+    setFlipPhase("out");
   };
 
-  const handleBookPrev = () => {
-    if (bookPageIndex <= 0) return;
-    setBookPageIndex((i) => i - 1);
+  const goNextPage = () => {
+    if (flipPhase !== "idle") return;
+    setFlipDir("next");
+    setFlipPhase("out");
+  };
+
+  const handleFlipEnd = () => {
+    if (flipPhase === "out") {
+      setBookPageIndex((i) =>
+        flipDir === "prev"
+          ? i === 0
+            ? BOOK_PAGES.length - 1
+            : i - 1
+          : i === BOOK_PAGES.length - 1
+            ? 0
+            : i + 1
+      );
+      setFlipPhase("in");
+    } else if (flipPhase === "in") {
+      setFlipPhase("idle");
+      setFlipDir(null);
+    }
   };
 
   useEffect(() => {
@@ -167,55 +189,33 @@ export default function TokaidoProjectPage() {
                 </p>
               </div>
               <div className={styles.designIntentImgWrap}>
-                <img
-                  src={`${IMG}/map.png`}
-                  alt="Tōkaidō route map"
-                  className={styles.mapImg}
-                />
-                <img
-                  src={`${IMG}/umbrella.png`}
-                  alt=""
-                  className={styles.umbrellaImg}
-                  aria-hidden
-                />
+                <button
+                  type="button"
+                  className={styles.bookFlipArrow}
+                  onClick={goPrevPage}
+                  aria-label="Previous page"
+                >
+                  ←
+                </button>
+                <div
+                  className={`${styles.bookFlipViewer} ${flipPhase === "out" ? (flipDir === "prev" ? styles.bookFlipOutPrev : styles.bookFlipOutNext) : ""} ${flipPhase === "in" ? (flipDir === "prev" ? styles.bookFlipInPrev : styles.bookFlipInNext) : ""}`}
+                  onAnimationEnd={flipPhase !== "idle" ? handleFlipEnd : undefined}
+                >
+                  <img
+                    src={BOOK_PAGES[bookPageIndex]}
+                    alt={`Magazine page ${bookPageIndex + 1}`}
+                    className={styles.bookFlipImg}
+                  />
+                </div>
+                <button
+                  type="button"
+                  className={styles.bookFlipArrow}
+                  onClick={goNextPage}
+                  aria-label="Next page"
+                >
+                  →
+                </button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Magazine spread flip viewer */}
-        <section className={styles.section}>
-          <div
-            className={`${styles.bookFlipBlock} ${styles.scrollReveal}`}
-            ref={(el) => (partRefs.current[4] = el)}
-          >
-            <div className={styles.bookFlipWrap}>
-              <button
-                type="button"
-                className={styles.bookArrow}
-                onClick={handleBookPrev}
-                disabled={bookPageIndex <= 0}
-                aria-label="Previous page"
-              >
-                ←
-              </button>
-              <div className={styles.bookViewer}>
-                <img
-                  key={bookPageIndex}
-                  src={`${IMG}/${BOOK_PAGES[bookPageIndex]}`}
-                  alt={`Magazine page ${bookPageIndex + 1}`}
-                  className={styles.bookPageImg}
-                />
-              </div>
-              <button
-                type="button"
-                className={styles.bookArrow}
-                onClick={handleBookNext}
-                disabled={bookPageIndex >= BOOK_PAGES.length - 1}
-                aria-label="Next page"
-              >
-                →
-              </button>
             </div>
           </div>
         </section>
