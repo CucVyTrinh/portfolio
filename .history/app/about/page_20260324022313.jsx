@@ -37,14 +37,6 @@ const INTRO_PARAGRAPH_2 = (
 const INTRO_PARAGRAPH_3 = "The four qualities below reflect the core values that shape my work.";
 
 const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const PUNCHUP_SPOTS = [
-  { id: "park", baseSrc: "/punchUp/Park.png", withVySrc: "/punchUp/Park W Vy.png", alt: "Park" },
-  { id: "music", baseSrc: "/punchUp/Music.png", withVySrc: "/punchUp/Music W Vy.png", alt: "Music" },
-  { id: "rain", baseSrc: "/punchUp/Rain.png", withVySrc: "/punchUp/Rain W Vy.png", alt: "Rain" },
-  { id: "coffee", baseSrc: "/punchUp/Coffee.png", withVySrc: "/punchUp/Coffee W Vy.png", alt: "Coffee" },
-  { id: "work", baseSrc: "/punchUp/Work.png", withVySrc: "/punchUp/Work W Vy.png", alt: "Work" },
-  { id: "painting", baseSrc: "/punchUp/Painting.png", withVySrc: "/punchUp/Painting W Vy.png", alt: "Painting" },
-];
 
 function FilmPhoto({ number, className }) {
   return (
@@ -62,8 +54,6 @@ export default function AboutPage() {
   const [vyGraphicHovered, setVyGraphicHovered] = useState(false); // desktop: flip only when hovering the graphic
   const [tooltip, setTooltip] = useState(null);
   const [tooltipDisplayed, setTooltipDisplayed] = useState("");
-  const [isDraggingVyPixel, setIsDraggingVyPixel] = useState(false);
-  const [filledSpots, setFilledSpots] = useState({});
   const tooltipIntervalRef = useRef(null);
   const tooltipLeaveTimeoutRef = useRef(null);
   const vyGraphicLeaveTimeoutRef = useRef(null);
@@ -250,45 +240,6 @@ export default function AboutPage() {
                 </span>
               )}
             </div>
-            </div>
-          </section>
-
-          <section className={styles.punchUpSection} aria-label="Drag and drop hobbies">
-            <div className={styles.punchUpStarter}>
-              <img
-                src={isDraggingVyPixel ? "/punchUp/vy-pixel-2.png" : "/punchUp/vy-pixel-1.png"}
-                alt="Vy pixel character"
-                className={styles.punchUpVy}
-                draggable
-                onDragStart={() => setIsDraggingVyPixel(true)}
-                onDragEnd={() => setIsDraggingVyPixel(false)}
-              />
-              <p className={styles.punchUpHint}>Drag me!</p>
-            </div>
-
-            <div className={styles.punchUpGrid}>
-              {PUNCHUP_SPOTS.map((spot) => {
-                const isFilled = Boolean(filledSpots[spot.id]);
-                return (
-                  <button
-                    key={spot.id}
-                    type="button"
-                    className={styles.punchUpSpot}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      setFilledSpots((prev) => ({ ...prev, [spot.id]: true }));
-                      setIsDraggingVyPixel(false);
-                    }}
-                  >
-                    <img
-                      src={isFilled ? spot.withVySrc : spot.baseSrc}
-                      alt={isFilled ? `${spot.alt} with Vy` : spot.alt}
-                      className={styles.punchUpSpotImage}
-                    />
-                  </button>
-                );
-              })}
             </div>
           </section>
 

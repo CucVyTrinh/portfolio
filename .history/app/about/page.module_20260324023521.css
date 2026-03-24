@@ -377,7 +377,7 @@
   object-fit: contain;
   cursor: grab;
   user-select: none;
-  margin-bottom: -5rem;
+  margin-bottom: -2rem;
 }
 
 .punchUpVy:active {
