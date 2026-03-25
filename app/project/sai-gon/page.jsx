@@ -14,7 +14,10 @@ const HERO_TITLE = "Sai Gon";
 const HERO_SUBTITLE = "Motion graphics";
 
 const OVERVIEW_TEXT =
-  "Inspired by Saigon as a hometown, this 30-second video moves away from the image of a modern city filled with tall buildings and instead brings back an older version of Saigon. A time filled with energy, everyday movement, and familiar scenes from daily life.\n\nThe entire piece is created using motion graphics, with a vintage and approachable visual style. Through illustrated elements, shapes, and dynamic motion, it captures the lively rhythm and atmosphere of the past. The video is also part of a concept that can grow into a series, exploring more moments, stories, and the unique pace of life in old Saigon.";
+  "Inspired by Saigon as a hometown, this 30-second video moves away from the image of a modern city filled with tall buildings and instead brings back an older version of Saigon. A time filled with energy, everyday movement, and familiar scenes from daily life.";
+
+const RATIONALE_TEXT =
+  "The entire piece is created using motion graphics, with a vintage and approachable visual style. Through illustrated elements, shapes, and dynamic motion, it captures the lively rhythm and atmosphere of the past. The video is also part of a concept that can grow into a series, exploring more moments, stories, and the unique pace of life in old Saigon.";
 
 const ROLE = "Motion Designer";
 const TOOLS = ["Adobe After Effects", "Adobe Illustrator"];
@@ -91,6 +94,37 @@ export default function SaiGonProjectPage() {
                 ref={(el) => (partRefs.current[1] = el)}
               >
                 <ProjectInfoCard role={ROLE} tools={TOOLS} duration={DURATION} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Rationale (Miên-style two-column): image (left) | title + text (right) */}
+        <section className={`${styles.section} ${styles.rationaleSection}`}>
+          <div className={styles.twoColumnLayout}>
+            <div className={styles.leftColumn}>
+              <div
+                className={`${styles.block} ${styles.scrollReveal}`}
+                ref={(el) => (partRefs.current[2] = el)}
+              >
+                <img
+                  src={`${MEDIA_BASE}/SaiGon-1.png`}
+                  alt="Sai Gon graphic elements"
+                  className={styles.rationaleImg}
+                />
+              </div>
+            </div>
+
+            <div className={styles.rightColumn}>
+              <div
+                className={`${styles.block} ${styles.scrollReveal}`}
+                ref={(el) => (partRefs.current[3] = el)}
+              >
+                <h2 className={`${styles.sectionTitle} ${styles.sectionTitlePurple}`}>
+                  Rationale
+                </h2>
+                <h3 className={styles.sectionSubtitle}>Graphic Elements</h3>
+                <p className={styles.bodyTextColumn}>{RATIONALE_TEXT}</p>
               </div>
             </div>
           </div>
