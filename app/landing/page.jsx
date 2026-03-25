@@ -260,7 +260,8 @@ export default function LandingPage() {
           >
             <p className={styles.aboutText}>
               Specializing in{" "}
-              <span
+              <Link
+                href="/project?category=graphic"
                 className={styles.aboutPill}
                 onMouseEnter={(e) =>
                   setPillTooltip({ x: e.clientX, y: e.clientY })
@@ -273,9 +274,10 @@ export default function LandingPage() {
                 onMouseLeave={() => setPillTooltip(null)}
               >
                 Graphic Design
-              </span>
+              </Link>
               ,{" "}
-              <span
+              <Link
+                href="/project?category=ux-ui"
                 className={styles.aboutPill}
                 onMouseEnter={(e) =>
                   setPillTooltip({ x: e.clientX, y: e.clientY })
@@ -288,9 +290,10 @@ export default function LandingPage() {
                 onMouseLeave={() => setPillTooltip(null)}
               >
                 UX/UI Design
-              </span>
+              </Link>
               ,{" "}
-              <span
+              <Link
+                href="/project?category=ux-ui"
                 className={styles.aboutPill}
                 onMouseEnter={(e) =>
                   setPillTooltip({ x: e.clientX, y: e.clientY })
@@ -303,9 +306,10 @@ export default function LandingPage() {
                 onMouseLeave={() => setPillTooltip(null)}
               >
                 Front-End Development
-              </span>
+              </Link>
               , and{" "}
-              <span
+              <Link
+                href="/project?category=motion"
                 className={styles.aboutPill}
                 onMouseEnter={(e) =>
                   setPillTooltip({ x: e.clientX, y: e.clientY })
@@ -318,7 +322,7 @@ export default function LandingPage() {
                 onMouseLeave={() => setPillTooltip(null)}
               >
                 Motion Graphic
-              </span>
+              </Link>
               .
               <br />
               <span className={styles.aboutTextSecond}>
