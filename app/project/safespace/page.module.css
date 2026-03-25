@@ -631,6 +631,30 @@
   max-width: 56ch;
 }
 
+.promoVideoWrap {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  aspect-ratio: 16 / 9;
+  background: rgba(18, 18, 18, 0.8);
+  border: 1px solid rgba(187, 166, 255, 0.14);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.promoVideo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+.promoVideoSection {
+  padding-top: 2.5rem;
+}
+
 .bodyText {
   font-size: 1.0625rem;
   line-height: 1.75;

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "./page.module.css";
@@ -70,15 +69,15 @@ const PROJECTS = [
 ];
 
 export default function ProjectPage() {
-  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("all");
 
   useEffect(() => {
-    const raw = (searchParams?.get("category") || "").toLowerCase();
+    if (typeof window === "undefined") return;
+    const raw = (new URLSearchParams(window.location.search).get("category") || "").toLowerCase();
     if (!raw) return;
     const allowed = new Set(CATEGORIES.map((c) => c.id));
     if (allowed.has(raw)) setActiveCategory(raw);
-  }, [searchParams]);
+  }, []);
 
   const filteredProjects =
     activeCategory === "all"

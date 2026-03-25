@@ -1028,6 +1028,23 @@ export default function SafeSpaceProjectPage() {
           </div>
         )}
 
+        {/* SafeSpace Promotional Video */}
+        <section className={`${styles.section} ${styles.promoVideoSection}`}>
+          <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle}`}>
+            SafeSpace Promotional Video
+          </h3>
+          <div className={styles.promoVideoWrap}>
+            <iframe
+              className={styles.promoVideo}
+              src="https://www.youtube-nocookie.com/embed/u0i-tODR7WY"
+              title="SafeSpace Promotional Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </section>
+
         <div className={styles.backLinkWrap}>
           <Link href="/project" className={styles.backLink}>← Back to Projects</Link>
         </div>
