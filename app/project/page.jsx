@@ -56,6 +56,16 @@ const PROJECTS = [
     category: "graphic",
     slug: "tokaido",
   },
+  {
+    id: "5",
+    title: "Sai Gon",
+    description: "Motion graphics",
+    tags: ["After Effects", "Illustrator"],
+    imageLeft: false,
+    image: "/project/Motion%20Graphic/SaiGon-1.png",
+    category: "motion",
+    slug: "sai-gon",
+  },
 ];
 
 export default function ProjectPage() {

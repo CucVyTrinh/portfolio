@@ -1,0 +1,212 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--page-top-padding);
+}
+
+.page main {
+  flex: 1;
+}
+
+/* ----- Animations ----- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----- Scroll reveal ----- */
+.scrollReveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+
+.visible {
+  /* Intentionally empty: the actual reveal styles are on the compound selector below. */
+}
+
+.scrollReveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- Hero ----- */
+.hero {
+  position: relative;
+  padding: 3rem var(--page-margin-x) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heroTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.heroTitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 750;
+  font-size: 11rem;
+  color: var(--accent-yellow);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1;
+  opacity: 0;
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.heroSubtitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--accent-purple);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.12s forwards;
+}
+
+.heroCans {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* Push the video slightly lower under the title (no 3D tilt). */
+  margin-top: 1rem;
+  margin-bottom: -5rem;
+}
+
+.heroCansImg {
+  max-width: 100%;
+  width: min(95%, 1000px);
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #000;
+}
+
+/* ----- Sections ----- */
+.section {
+  padding: 6rem var(--page-margin-x) 7rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--accent-yellow);
+  margin: 0 0 1rem;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-raleway), sans-serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: var(--accent-purple);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.twoColumnLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  min-width: 0;
+}
+
+.block {
+  min-width: 0;
+}
+
+.bodyTextOverview {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 60ch;
+  text-align: left;
+  white-space: pre-line;
+}
+
+/* ----- Back link ----- */
+.backLinkWrap {
+  padding: 3rem var(--page-margin-x) 4rem;
+  text-align: left;
+}
+
+.backLink {
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-purple);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--accent-yellow);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 900px) {
+  .twoColumnLayout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    gap: 2.5rem;
+  }
+
+  .heroCans {
+    margin-top: 0;
+  }
+
+  .heroCansImg {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 3rem var(--page-margin-x-mobile) 4rem;
+  }
+
+  .section {
+    padding: 3rem var(--page-margin-x-mobile) 4rem;
+  }
+
+  .backLinkWrap {
+    padding: 2rem var(--page-margin-x-mobile) 3rem;
+  }
+
+  .heroTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
