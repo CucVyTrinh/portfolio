@@ -1030,17 +1030,42 @@ export default function SafeSpaceProjectPage() {
 
         {/* SafeSpace Promotional Video */}
         <section className={`${styles.section} ${styles.promoVideoSection}`}>
-          <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle}`}>
-            SafeSpace Promotional Video
-          </h3>
-          <div className={styles.promoVideoWrap}>
-            <iframe
-              className={styles.promoVideo}
-              src="https://www.youtube-nocookie.com/embed/u0i-tODR7WY"
-              title="SafeSpace Promotional Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
+          <div className={styles.promoVideoLift}>
+            <h3 className={`${styles.sectionSubtitle} ${styles.wireframesSubtitle} ${styles.promoVideoTitle}`}>
+              SafeSpace Promotional Video
+            </h3>
+            <div className={styles.promoVideoWrap}>
+              <iframe
+                className={styles.promoVideo}
+                src="https://www.youtube-nocookie.com/embed/u0i-tODR7WY"
+                title="SafeSpace Promotional Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+          <div className={styles.showcaseBlock}>
+            <h2 className={`${styles.sectionTitle} ${styles.marketingSectionTitle}`}>
+              BCIT Technology Showcase
+            </h2>
+            <p className={styles.showcaseText}>
+              On December 5th, 2025, the SafeSpace team presented the app at
+              BCIT&apos;s{" "}
+              <span className={styles.showcaseHighlight}>
+                D3/FSWD x ConnectHERHub Student Design and Technology Showcase
+              </span>
+              , highlighting AI-driven solutions that improve workplace
+              experiences for underrepresented groups in the skilled trades. The
+              project was awarded{" "}
+              <span className={styles.showcaseHighlight}>1st place</span>. Many
+              thanks to the entire team, instructors, advisors, and Chris Ernst
+              for their guidance and support throughout this journey.
+            </p>
+            <img
+              src={`${IMG}/Showcase.png`}
+              alt="BCIT Technology Showcase presentation"
+              className={styles.showcaseImg}
             />
           </div>
         </section>
