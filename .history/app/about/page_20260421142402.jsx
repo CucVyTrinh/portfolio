@@ -67,7 +67,6 @@ export default function AboutPage() {
   const tooltipIntervalRef = useRef(null);
   const tooltipLeaveTimeoutRef = useRef(null);
   const vyGraphicLeaveTimeoutRef = useRef(null);
-  const punchUpCharacterRef = useRef(null);
 
   // Waving: alternate vy-1 and vy-2 (slower)
   useEffect(() => {
@@ -263,31 +262,11 @@ export default function AboutPage() {
             <div className={styles["punch-up-character-vy"]}>
               {/*draggable character*/}
               <img
-                ref={punchUpCharacterRef}
                 src={isDraggingVyPixel ? "/punchUp/vy-pixel-2.png" : "/punchUp/vy-pixel-1.png"}
                 alt="Vy pixel character"
                 className={styles["punch-up-character-sprite"]}
                 draggable
-                onMouseDown={() => setIsDraggingVyPixel(true)}
-                onMouseUp={() => setIsDraggingVyPixel(false)}
-                onDragStart={(e) => {
-                  setIsDraggingVyPixel(true);
-                  if (e.dataTransfer && punchUpCharacterRef.current) {
-                    const renderedWidth = Math.max(
-                      1,
-                      Math.round(punchUpCharacterRef.current.clientWidth)
-                    );
-                    const renderedHeight = Math.max(
-                      1,
-                      Math.round(punchUpCharacterRef.current.clientHeight)
-                    );
-                    e.dataTransfer.setDragImage(
-                      punchUpCharacterRef.current,
-                      Math.round(renderedWidth / 2),
-                      Math.round(renderedHeight / 2)
-                    );
-                  }
-                }}
+                onDragStart={() => setIsDraggingVyPixel(true)}
                 onDragEnd={() => setIsDraggingVyPixel(false)}
               />
               <p className={styles["punch-up-hint"]}>Drag me!</p>
