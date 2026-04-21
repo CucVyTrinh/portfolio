@@ -36,33 +36,37 @@ const INTRO_PARAGRAPH_2 = (
 
 const INTRO_PARAGRAPH_3 = "The four qualities below reflect the core values that shape my work.";
 
-const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const PUNCHUP_SPOTS = [
+  { id: "park", baseSrc: "/punchUp/Park.png", withVySrc: "/punchUp/Park W Vy.png", alt: "Park" },
+  { id: "music", baseSrc: "/punchUp/Music.png", withVySrc: "/punchUp/Music W Vy.png", alt: "Music" },
+  { id: "rain", baseSrc: "/punchUp/Rain.png", withVySrc: "/punchUp/Rain W Vy.png", alt: "Rain" },
+  { id: "coffee", baseSrc: "/punchUp/Coffee.png", withVySrc: "/punchUp/Coffee W Vy.png", alt: "Coffee" },
+  { id: "work", baseSrc: "/punchUp/Work.png", withVySrc: "/punchUp/Work W Vy.png", alt: "Work" },
+  { id: "painting", baseSrc: "/punchUp/Painting.png", withVySrc: "/punchUp/Painting W Vy.png", alt: "Painting" },
+];
 
 function FilmPhoto({ number, className }) {
-  const [src, setSrc] = useState(`/about/photo-${number}.jpg`);
-
-  const handleError = () => {
-    setSrc((prev) => (prev.endsWith(".jpg") ? `/about/photo-${number}.png` : null));
-  };
-
-  if (!src) return <div className={className} style={{ aspectRatio: "4/3", background: "#222" }} />;
-
   return (
     <img
-      src={src}
+      src={`/about/photo-${number}.png`}
       alt=""
       className={className}
-      onError={handleError}
     />
   );
 }
 
 export default function AboutPage() {
   const [vyFrame, setVyFrame] = useState(0); // 0 = vy-1, 1 = vy-2
+  const [vyFlipped, setVyFlipped] = useState(false); // mobile: click to flip
+  const [vyGraphicHovered, setVyGraphicHovered] = useState(false); // desktop: flip only when hovering the graphic
   const [tooltip, setTooltip] = useState(null);
   const [tooltipDisplayed, setTooltipDisplayed] = useState("");
+  const [isDraggingVyPixel, setIsDraggingVyPixel] = useState(false);
+  const [filledSpots, setFilledSpots] = useState({});
   const tooltipIntervalRef = useRef(null);
   const tooltipLeaveTimeoutRef = useRef(null);
+  const vyGraphicLeaveTimeoutRef = useRef(null);
 
   // Waving: alternate vy-1 and vy-2 (slower)
   useEffect(() => {
@@ -100,6 +104,7 @@ export default function AboutPage() {
   useEffect(() => {
     return () => {
       if (tooltipLeaveTimeoutRef.current) clearTimeout(tooltipLeaveTimeoutRef.current);
+      if (vyGraphicLeaveTimeoutRef.current) clearTimeout(vyGraphicLeaveTimeoutRef.current);
     };
   }, []);
 
@@ -132,15 +137,38 @@ export default function AboutPage() {
         <div className={styles.aboutContent}>
           <section className={styles.hello}>
             <div className={styles.helloLeft}>
-              <div className={styles.vyFlipWrap}>
+              <div
+                className={`${styles.vyFlipWrap} ${vyGraphicHovered ? styles.vyFlipWrapGraphicHovered : ""}`}
+                onMouseLeave={() => {
+                  if (vyGraphicLeaveTimeoutRef.current) {
+                    clearTimeout(vyGraphicLeaveTimeoutRef.current);
+                    vyGraphicLeaveTimeoutRef.current = null;
+                  }
+                  vyGraphicLeaveTimeoutRef.current = setTimeout(() => {
+                    setVyGraphicHovered(false);
+                    vyGraphicLeaveTimeoutRef.current = null;
+                  }, 200);
+                }}
+              >
                 <div className={styles.vyFlipHint}>
                   <span className={`${styles.vyFlipHintText} ${styles.vyFlipHintDesktop}`}>Hover!👀</span>
-                  <span className={`${styles.vyFlipHintText} ${styles.vyFlipHintMobile}`}>Click!👀</span>
+                  <span className={`${styles.vyFlipHintText} ${styles.vyFlipHintMobile}`}>Click</span>
                   <img src="/about/arrow.png" alt="" className={styles.vyFlipHintArrow} aria-hidden />
                 </div>
                 <div className={styles.vyFlipInner}>
                   <div className={styles.vyFlipFront}>
                     <div className={styles.helloGraphicWrap}>
+                      <div
+                        className={styles.helloGraphicHoverZone}
+                        onMouseEnter={() => {
+                          if (vyGraphicLeaveTimeoutRef.current) {
+                            clearTimeout(vyGraphicLeaveTimeoutRef.current);
+                            vyGraphicLeaveTimeoutRef.current = null;
+                          }
+                          setVyGraphicHovered(true);
+                        }}
+                        aria-hidden
+                      />
                       <img
                         src="/about/vy-1.png"
                         alt="Vy waving"
@@ -224,6 +252,54 @@ export default function AboutPage() {
             </div>
             </div>
           </section>
+
+
+{/*________________________________________________________________________________________*/}
+{/*________________________________________________________________________________________*/}
+{/*punch up section*/} 
+
+          <section className={styles["punch-up-section"]} aria-label="Drag and drop hobbies">
+            <div className={styles["punch-up-draggable-character"]}>
+              {/*draggable character*/}
+              <img
+                src={isDraggingVyPixel ? "/punchUp/vy-pixel-2.png" : "/punchUp/vy-pixel-1.png"}
+                alt="Vy pixel character"
+                className={styles["punch-up-character-sprite"]}
+                draggable
+                onDragStart={() => setIsDraggingVyPixel(true)}
+                onDragEnd={() => setIsDraggingVyPixel(false)}
+              />
+              <p className={styles["punch-up-hint"]}>Drag me!</p>
+            </div>
+            {/*grrid of drop spots*/}
+            <div className={styles["punch-up-grid"]}>
+              {PUNCHUP_SPOTS.map((spot) => {
+                const isFilled = Boolean(filledSpots[spot.id]);
+                return (
+                  <button
+                    key={spot.id}
+                    type="button"
+                    className={styles["punch-up-spot"]}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setFilledSpots((prev) => ({ ...prev, [spot.id]: true }));
+                      setIsDraggingVyPixel(false);
+                    }}
+                  >
+                    {/*Image switching*/}
+                    <img
+                      src={isFilled ? spot.withVySrc : spot.baseSrc}
+                      alt={isFilled ? `${spot.alt} with Vy` : spot.alt}
+                      className={styles["punch-up-spot-image"]}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+{/*________________________________________________________________________________________*/}
+{/*________________________________________________________________________________________*/}
 
           {/* Filmstrip */}
           <section className={styles.filmSection}>

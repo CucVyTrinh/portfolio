@@ -89,36 +89,62 @@
   cursor: pointer;
 }
 
-/* Hover hint: arrow + "Hover!👀" - fades out on hover */
+/* Hover hint: "Hover!👀" + arrow, sticks to left of vy graphic - fades out on hover */
 .vyFlipHint {
   position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0%;
+  left: 35%;
+  transform: translateY(-50%);
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
   z-index: 5;
   pointer-events: none;
   opacity: 0.9;
   transition: opacity 0.3s ease;
 }
 
-.vyFlipWrap:hover .vyFlipHint {
+.vyFlipWrap.vyFlipWrapGraphicHovered .vyFlipHint {
   opacity: 0;
-}
-
-.vyFlipHintArrow {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
 }
 
 .vyFlipHintText {
   font-family: var(--font-raleway), sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--accent-yellow);
+  color: #fff;
+}
+
+.vyFlipHintDesktop {
+  display: inline;
+}
+
+.vyFlipHintMobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .vyFlipHint {
+    top: 1rem;
+    left: 0.5rem;
+    transform: none;
+  }
+
+  .vyFlipHintDesktop {
+    display: none;
+  }
+
+  .vyFlipHintMobile {
+    display: inline;
+  }
+}
+
+.vyFlipHintArrow {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  align-self: flex-end;
 }
 
 .vyFlipInner {
@@ -127,10 +153,18 @@
   height: 100%;
   min-height: 520px;
   transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.85s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.vyFlipWrap:hover .vyFlipInner {
+/* Desktop: flip only when hovering the graphic (not the whole card) */
+@media (hover: hover) {
+  .vyFlipWrap.vyFlipWrapGraphicHovered .vyFlipInner {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Mobile/touch: click to flip - always apply when class is set (outside media query so it works when testing mobile viewport with mouse) */
+.vyFlipWrap.vyFlipFlipped .vyFlipInner {
   transform: rotateY(180deg);
 }
 
@@ -168,6 +202,17 @@
   width: 100%;
   height: 100%;
   min-height: 520px;
+}
+
+/* Hover zone for flip: left portion only (smaller right side) */
+.helloGraphicHoverZone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 78%;
+  z-index: 2;
+  cursor: pointer;
 }
 
 /* Soft multicolored glow behind illustration (centered) */
@@ -303,7 +348,88 @@
   margin: 0 0 1.5rem;
 }
 
+
+
+
+/* ----- Punch Up drag-and-drop ----- */
+/*________________________________________________________________________________________*/
+/*________________________________________________________________________________________*/
+/*________________________________________________________________________________________*/
+.punch-up-section {
+  margin: 0 auto 4rem;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.punch-up-draggable-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.punch-up-character-sprite {
+  width: clamp(220px, 28vw, 280px);
+  height: auto;
+  object-fit: contain;
+  cursor: grab;
+  user-select: none;
+}
+
+.punch-up-character-sprite:active {
+  cursor: grabbing;
+}
+
+.punch-up-hint {
+  margin: 0;
+  font-family: var(--font-raleway), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.punch-up-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.punch-up-spot {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.punch-up-spot:hover {
+  transform: translateY(-2px);
+}
+
+.punch-up-spot-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+
+
+
+
+
+
 /* ----- Filmstrip ----- */
+/*________________________________________________________________________________________*/
+/*________________________________________________________________________________________*/
+/*________________________________________________________________________________________*/
 .filmSection {
   margin-bottom: 4rem;
 }
@@ -413,6 +539,10 @@
     width: 72px;
     height: 72px;
   }
+
+  .punch-up-section {
+    max-width: 680px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -446,5 +576,9 @@
 
   .filmStripTrack {
     animation-duration: 35s;
+  }
+
+  .punch-up-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

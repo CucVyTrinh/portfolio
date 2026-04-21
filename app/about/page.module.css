@@ -355,7 +355,7 @@
 /*________________________________________________________________________________________*/
 /*________________________________________________________________________________________*/
 /*________________________________________________________________________________________*/
-.punchUpSection {
+.punch-up-section {
   margin: 0 auto 4rem;
   max-width: 900px;
   display: flex;
@@ -364,27 +364,27 @@
   gap: 1.5rem;
 }
 
-.punchUpStarter {
+.punch-up-character-vy {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
-.punchUpVy {
-  width: 200px;
+.punch-up-character-sprite {
+  width: clamp(220px, 28vw, 280px);
   height: auto;
   object-fit: contain;
   cursor: grab;
   user-select: none;
-  margin-bottom: -5rem;
 }
 
-.punchUpVy:active {
+.punch-up-character-sprite:active {
   cursor: grabbing;
 }
 
-.punchUpHint {
+.punch-up-hint {
   margin: 0;
   font-family: var(--font-raleway), sans-serif;
   font-size: 1rem;
@@ -392,14 +392,14 @@
   color: var(--text-primary);
 }
 
-.punchUpGrid {
+.punch-up-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
 }
 
-.punchUpSpot {
+.punch-up-spot {
   border: none;
   background: transparent;
   padding: 0;
@@ -409,11 +409,11 @@
   transition: transform 0.15s ease;
 }
 
-.punchUpSpot:hover {
+.punch-up-spot:hover {
   transform: translateY(-2px);
 }
 
-.punchUpSpotImage {
+.punch-up-spot-image {
   width: 100%;
   height: auto;
   display: block;
@@ -540,7 +540,7 @@
     height: 72px;
   }
 
-  .punchUpSection {
+  .punch-up-section {
     max-width: 680px;
   }
 }
@@ -578,7 +578,7 @@
     animation-duration: 35s;
   }
 
-  .punchUpGrid {
+  .punch-up-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

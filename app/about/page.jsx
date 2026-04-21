@@ -258,28 +258,28 @@ export default function AboutPage() {
 {/*________________________________________________________________________________________*/}
 {/*punch up section*/} 
 
-          <section className={styles.punchUpSection} aria-label="Drag and drop hobbies">
-            <div className={styles.punchUpStarter}>
+          <section className={styles["punch-up-section"]} aria-label="Drag and drop hobbies">
+            <div className={styles["punch-up-character-vy"]}>
               {/*draggable character*/}
               <img
                 src={isDraggingVyPixel ? "/punchUp/vy-pixel-2.png" : "/punchUp/vy-pixel-1.png"}
                 alt="Vy pixel character"
-                className={styles.punchUpVy}
+                className={styles["punch-up-character-sprite"]}
                 draggable
                 onDragStart={() => setIsDraggingVyPixel(true)}
                 onDragEnd={() => setIsDraggingVyPixel(false)}
               />
-              <p className={styles.punchUpHint}>Drag me!</p>
+              <p className={styles["punch-up-hint"]}>Drag me!</p>
             </div>
             {/*grrid of drop spots*/}
-            <div className={styles.punchUpGrid}>
+            <div className={styles["punch-up-grid"]}>
               {PUNCHUP_SPOTS.map((spot) => {
                 const isFilled = Boolean(filledSpots[spot.id]);
                 return (
                   <button
                     key={spot.id}
                     type="button"
-                    className={styles.punchUpSpot}
+                    className={styles["punch-up-spot"]}
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={(e) => {
                       e.preventDefault();
@@ -291,7 +291,7 @@ export default function AboutPage() {
                     <img
                       src={isFilled ? spot.withVySrc : spot.baseSrc}
                       alt={isFilled ? `${spot.alt} with Vy` : spot.alt}
-                      className={styles.punchUpSpotImage}
+                      className={styles["punch-up-spot-image"]}
                     />
                   </button>
                 );
