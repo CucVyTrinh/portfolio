@@ -357,31 +357,17 @@
 /*________________________________________________________________________________________*/
 .punch-up-section {
   margin: 0 auto 4rem;
-  width: 100%;
-  max-width: none;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 1.5rem;
-}
-
-.punch-up-top-row {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto minmax(300px, 1fr);
   align-items: center;
   gap: 1.5rem;
-  justify-content: end;
-  justify-items: start;
-  padding-left: 7rem;
 }
 
-.punch-up-character-vy {
+.punch-up-draggable-character {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 0.5rem;
 }
@@ -398,51 +384,6 @@
   cursor: grabbing;
 }
 
-.punch-up-info-box {
-  width: min(100%, 700px);
-  min-height: 230px;
-  justify-self: start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.6rem;
-  background: #f8ffd5;
-  border: 6px solid var(--accent-purple);
-  border-radius: 0 18px 0 18px;
-  padding: 1.2rem 1.3rem;
-  color: #1d1d1d;
-}
-
-.punch-up-info-kicker {
-  margin: 0;
-  font-family: var(--font-raleway), sans-serif;
-  font-size: 0.92rem;
-  line-height: 1.35;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #444;
-}
-
-.punch-up-info-title {
-  margin: 0;
-  font-family: var(--font-raleway), sans-serif;
-  font-size: clamp(1.9rem, 3vw, 2.45rem);
-  line-height: 1.15;
-  font-weight: 900;
-  letter-spacing: 0.01em;
-  color: var(--accent-purple);
-}
-
-.punch-up-info-copy {
-  margin: 0;
-  font-family: var(--font-raleway), sans-serif;
-  font-size: 1.14rem;
-  line-height: 1.65;
-  font-weight: 500;
-  color: #262626;
-}
-
 .punch-up-hint {
   margin: 0;
   font-family: var(--font-raleway), sans-serif;
@@ -453,10 +394,9 @@
 
 .punch-up-grid {
   width: 100%;
-  max-width: 1280px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
-  gap: 3.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
 }
 
 .punch-up-spot {
@@ -603,12 +543,6 @@
   .punch-up-section {
     max-width: 680px;
   }
-
-  .punch-up-top-row {
-    grid-template-columns: 1fr;
-    justify-items: start;
-    padding-left: 0;
-  }
 }
 
 @media (max-width: 640px) {
@@ -645,7 +579,6 @@
   }
 
   .punch-up-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

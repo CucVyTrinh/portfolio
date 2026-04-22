@@ -37,11 +37,6 @@ const INTRO_PARAGRAPH_2 = (
 const INTRO_PARAGRAPH_3 = "The four qualities below reflect the core values that shape my work.";
 
 const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const PUNCHUP_SPOTS = [
-  { id: "coffee", baseSrc: "/punchUp/Coffee.png", withVySrc: "/punchUp/Coffee W Vy.png", alt: "Coffee" },
-  { id: "park", baseSrc: "/punchUp/Park.png", withVySrc: "/punchUp/Park W Vy.png", alt: "Park" },
-  { id: "rain", baseSrc: "/punchUp/Rain.png", withVySrc: "/punchUp/Rain W Vy.png", alt: "Rain" },
-];
 
 function FilmPhoto({ number, className }) {
   return (
@@ -59,12 +54,9 @@ export default function AboutPage() {
   const [vyGraphicHovered, setVyGraphicHovered] = useState(false); // desktop: flip only when hovering the graphic
   const [tooltip, setTooltip] = useState(null);
   const [tooltipDisplayed, setTooltipDisplayed] = useState("");
-  const [isDraggingVyPixel, setIsDraggingVyPixel] = useState(false);
-  const [filledSpots, setFilledSpots] = useState({});
   const tooltipIntervalRef = useRef(null);
   const tooltipLeaveTimeoutRef = useRef(null);
   const vyGraphicLeaveTimeoutRef = useRef(null);
-  const punchUpCharacterRef = useRef(null);
 
   // Waving: alternate vy-1 and vy-2 (slower)
   useEffect(() => {
@@ -250,80 +242,6 @@ export default function AboutPage() {
             </div>
             </div>
           </section>
-
-
-{/*________________________________________________________________________________________*/}
-{/*________________________________________________________________________________________*/}
-{/*punch up section*/} 
-
-          <section className={styles["punch-up-section"]} aria-label="Drag and drop hobbies">
-            <div className={styles["punch-up-top-row"]}>
-              <div className={styles["punch-up-character-vy"]}>
-                {/*draggable character*/}
-                <img
-                  ref={punchUpCharacterRef}
-                  src={isDraggingVyPixel ? "/punchUp/vy-pixel-2.png" : "/punchUp/vy-pixel-1.png"}
-                  alt="Vy pixel character"
-                  className={styles["punch-up-character-sprite"]}
-                  draggable
-                  onMouseDown={() => setIsDraggingVyPixel(true)}
-                  onMouseUp={() => setIsDraggingVyPixel(false)}
-                  onDragStart={(e) => {
-                    setIsDraggingVyPixel(true);
-                    if (e.dataTransfer && punchUpCharacterRef.current) {
-                      const renderedWidth = Math.max(
-                        1,
-                        Math.round(punchUpCharacterRef.current.clientWidth)
-                      );
-                      const renderedHeight = Math.max(
-                        1,
-                        Math.round(punchUpCharacterRef.current.clientHeight)
-                      );
-                      e.dataTransfer.setDragImage(
-                        punchUpCharacterRef.current,
-                        Math.round(renderedWidth / 2),
-                        Math.round(renderedHeight / 2)
-                      );
-                    }
-                  }}
-                  onDragEnd={() => setIsDraggingVyPixel(false)}
-                />
-              </div>
-              <div className={styles["punch-up-info-box"]}>
-                <p className={styles["punch-up-info-kicker"]}>tired of reading? take a little break</p>
-                <h3 className={styles["punch-up-info-title"]}>Vy, where are you??</h3>
-                <p className={styles["punch-up-info-copy"]}>click and drag me to find out my favorite little spots!</p>
-              </div>
-            </div>
-            {/*grrid of drop spots*/}
-            <div className={styles["punch-up-grid"]}>
-              {PUNCHUP_SPOTS.map((spot) => {
-                const isFilled = Boolean(filledSpots[spot.id]);
-                return (
-                  <button
-                    key={spot.id}
-                    type="button"
-                    className={styles["punch-up-spot"]}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      setFilledSpots((prev) => ({ ...prev, [spot.id]: true }));
-                      setIsDraggingVyPixel(false);
-                    }}
-                  >
-                    {/*Image switching*/}
-                    <img
-                      src={isFilled ? spot.withVySrc : spot.baseSrc}
-                      alt={isFilled ? `${spot.alt} with Vy` : spot.alt}
-                      className={styles["punch-up-spot-image"]}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-{/*________________________________________________________________________________________*/}
-{/*________________________________________________________________________________________*/}
 
           {/* Filmstrip */}
           <section className={styles.filmSection}>

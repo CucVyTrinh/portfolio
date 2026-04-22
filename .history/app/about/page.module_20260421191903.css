@@ -363,7 +363,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   padding: 1.5rem;
 }
 
@@ -373,9 +373,6 @@
   grid-template-columns: auto minmax(300px, 1fr);
   align-items: center;
   gap: 1.5rem;
-  justify-content: end;
-  justify-items: start;
-  padding-left: 7rem;
 }
 
 .punch-up-character-vy {
@@ -399,48 +396,35 @@
 }
 
 .punch-up-info-box {
-  width: min(100%, 700px);
-  min-height: 230px;
-  justify-self: start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.6rem;
-  background: #f8ffd5;
-  border: 6px solid var(--accent-purple);
-  border-radius: 0 18px 0 18px;
-  padding: 1.2rem 1.3rem;
+  background: #eeff99;
+  border: 2px solid var(--accent-yellow);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
   color: #1d1d1d;
 }
 
 .punch-up-info-kicker {
-  margin: 0;
-  font-family: var(--font-raleway), sans-serif;
-  font-size: 0.92rem;
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
   line-height: 1.35;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #444;
+  text-transform: lowercase;
 }
 
 .punch-up-info-title {
-  margin: 0;
+  margin: 0 0 0.45rem;
   font-family: var(--font-raleway), sans-serif;
-  font-size: clamp(1.9rem, 3vw, 2.45rem);
-  line-height: 1.15;
-  font-weight: 900;
-  letter-spacing: 0.01em;
+  font-size: clamp(1.15rem, 2.1vw, 1.6rem);
+  line-height: 1.2;
+  font-weight: 800;
   color: var(--accent-purple);
 }
 
 .punch-up-info-copy {
   margin: 0;
-  font-family: var(--font-raleway), sans-serif;
-  font-size: 1.14rem;
-  line-height: 1.65;
-  font-weight: 500;
-  color: #262626;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  font-weight: 600;
 }
 
 .punch-up-hint {
@@ -605,9 +589,8 @@
   }
 
   .punch-up-top-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr;
     justify-items: start;
-    padding-left: 0;
   }
 }
 
