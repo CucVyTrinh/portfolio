@@ -370,12 +370,9 @@
 .punch-up-top-row {
   width: 100%;
   display: grid;
-  grid-template-columns: auto minmax(300px, 1fr);
+  grid-template-columns: auto minmax(600px, 1fr);
   align-items: center;
   gap: 1.5rem;
-  justify-content: end;
-  justify-items: start;
-  padding-left: 7rem;
 }
 
 .punch-up-character-vy {
@@ -399,7 +396,7 @@
 }
 
 .punch-up-info-box {
-  width: min(100%, 700px);
+  width: min(100%, 460px);
   min-height: 230px;
   justify-self: start;
   display: flex;
@@ -607,7 +604,6 @@
   .punch-up-top-row {
     grid-template-columns: 1fr;
     justify-items: start;
-    padding-left: 0;
   }
 }
 

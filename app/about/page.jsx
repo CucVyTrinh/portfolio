@@ -38,12 +38,9 @@ const INTRO_PARAGRAPH_3 = "The four qualities below reflect the core values that
 
 const FILM_PHOTO_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const PUNCHUP_SPOTS = [
-  { id: "park", baseSrc: "/punchUp/Park.png", withVySrc: "/punchUp/Park W Vy.png", alt: "Park" },
-  { id: "music", baseSrc: "/punchUp/Music.png", withVySrc: "/punchUp/Music W Vy.png", alt: "Music" },
-  { id: "rain", baseSrc: "/punchUp/Rain.png", withVySrc: "/punchUp/Rain W Vy.png", alt: "Rain" },
   { id: "coffee", baseSrc: "/punchUp/Coffee.png", withVySrc: "/punchUp/Coffee W Vy.png", alt: "Coffee" },
-  { id: "work", baseSrc: "/punchUp/Work.png", withVySrc: "/punchUp/Work W Vy.png", alt: "Work" },
-  { id: "painting", baseSrc: "/punchUp/Painting.png", withVySrc: "/punchUp/Painting W Vy.png", alt: "Painting" },
+  { id: "park", baseSrc: "/punchUp/Park.png", withVySrc: "/punchUp/Park W Vy.png", alt: "Park" },
+  { id: "rain", baseSrc: "/punchUp/Rain.png", withVySrc: "/punchUp/Rain W Vy.png", alt: "Rain" },
 ];
 
 function FilmPhoto({ number, className }) {
@@ -260,37 +257,43 @@ export default function AboutPage() {
 {/*punch up section*/} 
 
           <section className={styles["punch-up-section"]} aria-label="Drag and drop hobbies">
-            <div className={styles["punch-up-character-vy"]}>
-              {/*draggable character*/}
-              <img
-                ref={punchUpCharacterRef}
-                src={isDraggingVyPixel ? "/punchUp/vy-pixel-2.png" : "/punchUp/vy-pixel-1.png"}
-                alt="Vy pixel character"
-                className={styles["punch-up-character-sprite"]}
-                draggable
-                onMouseDown={() => setIsDraggingVyPixel(true)}
-                onMouseUp={() => setIsDraggingVyPixel(false)}
-                onDragStart={(e) => {
-                  setIsDraggingVyPixel(true);
-                  if (e.dataTransfer && punchUpCharacterRef.current) {
-                    const renderedWidth = Math.max(
-                      1,
-                      Math.round(punchUpCharacterRef.current.clientWidth)
-                    );
-                    const renderedHeight = Math.max(
-                      1,
-                      Math.round(punchUpCharacterRef.current.clientHeight)
-                    );
-                    e.dataTransfer.setDragImage(
-                      punchUpCharacterRef.current,
-                      Math.round(renderedWidth / 2),
-                      Math.round(renderedHeight / 2)
-                    );
-                  }
-                }}
-                onDragEnd={() => setIsDraggingVyPixel(false)}
-              />
-              <p className={styles["punch-up-hint"]}>Drag me!</p>
+            <div className={styles["punch-up-top-row"]}>
+              <div className={styles["punch-up-character-vy"]}>
+                {/*draggable character*/}
+                <img
+                  ref={punchUpCharacterRef}
+                  src={isDraggingVyPixel ? "/punchUp/vy-pixel-2.png" : "/punchUp/vy-pixel-1.png"}
+                  alt="Vy pixel character"
+                  className={styles["punch-up-character-sprite"]}
+                  draggable
+                  onMouseDown={() => setIsDraggingVyPixel(true)}
+                  onMouseUp={() => setIsDraggingVyPixel(false)}
+                  onDragStart={(e) => {
+                    setIsDraggingVyPixel(true);
+                    if (e.dataTransfer && punchUpCharacterRef.current) {
+                      const renderedWidth = Math.max(
+                        1,
+                        Math.round(punchUpCharacterRef.current.clientWidth)
+                      );
+                      const renderedHeight = Math.max(
+                        1,
+                        Math.round(punchUpCharacterRef.current.clientHeight)
+                      );
+                      e.dataTransfer.setDragImage(
+                        punchUpCharacterRef.current,
+                        Math.round(renderedWidth / 2),
+                        Math.round(renderedHeight / 2)
+                      );
+                    }
+                  }}
+                  onDragEnd={() => setIsDraggingVyPixel(false)}
+                />
+              </div>
+              <div className={styles["punch-up-info-box"]}>
+                <p className={styles["punch-up-info-kicker"]}>tired of reading? take a little break</p>
+                <h3 className={styles["punch-up-info-title"]}>Vy, where are you??</h3>
+                <p className={styles["punch-up-info-copy"]}>click and drag me to find out my favorite little spots!</p>
+              </div>
             </div>
             {/*grrid of drop spots*/}
             <div className={styles["punch-up-grid"]}>
